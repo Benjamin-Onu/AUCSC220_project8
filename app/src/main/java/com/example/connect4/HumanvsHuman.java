@@ -8,6 +8,7 @@ public class HumanvsHuman {
     private String winner;
     private String turn;
     private Model game = new Model();
+    private Position[][] board = game.board;
     private Random rand = new Random();
 
     private String decideWhoGoesFirst(){
@@ -21,5 +22,9 @@ public class HumanvsHuman {
         return turn;
     }
 
+    private boolean checkThreeConnects(){
+        boolean threeConnected;
 
+        return threeConnected;
+    }
 }

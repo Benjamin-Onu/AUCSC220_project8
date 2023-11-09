@@ -1,9 +1,7 @@
 package com.example.connect4;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-
 public class Model {
+
     Position[][] board;
     public Model() {
         this.board = new Position[7][6];
@@ -16,4 +14,5 @@ public class Model {
         board[x_val][y_val] = spot;
         //After updating the board there should be a call to check winner
     }
+
 }

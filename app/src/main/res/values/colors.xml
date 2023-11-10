@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#9a6a32</color>
+    <color name = "buttonColor">#e1ba6c</color>
+    <color name = "homepageHeader">#FFCC31</color>
+    <color name = "startButton">#00FFFFFF</color>
 </resources>

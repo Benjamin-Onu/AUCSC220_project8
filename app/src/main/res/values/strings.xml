@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Connect4</string>
+    <string name="app_name">Connect4(prototype)</string>
+    <string name="col1">1</string>
+    <string name="col2">2</string>
+    <string name="col3">3</string>
+    <string name="col4">4</string>
+    <string name="col5">5</string>
+    <string name="col6">6</string>
+    <string name="col7">7</string>
+
 </resources>

@@ -1,6 +1,8 @@
+package com.example.connect4;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-public class HomePageActivity extends AppCompatActivity{
+public class Homepage extends AppCompatActivity {
     Button rules;
     Button settings;
 

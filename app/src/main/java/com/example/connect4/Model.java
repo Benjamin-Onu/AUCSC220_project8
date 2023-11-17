@@ -15,4 +15,51 @@ public class Model {
         //After updating the board there should be a call to check winner
     }
 
+    /*
+    This method will cover both check three connects and check winner
+    Reason because we want to avoid code repetition , in the check three connect and check winner
+    we can just call this method and if the count is 3 then there's a possibility.
+     */
+    public int countConsecutivePlayerSpotsVertically(String currentTurn){
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        for(int col = 0; col < columnLength; col++){
+            for(int row = 0; row < rowLength; row--){
+                if(board[row][col].getPlayer().equals(currentTurn)){
+                    count += 1;
+                }
+            }
+        }
+        return count;
+    }
+
+
+    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        int col = 0;
+        for(int row = rowLength; row > 0; row--){
+            if(board[row][col].getPlayer().equals(currentTurn)){
+                count += 1;
+                col++;
+            }
+        }
+        return count;
+    }
+
+    //Weijun
+    public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
+
+
+
+    }
+
+
+    //Weijun
+    public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
+
+    }
+
 }

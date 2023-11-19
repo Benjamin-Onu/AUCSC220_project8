@@ -3,12 +3,13 @@ package com.example.connect4;
 public class Model {
 
     Position[][] board;
-    public int ROWS = 6;
-    public int COLUMNS = 7;
+    public int ROWS = 7;
+    public int COLUMNS = 6;
     public Model() {
-        this.board = new Position[COLUMNS][ROWS];
+        this.board = new Position[ROWS][COLUMNS];
     }
     private HumanvsHuman humanVsHuman = new HumanvsHuman();
+    protected String currentTurn;
 
     public void updateBoard(int x_val, int y_val, String turn){
         Position spot = new Position(x_val, y_val, turn);
@@ -76,6 +77,26 @@ public class Model {
             }
         }
         return count;
+    }
+
+    public boolean ifThreeConnects(){
+        if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
+                countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
+                countConsecutivePlayerSpotsLeftDiag(currentTurn) == 3 ||
+                countConsecutivePlayerSpotsRightDiag(currentTurn) == 3){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean ifWinnerExist(){
+        if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 4 ||
+            countConsecutivePlayerSpotsVertically(currentTurn) == 4 ||
+            countConsecutivePlayerSpotsLeftDiag(currentTurn) == 4 ||
+            countConsecutivePlayerSpotsRightDiag(currentTurn) == 4){
+            return true;
+        }
+        return false;
     }
     //----------------------------------------------------------------------------------------------
 }

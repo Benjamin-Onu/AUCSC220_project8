@@ -18,6 +18,8 @@ public class Position {
     }
 
 
+    public void setPlayer(String player) { this.player = player; }
+
     public Position(int row, int column, String player){
         this.row = row;
         this.column = column;

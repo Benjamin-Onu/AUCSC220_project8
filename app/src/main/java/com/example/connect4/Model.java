@@ -16,43 +16,68 @@ public class Model {
         //After updating the board there should be a call to check winner
     }
 
-    public boolean horizontalCaseWinnerCheck(){
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j <= COLUMNS - 4; j++) {
-                //why columns need to reduce 4 for limit the checking number of connected pieces
-                //now we have 4 pieces only need to check
-                if (board[i][j] == board[i][j + 1] == board[i][j + 2] == board[i][j + 3] == ) {   //error here is for a value which means the same 4 pieces
-                    return true;
+    /*
+    This method will cover both check three connects and check winner
+    Reason because we want to avoid code repetition , in the check three connect and check winner
+    we can just call this method and if the count is 3 then there's a possibility.
+     */
+    public int countConsecutivePlayerSpotsVertically(String currentTurn){
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        for(int col = 0; col < columnLength; col++){
+            for(int row = 0; row < rowLength; row--){
+                if(board[row][col].getPlayer().equals(currentTurn)){
+                    count += 1;
                 }
             }
         }
-        return false;
+        return count;
     }
 
-    public boolean verticalCaseWinnerCheck(){
-        //Benjamin
-        return true;
+
+    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        int col = 0;
+        for(int row = rowLength; row > 0; row--){
+            if(board[row][col].getPlayer().equals(currentTurn)){
+                count += 1;
+                col++;
+            }
+        }
+        return count;
     }
 
-    public boolean leftDiagonalCaseWinnerCheck(){
-        for (int i = 0; i <= ROWS - 4; i++) {
-            for (int j = 0; j <= COLUMNS - 4; j++) {
-                //same thing with the horizontal case, but we need to limit the checking numbers
-                //in both horizontal and vertical direction
-                if (board[i][j] == board[i + 1][j + 1] == board[i + 2][j + 2] == board[i + 3][j + 3] == ) {  //error here is for a value which means the same 4 pieces
-                    return true;
+    //Weijun
+    public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        int col = 0;
+        for(int row = rowLength; row > 0; row--){
+            if(board[row][col].getPlayer().equals(currentTurn)){
+                count += 1;
+                col--;
+            }
+        }
+        return count;
+    }
+
+
+    //Weijun
+    public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        for (int row = 0; row < rowLength; row++) {
+            for (int col = 0; col < columnLength; col++) {
+                if (board[row][col].getPlayer().equals(currentTurn)) {
+                    count += 1;
                 }
             }
         }
-        return true;
-    }
-
-    public boolean RightDiagonalCaseWinnerCheck(){
-        //Benjamin
-        return true;
-    }
-
-    public String checkWinner(){
-        return winner;
+        return count;
     }
 }

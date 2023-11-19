@@ -3,12 +3,11 @@ package com.example.connect4;
 public class Model {
 
     Position[][] board;
-    public int ROWS = 7;
-    public int COLUMNS = 6;
+    public int ROWS = 6;
+    public int COLUMNS = 7;
     public Model() {
         this.board = new Position[ROWS][COLUMNS];
     }
-    private HumanvsHuman humanVsHuman = new HumanvsHuman();
     protected String currentTurn;
 
     public void updateBoard(int x_val, int y_val, String turn){
@@ -32,6 +31,9 @@ public class Model {
                 if(board[row][col].getPlayer().equals(currentTurn)){
                     count += 1;
                 }
+                else if (board[row][col].getPlayer().equals(" ")){
+                    break;
+                }
             }
         }
         return count;
@@ -47,6 +49,9 @@ public class Model {
                 count += 1;
                 col++;
             }
+            else if (board[row][col].getPlayer().equals(" ")){
+                break;
+            }
         }
         return count;
     }
@@ -61,6 +66,9 @@ public class Model {
                 count += 1;
                 col--;
             }
+            else if (board[row][col].getPlayer().equals(" ")){
+                break;
+            }
         }
         return count;
     }
@@ -69,16 +77,27 @@ public class Model {
         int rowLength = board.length;
         int columnLength = board[0].length;
         int count = 0;
-        for (int row = rowLength; row >= 0; row--) {//row-- row starts from 7 remember bro
+        for (int row = rowLength; row >= 0; row--) {
             for (int col = 0; col < columnLength; col++) {
                 if (board[row][col].getPlayer().equals(currentTurn)) {
                     count += 1;
+                }
+                else if (board[row][col].getPlayer().equals(" ")){
+                    break;
                 }
             }
         }
         return count;
     }
+    //----------------------------------------------------------------------------------------------
 
+    /*
+        ifThreeConnects → if three connects exist, means a hint needed to tell players that one side
+        almost wins.
+        ifWinnerExist → if four connects exist, means winner exist.
+        Can be used directly and c   onveniently.
+     */
+    //----------------------------------------------------------------------------------------------
     public boolean ifThreeConnects(){
         if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
                 countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||

@@ -10,21 +10,22 @@ public class HumanvsHuman {
     private Model game = new Model();
     private Position[][] board = game.board;
     private Random rand = new Random();
+    int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
 
     private String decideWhoGoesFirst(){
-        int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
         if (turnNum == 0){
-            turn = "player 1";
+            turn = "player1";
         }
         else{
-            turn = "player 2";
+            turn = "player2";
         }
         return turn;
     }
 
-    private boolean checkThreeConnects(){
+    private boolean checkThreeConnects(Position board[][], int xval, int yval){
         boolean threeConnected;
-
+        switch (board[xval][yval])
+            case board[xval][yval].getPlayer() == turn && board[xval][yval + 1].getPlayer() == turn && board[xval][yval + 2].getPlayer() == turn
         return threeConnected;
     }
 }

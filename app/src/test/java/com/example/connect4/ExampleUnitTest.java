@@ -13,13 +13,7 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
-    }
-
-    public void countHorizontally(){
-
-
-    }
-
+    
     @Test
     public void TestcountVertically(){
         Model game = new Model();
@@ -75,4 +69,6 @@ public class ExampleUnitTest {
         int count = game.countConsecutivePlayerSpotsHorizontally("AI");
         assertEquals(count, 4);
     }
+    //Write test cases for all the count methods
+
 }

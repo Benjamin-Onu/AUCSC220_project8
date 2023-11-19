@@ -3,11 +3,12 @@ package com.example.connect4;
 public class Model {
 
     Position[][] board;
+    private int ROWS = 6;
+    private int COLUMNS = 7;
     public Model() {
-        this.board = new Position[7][6];
+        this.board = new Position[COLUMNS][ROWS];
     }
-
-
+    private HumanvsHuman humanVsHuman = new HumanvsHuman();
 
     public void updateBoard(int x_val, int y_val, String turn){
         Position spot = new Position(x_val, y_val, turn);
@@ -25,7 +26,7 @@ public class Model {
         int columnLength = board[0].length;
         int count = 0;
         for(int col = 0; col < columnLength; col++){
-            for(int row = 0; row < rowLength; row--){
+            for(int row = rowLength; row >= 0; row--){
                 if(board[row][col].getPlayer().equals(currentTurn)){
                     count += 1;
                 }
@@ -33,7 +34,6 @@ public class Model {
         }
         return count;
     }
-
 
     public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
         int rowLength = board.length;
@@ -49,17 +49,31 @@ public class Model {
         return count;
     }
 
-    //Weijun
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
-
-
-
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        int col = 0;
+        for(int row = rowLength; row > 0; row--){
+            if(board[row][col].getPlayer().equals(currentTurn)){
+                count += 1;
+                col--;
+            }
+        }
+        return count;
     }
 
-
-    //Weijun
     public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
-
+        int rowLength = board.length;
+        int columnLength = board[0].length;
+        int count = 0;
+        for (int row = rowLength; row >= 0; row--) {//row-- row starts from 7 remember bro
+            for (int col = 0; col < columnLength; col++) {
+                if (board[row][col].getPlayer().equals(currentTurn)) {
+                    count += 1;
+                }
+            }
+        }
+        return count;
     }
-
 }

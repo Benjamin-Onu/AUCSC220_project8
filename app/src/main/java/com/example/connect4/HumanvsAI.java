@@ -27,46 +27,14 @@ public class HumanvsAI {
         return turn;
     }
 
-    public Position checkThreeConnectsHorizontally(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
-        //the column size is
-        Position[][] possibilities = new Position[5][3];
-        Position winPos;
-        //horizontally - same row different columns
-        //Starting from the bottom of the board makes
-        for(int row = rowLength; row >=0; row--){
-            for(int col = 0; col < columnLength; col++){
-                if(board[row][col].getPlayer().equals(currentTurn) &&
-                        board[row][col + 1].getPlayer().equals(currentTurn) &&
-                        board[row][col + 2].getPlayer().equals(currentTurn)){
-                    winPos =  board[row][col + 3];
-                }
-            }
-        }
+    public Position checkThreeConnects(String currentTurn){
+
+        int count =
 
         return winPos;
     }
 
-    public Position checkThreeConnectsVertically(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
-        //the column size is
-        Position[][] possibilities = new Position[5][3];
-        Position winPos;
-        //vertically - same column differnet rows
-        for(int col = 0; col < columnLength; col++){
-            for(int row = 0; row < rowLength; row--){
-                if(board[row][col].getPlayer().equals(currentTurn) &&
-                        board[row + 1][col].getPlayer().equals(currentTurn) &&
-                        board[row + 2][col].getPlayer().equals(currentTurn)){
-                    winPos =  board[row + 3][col];
-                }
-            }
-        }
 
-        return winPos;
-    }
 
     /*
     *Things to think about

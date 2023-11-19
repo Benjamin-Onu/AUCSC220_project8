@@ -33,4 +33,46 @@ public class ExampleUnitTest {
         int count = game.countConsecutivePlayerSpotsVertically("AI");
         assertEquals(count, 4);
     }
+
+    @Test
+    public void TestcountHorizontally(){
+        Model game = new Model();
+        Position[][] testBoard = new Position[5][5];
+        testBoard[4][0] = new Position(4, 0, "AI");
+        testBoard[4][1] = new Position(4, 0, "AI");
+        testBoard[4][2] = new Position(4, 0, "AI");
+        testBoard[4][3] = new Position(4, 0, "AI");
+        game.board = testBoard;
+
+        int count = game.countConsecutivePlayerSpotsHorizontally("AI");
+        assertEquals(count, 4);
+    }
+
+    @Test
+    public void TestcountLeftDiagonally(){
+        Model game = new Model();
+        Position[][] testBoard = new Position[5][5];
+        testBoard[4][3] = new Position(4, 0, "AI");
+        testBoard[3][2] = new Position(4, 0, "AI");
+        testBoard[2][1] = new Position(4, 0, "AI");
+        testBoard[1][0] = new Position(4, 0, "AI");
+        game.board = testBoard;
+
+        int count = game.countConsecutivePlayerSpotsHorizontally("AI");
+        assertEquals(count, 4);
+    }
+
+    @Test
+    public void TestcountRightDiagonally(){
+        Model game = new Model();
+        Position[][] testBoard = new Position[5][5];
+        testBoard[4][0] = new Position(4, 0, "AI");
+        testBoard[3][1] = new Position(4, 0, "AI");
+        testBoard[2][2] = new Position(4, 0, "AI");
+        testBoard[1][3] = new Position(4, 0, "AI");
+        game.board = testBoard;
+
+        int count = game.countConsecutivePlayerSpotsHorizontally("AI");
+        assertEquals(count, 4);
+    }
 }

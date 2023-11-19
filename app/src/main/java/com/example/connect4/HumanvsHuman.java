@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class HumanvsHuman {
 
-    private String turn;
     private Model game = new Model();
     private Position[][] board = game.board;
     private Random rand = new Random();
@@ -12,24 +11,23 @@ public class HumanvsHuman {
 
     private String decideWhoGoesFirst(){
         if (turnNum == 0){
-            turn = "player1";
+            game.currentTurn = "player1";
         }
         else{
-            turn = "player2";
+            game.currentTurn = "player2";
         }
-        return turn;
+        return game.currentTurn;
     }
 
     private void showPiecesWherePlayersClicked(int row, String currentTurn){
         for (int col = game.COLUMNS - 1; col >= 0; col--) {
             if (board[row][col].getPlayer().equals(' ')) {
-                board[row][col].getPlayer() = currentTurn;
+                board[row][col].setPlayer(currentTurn);
             }
         }
     }
 
     private void clickedByPlayers(int row){
-
         showPiecesWherePlayersClicked(row, changeTurns(decideWhoGoesFirst()));
     }
 
@@ -42,5 +40,9 @@ public class HumanvsHuman {
             turn = "player1";
             return turn
         }
+    }
+
+    private boolean checkThreeConnects(String currentTurn){
+        if ()
     }
 }

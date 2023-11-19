@@ -17,7 +17,12 @@ public class Position {
         return player;
     }
 
-
+    public void setRow(int val){
+        this.row = val;
+    }
+    public void setColumn(int val){
+        this.column = val;
+    }
     public void setPlayer(String player) { this.player = player; }
 
     public Position(int row, int column, String player){
@@ -25,7 +30,12 @@ public class Position {
         this.column = column;
         this.player = player;
     }
-
+    //Default Constructor
+    public Position(){
+        this.row = 0;
+        this.column = 0;
+        this.player = " ";
+    }
     @Override
     public String toString(){
         String output = "(" + row + "," +

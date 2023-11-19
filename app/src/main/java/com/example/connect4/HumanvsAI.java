@@ -27,12 +27,17 @@ public class HumanvsAI {
         return turn;
     }
 
-    public Position checkThreeConnects(String currentTurn){
-
-        int count =
-
-        return winPos;
-    }
+    /*
+    * The
+    *
+    *
+    * */
+//    public Position checkThreeConnects(String currentTurn){
+//
+//        int count =
+//
+//        return winPos;
+//    }
 
 
 

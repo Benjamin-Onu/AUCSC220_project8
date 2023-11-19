@@ -38,11 +38,12 @@ public class HumanvsHuman {
         }
         else {
             turn = "player1";
-            return turn
+            return turn;
         }
     }
 
     private boolean checkThreeConnects(String currentTurn){
-        if ()
+
+        return true;
     }
 }

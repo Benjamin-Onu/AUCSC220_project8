@@ -3,8 +3,8 @@ package com.example.connect4;
 public class Model {
 
     Position[][] board;
-    private int ROWS = 6;
-    private int COLUMNS = 7;
+    public int ROWS = 6;
+    public int COLUMNS = 7;
     public Model() {
         this.board = new Position[COLUMNS][ROWS];
     }
@@ -17,10 +17,11 @@ public class Model {
     }
 
     /*
-    This method will cover both check three connects and check winner
-    Reason because we want to avoid code repetition , in the check three connect and check winner
-    we can just call this method and if the count is 3 then there's a possibility.
+    These methods will cover both check three connects and check winner (four connects)
+    Reason because we want to avoid code repetition, in the check three connects and check winner
+    we can just call these methods and if the count is 3 then there's a possibility.
      */
+    //----------------------------------------------------------------------------------------------
     public int countConsecutivePlayerSpotsVertically(String currentTurn){
         int rowLength = board.length;
         int columnLength = board[0].length;
@@ -76,4 +77,5 @@ public class Model {
         }
         return count;
     }
+    //----------------------------------------------------------------------------------------------
 }

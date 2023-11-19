@@ -35,7 +35,6 @@ public class Model {
         return count;
     }
 
-
     public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
         int rowLength = board.length;
         int columnLength = board[0].length;
@@ -50,7 +49,6 @@ public class Model {
         return count;
     }
 
-    //Weijun
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         int rowLength = board.length;
         int columnLength = board[0].length;
@@ -65,8 +63,6 @@ public class Model {
         return count;
     }
 
-
-    //Weijun
     public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
         int rowLength = board.length;
         int columnLength = board[0].length;

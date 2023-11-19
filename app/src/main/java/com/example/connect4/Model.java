@@ -27,7 +27,7 @@ public class Model {
         int columnLength = board[0].length;
         int count = 0;
         for(int col = 0; col < columnLength; col++){
-            for(int row = 0; row < rowLength; row--){
+            for(int row = rowLength; row >= 0; row--){
                 if(board[row][col].getPlayer().equals(currentTurn)){
                     count += 1;
                 }
@@ -68,7 +68,7 @@ public class Model {
         int rowLength = board.length;
         int columnLength = board[0].length;
         int count = 0;
-        for (int row = 0; row < rowLength; row++) {
+        for (int row = rowLength; row >= 0; row--) {//row-- row starts from 7 remember bro
             for (int col = 0; col < columnLength; col++) {
                 if (board[row][col].getPlayer().equals(currentTurn)) {
                     count += 1;

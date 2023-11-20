@@ -38,7 +38,7 @@ public class HumanvsHuman {
         }
         else {
             turn = "player1";
-            return turn
+            return turn;
         }
     }
 
@@ -49,6 +49,6 @@ public class HumanvsHuman {
     }
 
     protected String giveThreeConnectsHints(){
-        return "The other player almost win."
+        return "The other player almost win.";
     }
 }

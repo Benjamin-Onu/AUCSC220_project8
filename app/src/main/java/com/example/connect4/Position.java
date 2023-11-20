@@ -17,7 +17,6 @@ public class Position {
         return player;
     }
 
-
     public void setPlayer(String player) { this.player = player; }
 
     public Position(int row, int column, String player){

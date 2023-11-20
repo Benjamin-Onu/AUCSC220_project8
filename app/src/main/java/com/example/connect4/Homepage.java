@@ -3,8 +3,8 @@ package com.example.connect4;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Homepage extends AppCompatActivity {
-    Button rules;
-    Button settings;
+    //Button rules;
+    //Button settings;
 
     /**
      * This function will run when the “view rule” button is clicked. There will be a textview

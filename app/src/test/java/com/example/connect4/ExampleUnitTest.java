@@ -13,15 +13,17 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
     
     @Test
     public void TestcountVertically(){
         Model game = new Model();
         Position[][] testBoard = new Position[5][5];
-        testBoard[4][0] = new Position(4, 0, "AI");
-        testBoard[3][0] = new Position(4, 0, "AI");
-        testBoard[2][0] = new Position(4, 0, "AI");
-        testBoard[1][0] = new Position(4, 0, "AI");
+        testBoard[5][0] = new Position(4, 0, "AI");
+        testBoard[4][0] = new Position(4, 0, "Player");
+        testBoard[3][0] = new Position(3, 0, "AI");
+        testBoard[2][0] = new Position(2, 0, "AI");
+        testBoard[1][0] = new Position(1, 0, "AI");
         game.board = testBoard;
 
         int count = game.countConsecutivePlayerSpotsVertically("AI");

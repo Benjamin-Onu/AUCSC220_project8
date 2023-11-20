@@ -42,6 +42,7 @@ public class HumanvsHuman {
         }
     }
 
+
     private void checkThreeConnects(String currentTurn){
         if (game.ifThreeConnects()) {
             giveThreeConnectsHints();

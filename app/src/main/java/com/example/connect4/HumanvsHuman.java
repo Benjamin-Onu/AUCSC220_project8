@@ -38,12 +38,18 @@ public class HumanvsHuman {
         }
         else {
             turn = "player1";
-            return turn;
+            return turn
         }
     }
 
-    private boolean checkThreeConnects(String currentTurn){
 
-        return true;
+    private void checkThreeConnects(String currentTurn){
+        if (game.ifThreeConnects()) {
+            giveThreeConnectsHints();
+        }
+    }
+
+    protected String giveThreeConnectsHints(){
+        return "The other player almost win."
     }
 }

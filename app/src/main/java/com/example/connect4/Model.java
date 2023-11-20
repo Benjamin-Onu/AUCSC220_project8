@@ -78,7 +78,7 @@ public class Model {
         int columnLength = board[0].length;
         int count = 0;
 
-        for (int row = rowLength; row >= 0; row--) {
+        for (int row = rowLength - 1; row >= 0; row--) {
             for (int col = 0; col < columnLength; col++) {
                 if (board[row][col].getPlayer().equals(currentTurn)) {
                     count += 1;

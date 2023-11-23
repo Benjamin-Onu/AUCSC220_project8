@@ -1,10 +1,11 @@
 package com.example.connect4;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 public class Homepage extends AppCompatActivity {
     //Button rules;
     //Button settings;
+
 
     /**
      * This function will run when the “view rule” button is clicked. There will be a textview
@@ -17,7 +18,8 @@ public class Homepage extends AppCompatActivity {
      * This function will take the user to the game page for human vs human
      */
     protected void goToHHGamePage(){
-
+        Intent myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
     }
 
     /**

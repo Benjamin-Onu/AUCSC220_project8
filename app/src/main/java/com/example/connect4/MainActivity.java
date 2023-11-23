@@ -4,17 +4,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
     Button instructions ;
+=======
+import android.widget.Button;
+import android.widget.TextView;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    Model game;
+    Button column1BTN = findViewById(R.id.column1);
+    Button column2BTN = findViewById(R.id.column2);
+    Button column3BTN = findViewById(R.id.column3);
+    Button column4BTN = findViewById(R.id.column4);
+    Button column5BTN = findViewById(R.id.column5);
+    Button column6BTN = findViewById(R.id.column6);
+    Button column7BTN = findViewById(R.id.column7);
+    Button backToHomepage = findViewById(R.id.home);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main)
 
         instructions = (Button) findViewById(R.id.instructions);
         instructions.setOnClickListener(new View.OnClickListener(){
@@ -29,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
     private void openInstructions() {
         Intent popupInstructions = new Intent(MainActivity.this, PopUpInstructions.class);
         startActivity(popupInstructions);
+    }
+        game = new Model();
+
+        backToHomepage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Model.class, Homepage.class);
+                startActivity(Intent intent);
+            }
+        });
     }
 
 

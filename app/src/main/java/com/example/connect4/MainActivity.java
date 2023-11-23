@@ -26,14 +26,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game = new Model();
+    }
 
-        backToHomepage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Model.class, Homepage.class);
-                startActivity(Intent intent);
-            }
-        });
+    public void backToHomePage(View myView) {
+        Intent myIntent;
+        myIntent = new Intent(this, Homepage.class);
+        startActivity(myIntent);
+    }
+
+    private void disableAll(){
+        Button b00 = findViewById(R.id.b00);
+        Button b01 = findViewById(R.id.button01);
+        Button b02 = findViewById(R.id.button02);
+
+        Button b10 = findViewById(R.id.button10);
+        Button b11 = findViewById(R.id.button11);
+        Button b12 = findViewById(R.id.button12);
+
+        Button b20 = findViewById(R.id.button20);
+        Button b21 = findViewById(R.id.button21);
+        Button b22 = findViewById(R.id.button22);
+
+        b00.setEnabled(false);
+        b01.setEnabled(false);
+        b02.setEnabled(false);
+
+        b10.setEnabled(false);
+        b11.setEnabled(false);
+        b12.setEnabled(false);
+
+        b20.setEnabled(false);
+        b21.setEnabled(false);
+        b22.setEnabled(false);
+
     }
 
 

@@ -7,6 +7,7 @@ public class Homepage extends AppCompatActivity {
     //Button settings;
 
 
+
     /**
      * This function will run when the “view rule” button is clicked. There will be a textview
      * containing the rules that will be hidden and this function will enable that textview.

@@ -478,6 +478,7 @@
         android:layout_height="wrap_content"
         android:background="@color/buttonColor"
         android:text="HOME"
+        android:onClick="backToHomePage"
         tools:layout_editor_absoluteX="307dp"
         tools:layout_editor_absoluteY="682dp" />
 

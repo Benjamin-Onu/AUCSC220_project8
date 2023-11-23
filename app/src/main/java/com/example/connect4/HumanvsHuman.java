@@ -35,7 +35,7 @@ public class HumanvsHuman {
     //Methods about humans' moves-------------------------------------------------------------------
     private void showPiecesWherePlayersClicked(int col, String currentTurn){
         for (int row = game.COLUMNS - 1; row >= 0; row--) {
-            if (board[row][col].getPlayer().equals(' ')) {
+            if (game.ifEqualToNull(row, col)) {
                 board[row][col].setPlayer(currentTurn);
             }
         }
@@ -55,6 +55,14 @@ public class HumanvsHuman {
 
     private String giveThreeConnectsHints(){
         return "The other player almost win.";
+    }
+
+    private void undoPlayerOne(){
+
+    }
+
+    private void undoPlayerTwo(){
+
     }
     //----------------------------------------------------------------------------------------------
 }

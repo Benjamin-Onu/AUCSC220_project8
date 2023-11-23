@@ -7,5 +7,6 @@
     <string name="col5">5</string>
     <string name="col6">6</string>
     <string name="col7">7</string>
+    <string name="title_activity_pop_up_instructions">PopUpInstructions</string>
 
 </resources>

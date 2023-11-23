@@ -53,7 +53,8 @@
         android:background="@color/buttonColor"
         android:text=" ? "
         android:textColor="@color/black"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"/>
 
 
 </RelativeLayout>

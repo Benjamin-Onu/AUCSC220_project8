@@ -5,10 +5,11 @@ import java.util.Random;
 public class HumanvsHuman {
 
     private Model game = new Model();
-    private Position[][] board = game.board;
     private Random rand = new Random();
-    int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
+    private Position[][] board = game.board;
+    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
 
+    //Methods about turns changing------------------------------------------------------------------
     private String decideWhoGoesFirst(){
         if (turnNum == 0){
             game.currentTurn = "player1";
@@ -19,20 +20,8 @@ public class HumanvsHuman {
         return game.currentTurn;
     }
 
-    private void showPiecesWherePlayersClicked(int row, String currentTurn){
-        for (int col = game.COLUMNS - 1; col >= 0; col--) {
-            if (board[row][col].getPlayer().equals(' ')) {
-                board[row][col].setPlayer(currentTurn);
-            }
-        }
-    }
-
-    private void clickedByPlayers(int row){
-        showPiecesWherePlayersClicked(row, changeTurns(decideWhoGoesFirst()));
-    }
-
     private String changeTurns(String turn){
-        if(decideWhoGoesFirst() == "player1"){
+        if(game.currentTurn == "player1"){
             turn = "player2";
             return turn;
         }
@@ -41,15 +30,31 @@ public class HumanvsHuman {
             return turn;
         }
     }
+    //----------------------------------------------------------------------------------------------
 
+    //Methods about humans' moves-------------------------------------------------------------------
+    private void showPiecesWherePlayersClicked(int col, String currentTurn){
+        for (int row = game.COLUMNS - 1; row >= 0; row--) {
+            if (board[row][col].getPlayer().equals(' ')) {
+                board[row][col].setPlayer(currentTurn);
+            }
+        }
+    }
 
+    private void afterClickedByPlayers(int col){
+        showPiecesWherePlayersClicked(col, changeTurns(decideWhoGoesFirst()));
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //Methods about three connects checking and hints giving----------------------------------------
     private void checkThreeConnects(String currentTurn){
         if (game.ifThreeConnects()) {
             giveThreeConnectsHints();
         }
     }
 
-    protected String giveThreeConnectsHints(){
+    private String giveThreeConnectsHints(){
         return "The other player almost win.";
     }
+    //----------------------------------------------------------------------------------------------
 }

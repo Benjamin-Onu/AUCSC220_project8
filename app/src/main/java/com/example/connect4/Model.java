@@ -1,14 +1,15 @@
 package com.example.connect4;
 
 public class Model {
-
-    Position[][] board;
-    public int ROWS = 6;
-    public int COLUMNS = 7;
-    public Model() {
+    protected Position[][] board;
+    protected int ROWS = 6;
+    protected int COLUMNS = 7;
+    protected int rowLength = board.length;
+    protected int columnLength = board[0].length;
+    protected String currentTurn;
+    protected Model() {
         this.board = new Position[ROWS][COLUMNS];
     }
-    protected String currentTurn;
 
     public void updateBoard(int x_val, int y_val, String turn){
         Position spot = new Position(x_val, y_val, turn);
@@ -18,20 +19,18 @@ public class Model {
 
     /*
     These methods will cover both check three connects and check winner (four connects)
-    Reason because we want to avoid code repetition, in the check three connects and check winner
-    we can just call these methods and if the count is 3 then there's a possibility.
+    Avoiding code repetition, so that in the check three connects and check winner we can just call
+    these methods when we need it.
      */
     //----------------------------------------------------------------------------------------------
-    public int countConsecutivePlayerSpotsVertically(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
+    public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
         int count = 0;
-        for(int col = 0; col < columnLength; col++){
-            for(int row = rowLength - 1; row >= 0; row--){
-                if(board[row][col].getPlayer().equals(currentTurn)){
+        for (int row = rowLength - 1; row >= 0; row--) {
+            for (int col = 0; col < columnLength; col++) {
+                if (ifEqualToCurrentturn(row, col)) {
                     count += 1;
                 }
-                else if (board[row][col].getPlayer().equals(" ")){
+                else if (ifEqualToNull(row, col)){
                     break;
                 }
             }
@@ -39,77 +38,72 @@ public class Model {
         return count;
     }
 
-    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
+    public int countConsecutivePlayerSpotsVertically(String currentTurn){
         int count = 0;
-        int col = 0;
-        for(int row = rowLength - 1; row > 0; row--){
-            if(board[row][col].getPlayer().equals(currentTurn)){
-                count += 1;
-                col++;
-            }
-            else if (board[row][col].getPlayer().equals(" ")){
-                break;
+        for(int col = 0; col < columnLength; col++){
+            for(int row = rowLength - 1; row >= 0; row--){
+                if(ifEqualToCurrentturn(row, col)){
+                    count += 1;
+                }
+                else if (ifEqualToNull(row, col)){
+                    break;
+                }
             }
         }
         return count;
     }
 
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
         int count = 0;
         int col = 0;
         for(int row = rowLength - 1; row >= 0; row--){
-            if(board[row][col].getPlayer().equals(currentTurn)){
+            if(ifEqualToCurrentturn(row, col)){
                 count += 1;
                 col--;
             }
-            else if (board[row][col].getPlayer().equals(" ")){
+            else if (ifEqualToNull(row, col)){
                 break;
             }
         }
         return count;
     }
 
-    public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
+    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
         int count = 0;
-
-        for (int row = rowLength - 1; row >= 0; row--) {
-            for (int col = 0; col < columnLength; col++) {
-                if (board[row][col].getPlayer().equals(currentTurn)) {
-                    count += 1;
-                }
-                else if (board[row][col].getPlayer().equals(" ")){
-                    break;
-                }
+        int col = 0;
+        for(int row = rowLength - 1; row > 0; row--){
+            if(ifEqualToCurrentturn(row, col)){
+                count += 1;
+                col++;
+            }
+            else if (ifEqualToNull(row, col)){
+                break;
             }
         }
         return count;
     }
+
     //----------------------------------------------------------------------------------------------
 
     /*
         ifThreeConnects → if three connects exist, means a hint needed to tell players that one side
         almost wins.
         ifWinnerExist → if four connects exist, means winner exist.
-        Can be used directly and c   onveniently.
+        ifEqualToCurrentturn → if the piece in this box equals to currentturn(piece)
+        ifEqualToNull → if there is a piece in this box
      */
     //----------------------------------------------------------------------------------------------
-    public boolean ifThreeConnects(){
+    protected boolean ifThreeConnects(){
         if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
-                countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
-                countConsecutivePlayerSpotsLeftDiag(currentTurn) == 3 ||
-                countConsecutivePlayerSpotsRightDiag(currentTurn) == 3){
+            countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
+            countConsecutivePlayerSpotsLeftDiag(currentTurn) == 3 ||
+            countConsecutivePlayerSpotsRightDiag(currentTurn) == 3){
             return true;
         }
         return false;
     }
 
-    public boolean ifWinnerExist(){
+    protected boolean ifWinnerExist(){
         if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 4 ||
             countConsecutivePlayerSpotsVertically(currentTurn) == 4 ||
             countConsecutivePlayerSpotsLeftDiag(currentTurn) == 4 ||
@@ -117,6 +111,14 @@ public class Model {
             return true;
         }
         return false;
+    }
+
+    protected boolean ifEqualToCurrentturn(int row, int col){
+        return board[row][col].getPlayer().equals(currentTurn);
+    }
+
+    protected boolean ifEqualToNull(int row, int col){
+        return board[row][col].getPlayer().equals(" ");
     }
     //----------------------------------------------------------------------------------------------
 }

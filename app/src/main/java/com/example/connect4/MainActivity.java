@@ -11,6 +11,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button instructions;
     Model game;
+    /*
+    We have 42 buttons to implement and in order to keep this file readable without having
+    to add 42 lines of initializing buttons, I created a buttons class to initialize all
+    the buttons.
+     */
+    Buttons gamePieces = new Buttons();
+    Button[][] gameBoard = gamePieces.getBoard();
     Button column1BTN = findViewById(R.id.column1);
     Button column2BTN = findViewById(R.id.column2);
     Button column3BTN = findViewById(R.id.column3);

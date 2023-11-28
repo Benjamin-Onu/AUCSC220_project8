@@ -32,6 +32,8 @@ public class Model {
                 }
                 else if (ifEqualToNull(row, col)){
                     break;
+                }else{
+                    break;//If the next piece is an opponent stop counting
                 }
             }
         }
@@ -47,6 +49,8 @@ public class Model {
                 }
                 else if (ifEqualToNull(row, col)){
                     break;
+                }else{
+                    break;//If the next piece is an opponent stop counting
                 }
             }
         }
@@ -63,6 +67,8 @@ public class Model {
             }
             else if (ifEqualToNull(row, col)){
                 break;
+            }else{
+                break;//If the next piece is an opponent stop counting
             }
         }
         return count;
@@ -78,6 +84,8 @@ public class Model {
             }
             else if (ifEqualToNull(row, col)){
                 break;
+            }else{
+                break;//If the next piece is an opponent stop counting
             }
         }
         return count;

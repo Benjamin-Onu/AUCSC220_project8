@@ -9,8 +9,9 @@ public class HumanvsAI {
     String Human;
     String AI;
     String turn;
+    Position bestMove;
     private Random rand = new Random();
-    Position[][] aiClicked; //This list will contain the positions on the board that the AI has clicked
+    Position[] aiClicked; //This list will contain the positions on the board that the AI has clicked
     int randomCol;
     public HumanvsAI(){
         game = new Model();
@@ -25,6 +26,85 @@ public class HumanvsAI {
             turn = "player 2";
         }
         return turn;
+    }
+
+    public Position checkNextAIMove(){
+        /*
+        This algorithm will work in a
+         */
+
+        return new Position(2, 0, "AI");
+    }
+    public Position countAISpotsHorizontally(String currentTurn){
+        int count = 0;
+        for (int row = board.length - 1; row >= 0; row--) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (ifEqualToAI(row, col)) {
+                    count += 1;
+                    if(count > 2){
+                        bestMove = new Position(row, col + 1, "AI");
+                    }
+                }
+                else if (ifEqualToNull(row, col)){
+                    break;
+                }
+            }
+        }
+
+        return bestMove;
+    }
+
+    public int countConsecutivePlayerSpotsVertically(String currentTurn){
+        int count = 0;
+        for(int col = 0; col < board[0].length; col++){
+            for(int row = board.length - 1; row >= 0; row--){
+                if(ifEqualToAI(row, col)){
+                    count += 1;
+                }
+                else if (ifEqualToNull(row, col)){
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+
+    public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
+        int count = 0;
+        int col = 0;
+        for(int row = board.length - 1; row >= 0; row--){
+            if(ifEqualToAI(row, col)){
+                count += 1;
+                col--;
+            }
+            else if (ifEqualToNull(row, col)){
+                break;
+            }
+        }
+        return count;
+    }
+
+    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
+        int count = 0;
+        int col = 0;
+        for(int row = board.length - 1; row > 0; row--){
+            if(ifEqualToAI(row, col)){
+                count += 1;
+                col++;
+            }
+            else if (ifEqualToNull(row, col)){
+                break;
+            }
+        }
+        return count;
+    }
+
+    protected boolean ifEqualToAI(int row, int col){
+        return board[row][col].getPlayer().equals("AI");
+    }
+
+    protected boolean ifEqualToNull(int row, int col){
+        return board[row][col].getPlayer().equals(" ");
     }
 
     /*

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="670dp"
-        android:text="THE FIRST PERSON WILL BE CHOSEN AT RANDOM BY OUR SYSTEM"
+        android:text="THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
         android:textSize="10dp"
         android:textStyle="bold"
         android:textAppearance = "background"/>
@@ -67,7 +67,7 @@
         android:layout_height="400dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="125dp"
-        app:srcCompat="@drawable/Connect4Wins" />
+        app:srcCompat="@drawable/connect4wins" />
 
     <TextView
         android:id="@+id/six"

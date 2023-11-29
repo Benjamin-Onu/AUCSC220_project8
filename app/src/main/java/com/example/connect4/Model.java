@@ -59,7 +59,7 @@ public class Model {
 
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         int count = 0;
-        int col = 0;
+        int col = board[0].length;
         for(int row = rowLength - 1; row >= 0; row--){
             if(ifEqualToCurrentturn(row, col)){
                 count += 1;

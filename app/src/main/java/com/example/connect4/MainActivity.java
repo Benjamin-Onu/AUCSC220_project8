@@ -31,7 +31,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        game = new Model();
+        /**
+         * Disable all the buttons from the second bottom row to the very top row
+         */
+        for(int row = 5;row >= 0;row--){
+            for(int col = 0; col < 6; col++){
+                gameBoard[row][col].setEnabled(false);
+            }
+        }
         instructions = (Button) findViewById(R.id.instructions);
         instructions.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -40,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+        backToHomepage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToHomePage();
+            }
+        });
     }
 
     private void openInstructions() {
@@ -47,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(popupInstructions);
     }
 
-    public void backToHomePage(View myView) {
+    public void backToHomePage() {
         Intent myIntent;
         myIntent = new Intent(this, Homepage.class);
         startActivity(myIntent);

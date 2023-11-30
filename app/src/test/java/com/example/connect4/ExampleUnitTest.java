@@ -18,7 +18,9 @@ public class ExampleUnitTest {
     @Test
     public void TestcountVertically(){
         Model game = new Model();
-        Position[][] testBoard = new Position[5][5];
+        //Position[][] testBoard = game.board;
+        game.updateBoard(4, 0, "AI");
+        game.updateBoard(4, 0, "Player");
         testBoard[5][0] = new Position(4, 0, "AI");
         testBoard[4][0] = new Position(4, 0, "Player");
         testBoard[3][0] = new Position(3, 0, "AI");

@@ -454,15 +454,6 @@
                 android:text="@string/col6"
                 android:textSize="25dp" />
 
-            <Button
-                android:id="@+id/column7"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:text="@string/col7"
-                android:textSize="25dp" />
         </TableRow>
     </TableLayout>
 
@@ -517,6 +508,16 @@
         tools:layout_editor_absoluteY="682dp"
         android:background="@color/buttonColor"
         />
+
+    <Button
+        android:id="@+id/column7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/buttonColor"
+        android:text="@string/col7"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="446dp"
+        tools:layout_editor_absoluteY="363dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

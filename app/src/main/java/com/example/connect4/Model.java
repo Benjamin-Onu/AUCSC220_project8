@@ -4,8 +4,6 @@ public class Model {
     protected Position[][] board;
     protected int ROWS = 6;
     protected int COLUMNS = 7;
-    protected int rowLength = board.length;
-    protected int columnLength = board[0].length;
     protected String currentTurn;
     protected Model() {
         this.board = new Position[ROWS][COLUMNS];
@@ -13,7 +11,7 @@ public class Model {
 
     public void updateBoard(int x_val, int y_val, String turn){
         Position spot = new Position(x_val, y_val, turn);
-        board[x_val][y_val] = spot;
+        this.board[x_val][y_val] = spot;
         //After updating the board there should be a call to check winner
     }
 
@@ -42,8 +40,8 @@ public class Model {
 
     public int countConsecutivePlayerSpotsVertically(String currentTurn){
         int count = 0;
-        for(int col = 0; col < columnLength; col++){
-            for(int row = rowLength - 1; row >= 0; row--){
+        for(int col = 0; col < board[0].length; col++){
+            for(int row = board.length - 1; row >= 0; row--){
                 if(ifEqualToCurrentturn(row, col)){
                     count += 1;
                 }
@@ -60,7 +58,7 @@ public class Model {
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         int count = 0;
         int col = board[0].length;
-        for(int row = rowLength - 1; row >= 0; row--){
+        for(int row = board.length - 1; row >= 0; row--){
             if(ifEqualToCurrentturn(row, col)){
                 count += 1;
                 col--;
@@ -77,7 +75,7 @@ public class Model {
     public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
         int count = 0;
         int col = 0;
-        for(int row = rowLength - 1; row > 0; row--){
+        for(int row = board.length - 1; row > 0; row--){
             if(ifEqualToCurrentturn(row, col)){
                 count += 1;
                 col++;

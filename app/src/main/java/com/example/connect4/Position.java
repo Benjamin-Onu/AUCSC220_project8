@@ -5,6 +5,18 @@ public class Position {
     private int column;
     private String player;
 
+    public Position(int row, int column, String player){
+        this.row = row;
+        this.column = column;
+        this.player = player;
+    }
+    //Default Constructor
+    public Position(){
+        this.row = 0;
+        this.column = 0;
+        this.player = " ";
+    }
+
     public int getRow() {
         return row;
     }
@@ -26,21 +38,11 @@ public class Position {
 
     public void setPlayer(String player) { this.player = player; }
 
-    public Position(int row, int column, String player){
-        this.row = row;
-        this.column = column;
-        this.player = player;
-    }
-    //Default Constructor
-    public Position(){
-        this.row = 0;
-        this.column = 0;
-        this.player = " ";
-    }
+
     @Override
     public String toString(){
-        String output = "(" + row + "," +
-                column + "," + player + ")";
+        String output = "(" + row + ", " +
+                column + ", " + player + ")";
         return output;
     }
 }

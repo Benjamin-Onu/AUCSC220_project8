@@ -14,7 +14,17 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-    
+
+    @Test
+    public void TestUpdateBoard(){
+        Model game = new Model();
+
+        game.updateBoard(0, 0, "AI");
+        Position result = game.board[0][0];
+
+        assertEquals("(0, 0, AI)", result.toString());
+    }
+
     @Test
     public void TestcountVertically(){
         Model game = new Model();

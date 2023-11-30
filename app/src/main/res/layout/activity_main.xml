@@ -319,13 +319,6 @@
                 android:layout_marginRight='15dp'
                 android:background="@color/buttonColor" />
 
-            <Button
-                android:id="@+id/b46"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
-                android:background="@color/buttonColor" />
         </TableRow>
 
 
@@ -381,13 +374,6 @@
                 android:layout_marginRight='15dp'
                 android:background="@color/buttonColor" />
 
-            <Button
-                android:id="@+id/b56"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
-                android:background="@color/buttonColor" />
         </TableRow>
 
         <TableRow
@@ -518,6 +504,22 @@
         android:textSize="25dp"
         tools:layout_editor_absoluteX="446dp"
         tools:layout_editor_absoluteY="363dp" />
+
+    <Button
+        android:id="@+id/b56"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/buttonColor"
+        tools:layout_editor_absoluteX="464dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <Button
+        android:id="@+id/b46"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/buttonColor"
+        tools:layout_editor_absoluteX="464dp"
+        tools:layout_editor_absoluteY="259dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

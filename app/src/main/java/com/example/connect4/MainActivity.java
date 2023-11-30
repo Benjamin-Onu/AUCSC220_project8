@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
                 backToHomePage();
             }
         });
+
+        //Main loop of the game.
+        while(!game.ifWinnerExist()){
+
+
+
+
+        }
+
+
     }
 
     private void enableNextCell(int previousRow, int buttonNumber){
@@ -70,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent;
         myIntent = new Intent(this, Homepage.class);
         startActivity(myIntent);
+    }
+
+    public void displayWinner(){
+
     }
 
 }

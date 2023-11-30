@@ -1,6 +1,7 @@
 package com.example.connect4;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class HumanvsAI {
 
@@ -9,11 +10,13 @@ public class HumanvsAI {
     String Human;
     String AI;
     String turn;
+    Position bestMove;
     private Random rand = new Random();
-    Position[][] aiClicked; //This list will contain the positions on the board that the AI has clicked
+    ArrayList aiClicked; //This list will contain the positions on the board that the AI has clicked
     int randomCol;
     public HumanvsAI(){
         game = new Model();
+        aiClicked = new ArrayList<>();
     }
 
     public String decideWhoGoesFirst(){
@@ -27,46 +30,124 @@ public class HumanvsAI {
         return turn;
     }
 
-    public Position checkThreeConnectsHorizontally(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
-        //the column size is
-        Position[][] possibilities = new Position[5][3];
-        Position winPos;
-        //horizontally - same row different columns
-        //Starting from the bottom of the board makes
-        for(int row = rowLength; row >=0; row--){
-            for(int col = 0; col < columnLength; col++){
-                if(board[row][col].getPlayer().equals(currentTurn) &&
-                        board[row][col + 1].getPlayer().equals(currentTurn) &&
-                        board[row][col + 2].getPlayer().equals(currentTurn)){
-                    winPos =  board[row][col + 3];
+    public Position checkNextAIMove(){
+        /*
+        This algorithm will work to pick the best move for the AI
+        If the spot is occupied in the list then
+         */
+
+
+        return new Position(2, 0, "AI");
+    }
+    public Position countAISpotsHorizontally(String currentTurn){
+        int count = 0;
+        for (int row = board.length - 1; row >= 0; row--) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (ifEqualToAI(row, col)) {
+                    count += 1;
+                    if(count > 2){
+                        bestMove = new Position(row, col + 1, "AI");
+                        aiClicked.add(bestMove);
+
+                    }
+                }
+                else if (ifEqualToNull(row, col)){
+                    break;
+                }else{
+                    break;
                 }
             }
         }
 
-        return winPos;
+        return bestMove;
     }
 
-    public Position checkThreeConnectsVertically(String currentTurn){
-        int rowLength = board.length;
-        int columnLength = board[0].length;
-        //the column size is
-        Position[][] possibilities = new Position[5][3];
-        Position winPos;
-        //vertically - same column differnet rows
-        for(int col = 0; col < columnLength; col++){
-            for(int row = 0; row < rowLength; row--){
-                if(board[row][col].getPlayer().equals(currentTurn) &&
-                        board[row + 1][col].getPlayer().equals(currentTurn) &&
-                        board[row + 2][col].getPlayer().equals(currentTurn)){
-                    winPos =  board[row + 3][col];
+    public int countConsecutivePlayerSpotsVertically(String currentTurn){
+        int count = 0;
+        for(int col = 0; col < board[0].length; col++){
+            for(int row = board.length - 1; row >= 0; row--){
+                if(ifEqualToAI(row, col)){
+                    count += 1;
+                    if(count > 2){
+                        bestMove = new Position(row + 1, col, "AI");
+                        aiClicked.add(bestMove);
+
+                    }
+                }
+                else if (ifEqualToNull(row, col)){
+                    break;
+                }else{
+                    break;
                 }
             }
         }
-
-        return winPos;
+        return count;
     }
+
+    public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
+        int count = 0;
+        int col = board[0].length;
+        for(int row = board.length - 1; row >= 0; row--){
+            if(ifEqualToAI(row, col)){
+                count += 1;
+                if(count > 2){
+                    bestMove = new Position(row - 1, col - 1, "AI");
+                    aiClicked.add(bestMove);
+                }
+                col--;
+            }
+            else if (ifEqualToNull(row, col)){
+                break;
+            }else{
+                break;
+            }
+        }
+        return count;
+    }
+
+    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
+        int count = 0;
+        int col = 0;
+        for(int row = board.length - 1; row > 0; row--){
+            if(ifEqualToAI(row, col)){
+                count += 1;
+                if(count > 2){
+                    bestMove = new Position(row - 1, col + 1, "AI");
+                    aiClicked.add(bestMove);
+
+                }
+                col++;
+            }
+            else if (ifEqualToNull(row, col)){
+                break;
+            }else{
+                break;
+            }
+        }
+        return count;
+    }
+
+    protected boolean ifEqualToAI(int row, int col){
+        return board[row][col].getPlayer().equals("AI");
+    }
+
+    protected boolean ifEqualToNull(int row, int col){
+        return board[row][col].getPlayer().equals(" ");
+    }
+
+    /*
+    * The
+    *
+    *
+    * */
+//    public Position checkThreeConnects(String currentTurn){
+//
+//        int count =
+//
+//        return winPos;
+//    }
+
+
 
     /*
     *Things to think about

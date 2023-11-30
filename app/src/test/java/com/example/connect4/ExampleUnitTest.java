@@ -14,20 +14,16 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-
-    public void countHorizontally(){
-
-
-    }
-
+    
     @Test
     public void TestcountVertically(){
         Model game = new Model();
         Position[][] testBoard = new Position[5][5];
-        testBoard[4][0] = new Position(4, 0, "AI");
-        testBoard[3][0] = new Position(4, 0, "AI");
-        testBoard[2][0] = new Position(4, 0, "AI");
-        testBoard[1][0] = new Position(4, 0, "AI");
+        testBoard[5][0] = new Position(4, 0, "AI");
+        testBoard[4][0] = new Position(4, 0, "Player");
+        testBoard[3][0] = new Position(3, 0, "AI");
+        testBoard[2][0] = new Position(2, 0, "AI");
+        testBoard[1][0] = new Position(1, 0, "AI");
         game.board = testBoard;
 
         int count = game.countConsecutivePlayerSpotsVertically("AI");
@@ -75,5 +71,6 @@ public class ExampleUnitTest {
         int count = game.countConsecutivePlayerSpotsHorizontally("AI");
         assertEquals(count, 4);
     }
+
 }
-}
+    //Write test cases for all the count methods

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".MainActivity">
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="364dp"
         android:layout_height="651dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +29,9 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
+                android:enabled="false"
                 android:background="@color/buttonColor" />
+            <!--Mayowa please put this attribute android:enabled="false" in all buttons starting with b as the id-->
 
             <Button
                 android:id="@+id/b01"
@@ -467,10 +470,13 @@
         android:id="@+id/undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="54dp"
         android:background="@color/buttonColor"
         android:text="UNDO"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="682dp" />
+        app:layout_constraintEnd_toStartOf="@+id/instructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <Button
         android:id="@+id/home"
@@ -478,8 +484,39 @@
         android:layout_height="wrap_content"
         android:background="@color/buttonColor"
         android:text="HOME"
+        android:onClick="backToHomePage"
         tools:layout_editor_absoluteX="307dp"
-        tools:layout_editor_absoluteY="682dp" />
+        tools:layout_editor_absoluteY="682dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toEndOf="@+id/undo"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/instructions"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="173dp"
+        android:background="@color/buttonColor"
+        android:text=" ? "
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/undo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.995" />
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESTART"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="682dp"
+        android:background="@color/buttonColor"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -101,11 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public int[] getButtonViewId(Button myButton){
-        int[] boardPosition = new int[2];
-        int id = myButton.getId();
 
-    }
     /**
      * These functions are for the buttons that are being used to select a position
      */

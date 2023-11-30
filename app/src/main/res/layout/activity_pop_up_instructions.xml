@@ -16,7 +16,7 @@
         android:text="THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
         android:textSize="10dp"
         android:textStyle="bold"
-        android:textAppearance = "background"/>
+        android:textAppearance = "?android:textAppearanceLarge"/>
 
     <TextView
         android:id="@+id/second"
@@ -48,8 +48,7 @@
         android:layout_below="@+id/third"
         android:text="IF PvP, EACH PERSON HAS ONLY 1 UNDO THAT REVERSES THEIR LAST MOVE"
         android:textSize="10dp"
-        android:textStyle="bold"
-        android:textAppearance = "background"/>
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/fifth"
@@ -58,8 +57,7 @@
         android:layout_below="@+id/fourth"
         android:text="IF PvAI, PLAYER WILL HAVE JUST 1 UNDO TO REVERSE THE PLAYER’S LAST TURN"
         android:textSize="10dp"
-        android:textStyle="bold"
-        android:textAppearance = "background"/>
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/C4W"
@@ -76,8 +74,7 @@
         android:layout_below="@+id/C4W"
         android:text="THE WINNER IS DECIDED WHEN ONE PLAYER CONNECTS 4 GAME PIECES "
         android:textSize="10dp"
-        android:textStyle="bold"
-        android:textAppearance = "background" />
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

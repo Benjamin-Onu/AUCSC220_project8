@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     Button column5BTN = findViewById(R.id.column5);
     Button column6BTN = findViewById(R.id.column6);
     Button column7BTN = findViewById(R.id.column7);
+
+    /*
+    * The next field is keeping track of the row number after each column have been clicked
+    * If column1 is clicked the first value will be
+    * */
+    int[] rowTrack = {5, 5, 5, 5, 5, 5};
     Button backToHomepage = findViewById(R.id.home);
 
     @Override
@@ -85,5 +91,29 @@ public class MainActivity extends AppCompatActivity {
     public void displayWinner(){
 
     }
+
+    public int[] getButtonViewId(Button myButton){
+        int[] boardPosition = new int[2];
+        int id = myButton.getId();
+
+    }
+    /**
+     * These functions are for the buttons that are being used to select a position
+     */
+    public void columnOne(){
+        //If column one is clicked, what should happen
+
+
+    }
+
+    public void columnTwo(){}
+
+    public void columnThree(){}
+
+    public void columnFour(){}
+
+    public void columnFive(){}
+
+    public void columnSix(){}
 
 }

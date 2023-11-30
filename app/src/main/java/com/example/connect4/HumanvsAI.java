@@ -30,11 +30,21 @@ public class HumanvsAI {
         return turn;
     }
 
+    /**
+     * This should check the human's next move, if it will satisfy the win condition, then it should
+     * block it. There's a little detection
+     * @return
+     *
+     * There should be a check the computer makes to prevent the user from winning. M
+     * There should be a check the computer makes to decide the next position to play and potentially win the game.
+     * The computer should choose empty boxes that are close to its last choice. M
+     */
     public Position checkNextAIMove(){
         /*
         This algorithm will work to pick the best move for the AI
         If the spot is occupied in the list then
          */
+
 
 
         return new Position(2, 0, "AI");
@@ -146,16 +156,6 @@ public class HumanvsAI {
 //
 //        return winPos;
 //    }
-
-
-
-    /*
-    *Things to think about
-    * The method that checks both winner and three connect are the same thing so it can be in a
-    * single method that returns a count
-    *
-    *If I keep writing these methods it will lead to so much code.
-    * */
 }
 
 

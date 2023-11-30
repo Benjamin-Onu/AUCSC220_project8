@@ -15,8 +15,7 @@
         android:layout_marginBottom="670dp"
         android:text="THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
         android:textSize="10dp"
-        android:textStyle="bold"
-        android:textAppearance = "?android:textAppearanceLarge"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/second"
@@ -26,8 +25,7 @@
         android:layout_marginTop="-670dp"
         android:text="THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
         android:textSize="10dp"
-        android:textStyle="bold"
-        android:textAppearance = "background"/>
+        android:textStyle="bold" />
 
 
     <TextView
@@ -38,8 +36,7 @@
         android:layout_marginTop="-35dp"
         android:text="THE SECOND PERSON WILL BE SET AS THE WHITE GAME PIECE"
         android:textSize="10dp"
-        android:textStyle="bold"
-        android:textAppearance = "background"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/fourth"

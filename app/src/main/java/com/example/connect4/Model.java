@@ -25,8 +25,8 @@ public class Model {
     //----------------------------------------------------------------------------------------------
     public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
         int count = 0;
-        for (int row = rowLength - 1; row >= 0; row--) {
-            for (int col = 0; col < columnLength; col++) {
+        for (int row = board.length - 1; row >= 0; row--) {
+            for (int col = 0; col < board[0].length; col++) {
                 if (ifEqualToCurrentturn(row, col)) {
                     count += 1;
                 }

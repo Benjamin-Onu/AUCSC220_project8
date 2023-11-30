@@ -19,14 +19,11 @@ public class ExampleUnitTest {
     public void TestcountVertically(){
         Model game = new Model();
         //Position[][] testBoard = game.board;
-        game.updateBoard(4, 0, "AI");
+        game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 0, "Player");
-        testBoard[5][0] = new Position(4, 0, "AI");
-        testBoard[4][0] = new Position(4, 0, "Player");
-        testBoard[3][0] = new Position(3, 0, "AI");
-        testBoard[2][0] = new Position(2, 0, "AI");
-        testBoard[1][0] = new Position(1, 0, "AI");
-        game.board = testBoard;
+        game.updateBoard(3, 0, "AI");
+        game.updateBoard(2, 0, "AI");
+        game.updateBoard(1, 0, "AI");
 
         int count = game.countConsecutivePlayerSpotsVertically("AI");
         assertEquals(count, 4);

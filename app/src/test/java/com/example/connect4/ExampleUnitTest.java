@@ -34,6 +34,7 @@ public class ExampleUnitTest {
         game.updateBoard(3, 0, "AI");
         game.updateBoard(2, 0, "AI");
         game.updateBoard(1, 0, "AI");
+        game.updateBoard(0, 0, "AI");
 
         int count = game.countConsecutivePlayerSpotsVertically("AI");
         assertEquals(count, 4);

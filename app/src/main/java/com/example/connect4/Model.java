@@ -7,6 +7,13 @@ public class Model {
     protected String currentTurn;
     protected Model() {
         this.board = new Position[ROWS][COLUMNS];
+        //Initialize all the spots in the board
+        for (int row = board.length - 1; row >= 0; row--){
+            for (int col = 0; col < board[0].length; col++) {
+                Position iniSpot = new Position();
+                this.board[row][col] = iniSpot;
+            }
+        }
     }
 
     public void updateBoard(int x_val, int y_val, String turn){
@@ -22,6 +29,7 @@ public class Model {
      */
     //----------------------------------------------------------------------------------------------
     public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
+        setCurrentTurn(currentTurn);
         int count = 0;
         for (int row = board.length - 1; row >= 0; row--) {
             for (int col = 0; col < board[0].length; col++) {
@@ -39,6 +47,7 @@ public class Model {
     }
 
     public int countConsecutivePlayerSpotsVertically(String currentTurn){
+        setCurrentTurn(currentTurn);
         int count = 0;
         for(int col = 0; col < board[0].length; col++){
             for(int row = board.length - 1; row >= 0; row--){
@@ -48,7 +57,7 @@ public class Model {
                 else if (ifEqualToNull(row, col)){
                     break;
                 }else{
-                    break;//If the next piece is an opponent stop counting
+                    count = 0;//If the next piece is an opponent stop counting
                 }
             }
         }
@@ -56,6 +65,7 @@ public class Model {
     }
 
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
+        setCurrentTurn(currentTurn);
         int count = 0;
         int col = board[0].length;
         for(int row = board.length - 1; row >= 0; row--){
@@ -73,6 +83,7 @@ public class Model {
     }
 
     public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
+        setCurrentTurn(currentTurn);
         int count = 0;
         int col = 0;
         for(int row = board.length - 1; row > 0; row--){
@@ -119,12 +130,19 @@ public class Model {
         return false;
     }
 
+    protected void setCurrentTurn(String turn){
+        this.currentTurn = turn;
+    }
+    protected String getCurrentTurn(){
+        return this.currentTurn;
+    }
     protected boolean ifEqualToCurrentturn(int row, int col){
-        return board[row][col].getPlayer().equals(currentTurn);
+        String currentPlayer = this.board[row][col].getPlayer();
+        return currentPlayer.equals(currentTurn);
     }
 
     protected boolean ifEqualToNull(int row, int col){
-        return board[row][col].getPlayer().equals(" ");
+        return this.board[row][col].getPlayer().equals(" ");
     }
     //----------------------------------------------------------------------------------------------
 }

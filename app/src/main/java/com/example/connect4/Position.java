@@ -12,8 +12,8 @@ public class Position {
     }
     //Default Constructor
     public Position(){
-        this.row = 0;
-        this.column = 0;
+        this.row = 6;
+        this.column = 7;
         this.player = " ";
     }
 

@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void enableNextCell(int previousRow, int buttonNumber){
+        int row = previousRow + 1;
+        gameBoard[row][buttonNumber].setEnabled(true);
+    }
+
     private void openInstructions() {
         Intent popupInstructions = new Intent(MainActivity.this, PopUpInstructions.class);
         startActivity(popupInstructions);

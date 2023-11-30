@@ -49,11 +49,12 @@
         android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="21dp"
         android:background="@color/buttonColor"
         android:text=" ? "
         android:textColor="@color/black"
-        android:layout_alignParentBottom="true"/>
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

@@ -71,6 +71,6 @@ public class ExampleUnitTest {
         int count = game.countConsecutivePlayerSpotsHorizontally("AI");
         assertEquals(count, 4);
     }
-    //Write test cases for all the count methods
 
 }
+    //Write test cases for all the count methods

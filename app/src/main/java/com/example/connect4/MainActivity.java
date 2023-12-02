@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
      * This function will take the user to the game page for human vs human
      */
     protected void goToHHGamePage(){
-        Intent myIntent = new Intent(MainActivity.this, Gameplay.class);
-        startActivity(myIntent);
+        Intent startGame = new Intent(MainActivity.this, Gameplay.class);
+        startActivity(startGame);
     }
 
     /**

@@ -4,11 +4,13 @@ public class Model {
     protected Position[][] board;
     protected int ROWS = 6;
     protected int COLUMNS = 7;
-    protected int rowLength = board.length;
-    protected int columnLength = board[0].length;
+    protected int rowLength;
+    protected int columnLength;
     protected String currentTurn;
     protected Model() {
         this.board = new Position[ROWS][COLUMNS];
+        rowLength = board.length;
+        columnLength = board[0].length;
     }
 
     public void updateBoard(int x_val, int y_val, String turn){

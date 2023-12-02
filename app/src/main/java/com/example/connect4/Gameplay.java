@@ -22,9 +22,6 @@ public class Gameplay extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         //game = new Model();
         Button backToHomepage = findViewById(R.id.home);
-        //Buttons gamePieces = new Buttons();
-        //Button[][] gameBoard = gamePieces.getBoard();
-
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
         Button column3BTN = findViewById(R.id.column3);

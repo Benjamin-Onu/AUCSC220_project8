@@ -67,16 +67,12 @@ public class Model {
     public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
-        int col = board[0].length;
-        for(int row = board.length - 1; row >= 0; row--){
-            if(ifEqualToCurrentturn(row, col)){
-                count += 1;
-                col--;
+        for(int col = board.length - 1; col >= 0; col--){
+            if(col = 6){
+                //checkOneUpperLeftDiagLine(); → checking 4 times when col = 6 and row = 2 - 5
             }
-            else if (ifEqualToNull(row, col)){
-                break;
-            }else{
-                count = 0;//If the next piece is an opponent stop counting
+            else{
+                //checkOneLowerLeftDiagLine(); → checking 1 time once col - 1
             }
         }
         return count;
@@ -100,6 +96,19 @@ public class Model {
         return count;
     }
 
+    public void checkOneLeftDiagLine(int col, int count){
+        for(col = board.length - 1; col >= 0; col--){
+            for(int row = board.length - 1; row >= board[0].length - col; row--) {
+                if (ifEqualToCurrentturn(row, col)) {
+                    count += 1;
+                } else if (ifEqualToNull(row, col)) {
+                    break;
+                } else {
+                    count = 0;//If the next piece is an opponent stop counting
+                }
+            }
+        }
+    }
     //----------------------------------------------------------------------------------------------
 
     /*

@@ -11,14 +11,14 @@
         android:layout_width="296dp"
         android:layout_height="58dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="-94dp"
         android:text="        CONNECT-4 "
+        android:textAlignment="center"
         android:textColor="@color/homepageHeader"
         android:textSize="40dp"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView2"
@@ -27,7 +27,7 @@
         android:layout_below="@id/textView"
         android:layout_centerInParent="true"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="165dp"
         android:layout_marginBottom="572dp"
         android:text="GAME"
         android:textAlignment="center"
@@ -52,6 +52,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="21dp"
         android:background="@color/buttonColor"
+        android:onClick="openInstructions"
         android:text=" ? "
         android:textColor="@color/black"
         android:textStyle="bold" />

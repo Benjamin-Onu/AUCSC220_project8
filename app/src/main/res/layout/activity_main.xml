@@ -9,21 +9,21 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="412dp"
-        android:layout_height="547dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginRight="115dp"
+        android:layout_width="364dp"
+        android:layout_height="651dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintVertical_bias="0.387"
         tools:ignore="MissingConstraints">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <!--Mayowa please put this attribute android:enabled="false" in all buttons starting with b as the id-->
 
             <Button
                 android:id="@+id/b00"
@@ -33,7 +33,6 @@
                 android:layout_marginRight='15dp'
                 android:background="@color/buttonColor"
                 android:enabled="false" />
-            <!--Mayowa please put this attribute android:enabled="false" in all buttons starting with b as the id-->
 
             <Button
                 android:id="@+id/b01"
@@ -41,8 +40,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b02"
@@ -50,8 +48,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b03"
@@ -59,8 +56,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b04"
@@ -68,8 +64,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b05"
@@ -77,8 +72,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b06"
@@ -86,8 +80,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
         </TableRow>
 
         <TableRow
@@ -100,8 +93,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b11"
@@ -109,8 +101,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b12"
@@ -118,8 +109,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b13"
@@ -127,8 +117,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b14"
@@ -136,8 +125,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b15"
@@ -145,8 +133,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b16"
@@ -154,8 +141,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
         </TableRow>
 
         <TableRow
@@ -168,8 +154,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b21"
@@ -177,8 +162,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b22"
@@ -186,8 +170,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b23"
@@ -195,8 +178,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b24"
@@ -204,8 +186,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b25"
@@ -213,8 +194,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b26"
@@ -222,8 +202,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
         </TableRow>
 
 
@@ -237,8 +216,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b31"
@@ -246,8 +224,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b32"
@@ -255,8 +232,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b33"
@@ -264,8 +240,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b34"
@@ -273,8 +248,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b35"
@@ -282,8 +256,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b36"
@@ -291,8 +264,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
         </TableRow>
 
 
@@ -306,8 +278,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b41"
@@ -315,8 +286,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b42"
@@ -324,8 +294,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b43"
@@ -333,8 +302,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b44"
@@ -342,8 +310,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b45"
@@ -351,8 +318,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b46"
@@ -360,8 +326,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
         </TableRow>
 
 
@@ -375,8 +340,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b51"
@@ -384,8 +348,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b52"
@@ -393,8 +356,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b53"
@@ -402,8 +364,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b54"
@@ -411,8 +372,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b55"
@@ -420,8 +380,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
 
             <Button
                 android:id="@+id/b56"
@@ -429,8 +388,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:enabled="false" />
+                android:background="@color/buttonColor" />
         </TableRow>
 
         <TableRow
@@ -497,18 +455,6 @@
                 android:text="@string/col6"
                 android:textSize="25dp" />
 
-            <Button
-                android:id="@+id/column7"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
-                android:background="@color/buttonColor"
-                android:text="@string/col7"
-                android:textSize="25dp"
-                tools:layout_editor_absoluteX="446dp"
-                tools:layout_editor_absoluteY="363dp" />
-
         </TableRow>
     </TableLayout>
 
@@ -516,55 +462,63 @@
         android:id="@+id/undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="320dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="54dp"
         android:background="@color/buttonColor"
         android:text="UNDO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/instructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <Button
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/buttonColor"
-        android:onClick="backToHomePage"
         android:text="HOME"
+        android:onClick="backToHomePage"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="682dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toEndOf="@+id/undo"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="216dp"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="173dp"
         android:background="@color/buttonColor"
-        android:onClick="openInstructions"
         android:text=" ? "
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/undo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.995" />
 
     <Button
         android:id="@+id/restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="112dp"
-        android:background="@color/buttonColor"
         android:text="RESTART"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="682dp"
+        android:background="@color/buttonColor"
+        />
 
+    <Button
+        android:id="@+id/column7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/buttonColor"
+        android:text="@string/col7"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="446dp"
+        tools:layout_editor_absoluteY="363dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

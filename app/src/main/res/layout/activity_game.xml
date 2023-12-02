@@ -9,13 +9,13 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="412dp"
+        android:layout_width="450dp"
         android:layout_height="547dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginRight="115dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25"
@@ -30,7 +30,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
             <!--Mayowa please put this attribute android:enabled="false" in all buttons starting with b as the id-->
@@ -40,7 +40,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -49,7 +49,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -76,7 +76,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -85,7 +85,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
         </TableRow>
@@ -99,7 +99,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -108,7 +108,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -117,7 +117,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -126,7 +126,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -135,7 +135,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -144,7 +144,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -153,7 +153,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
         </TableRow>
@@ -167,7 +167,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -176,7 +176,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -185,7 +185,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -194,7 +194,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -203,7 +203,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -212,7 +212,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -221,7 +221,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
         </TableRow>
@@ -236,7 +236,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -245,7 +245,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -254,7 +254,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -263,7 +263,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -272,7 +272,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -281,7 +281,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -290,7 +290,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
         </TableRow>
@@ -305,7 +305,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -314,7 +314,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -323,7 +323,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -332,7 +332,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -341,7 +341,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -350,7 +350,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -359,10 +359,9 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
-
         </TableRow>
 
 
@@ -375,7 +374,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -384,7 +383,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -393,7 +392,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -402,7 +401,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -411,7 +410,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -420,7 +419,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
 
@@ -429,10 +428,9 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
-
         </TableRow>
 
         <TableRow
@@ -444,7 +442,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col1"
                 android:textSize="25dp" />
@@ -454,7 +452,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col2"
                 android:textSize="25dp" />
@@ -464,7 +462,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col3"
                 android:textSize="25dp" />
@@ -474,7 +472,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col4"
                 android:textSize="25dp" />
@@ -484,7 +482,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col5"
                 android:textSize="25dp" />
@@ -494,7 +492,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col6"
                 android:textSize="25dp" />
@@ -504,7 +502,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight='15dp'
+                android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:text="@string/col7"
                 android:textSize="25dp"
@@ -567,22 +565,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
         app:layout_constraintVertical_bias="1.0" />
 
-
-    <Button
-        android:id="@+id/b56"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@color/buttonColor"
-        tools:layout_editor_absoluteX="464dp"
-        tools:layout_editor_absoluteY="320dp" />
-
-    <Button
-        android:id="@+id/b46"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@color/buttonColor"
-        tools:layout_editor_absoluteX="464dp"
-        tools:layout_editor_absoluteY="259dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

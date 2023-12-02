@@ -11,6 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     //Button settings;
     Button instructions;//was formerly the rules button
+    Button startBTN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,14 @@ public class MainActivity extends AppCompatActivity {
                 openInstructions();
             }
 
+        });
+
+        startBTN = (Button) findViewById(R.id.button);
+        startBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHHGamePage();
+            }
         });
     }
 
@@ -42,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
      * This function will take the user to the game page for human vs human
      */
     protected void goToHHGamePage(){
-        Intent myIntent = new Intent(this, MainActivity.class);
+        Intent myIntent = new Intent(MainActivity.this, Gameplay.class);
         startActivity(myIntent);
     }
 

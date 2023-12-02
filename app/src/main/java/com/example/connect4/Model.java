@@ -68,7 +68,7 @@ public class Model {
         setCurrentTurn(currentTurn);
         int count = 0;
         for(int col = board.length - 1; col >= 0; col--){
-            if(col = 6){
+            if(col == 6){
                 //checkOneUpperLeftDiagLine(); → checking 4 times when col = 6 and row = 2 - 5
             }
             else{

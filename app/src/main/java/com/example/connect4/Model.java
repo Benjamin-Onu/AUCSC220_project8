@@ -64,20 +64,89 @@ public class Model {
         return count;
     }
 
-    public int countConsecutivePlayerSpotsLeftDiag(String currentTurn){
+    public String countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
-        for(int col = board.length - 1; col >= 0; col--){
-            if(col = 6){
-                //checkOneUpperLeftDiagLine(); → checking 4 times when col = 6 and row = 2 - 5
+        boolean threeConnects = false;
+        boolean winnerExist = false;
+        for(int startCol = board[0].length - 1; startCol >= 0; startCol --){
+            if(startCol == 6){
+                count = checkOneUpperTriangularLeftDiagLine();
+                if (count == 4){
+                    winnerExist = true;
+                    break;
+                }
+                else if (count == 3){
+                    threeConnects = true;
+                    break;
+                }
             }
-            else{
-                //checkOneLowerLeftDiagLine(); → checking 1 time once col - 1
+            else {
+                count = checkOneLowerTriangularLeftDiagLine(startCol);
+                if (count == 4){
+                    winnerExist = true;
+                    break;
+                }
+                else if (count == 3){
+                    threeConnects = true;
+                    break;
+                }
             }
         }
-        return count;
+        if (winnerExist) {
+            return "winnerExist";
+        } else if (threeConnects){
+            return "threeConnects";
+        } else {
+            return "nothingHappen";
+        }
     }
 
+    public int checkOneLowerTriangularLeftDiagLine(int startCol){
+        int lowCount = 0;
+        int col = startCol;
+//        for(startCol = board.length - 1; startCol >= 2; startCol--){
+//            if (col < 0){
+//                return lowCount;
+//            }
+        for(int row = board.length - 1; row >= board.length - 1 - startCol; row--) {
+            if (ifEqualToNull(row, col) || row < 0) {
+                break;
+            } else if (ifEqualToCurrentturn(row, col) && col >= 0) {
+                lowCount += 1;
+                col --;
+            } else if (!(ifEqualToCurrentturn(row, col)) && col >= 0){
+                lowCount = 0;//If the next piece is an opponent stop counting
+                col --;
+            }
+        }
+//        }
+        return lowCount;
+    }
+
+    public int checkOneUpperTriangularLeftDiagLine(){
+        int upperCount = 0;
+        int row = board.length - 1;
+        for(int startRow = board.length - 1; startRow >= 2; startRow --){
+            if (upperCount == 3 || upperCount == 4){
+                return upperCount;
+            }
+            upperCount = 0;
+            row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
+            for (int col = board[0].length - 1; col >= col - row; col--) {
+                if (ifEqualToNull(row, col) || row < 0) {
+                    break;
+                } else if (ifEqualToCurrentturn(row, col) && row >= 0) {
+                    upperCount += 1;
+                    row--;
+                } else if (!ifEqualToCurrentturn(row, col) && row >= 0) {
+                    upperCount = 0;
+                    row--;
+                }
+            }
+        }
+        return upperCount;
+    }
     public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
@@ -95,20 +164,6 @@ public class Model {
         }
         return count;
     }
-
-    public void checkOneLeftDiagLine(int col, int count){
-        for(col = board.length - 1; col >= 0; col--){
-            for(int row = board.length - 1; row >= board[0].length - col; row--) {
-                if (ifEqualToCurrentturn(row, col)) {
-                    count += 1;
-                } else if (ifEqualToNull(row, col)) {
-                    break;
-                } else {
-                    count = 0;//If the next piece is an opponent stop counting
-                }
-            }
-        }
-    }
     //----------------------------------------------------------------------------------------------
 
     /*
@@ -122,7 +177,7 @@ public class Model {
     protected boolean ifThreeConnects(){
         if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
             countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
-            countConsecutivePlayerSpotsLeftDiag(currentTurn) == 3 ||
+            countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
             countConsecutivePlayerSpotsRightDiag(currentTurn) == 3){
             return true;
         }
@@ -132,7 +187,7 @@ public class Model {
     protected boolean ifWinnerExist(){
         if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 4 ||
             countConsecutivePlayerSpotsVertically(currentTurn) == 4 ||
-            countConsecutivePlayerSpotsLeftDiag(currentTurn) == 4 ||
+            countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
             countConsecutivePlayerSpotsRightDiag(currentTurn) == 4){
             return true;
         }

@@ -9,8 +9,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="450dp"
-        android:layout_height="547dp"
+        android:layout_width="383dp"
+        android:layout_height="477dp"
         android:layout_marginLeft="19dp"
         android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"

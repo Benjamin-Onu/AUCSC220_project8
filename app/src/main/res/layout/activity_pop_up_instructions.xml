@@ -17,7 +17,8 @@
         android:text="THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton"/>
+        android:background="@color/startButton"
+        />
 
     <TextView
         android:id="@+id/second"

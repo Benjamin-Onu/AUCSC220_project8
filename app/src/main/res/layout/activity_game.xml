@@ -33,7 +33,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@color/buttonColor"
                 android:enabled="false" />
-            <!--Mayowa please put this attribute android:enabled="false" in all buttons starting with b as the id-->
+
 
             <Button
                 android:id="@+id/b01"

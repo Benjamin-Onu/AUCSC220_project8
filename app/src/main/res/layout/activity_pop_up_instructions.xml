@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="670dp"
-        android:text="THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
+        android:text="  THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton"
+        android:textColor="#000"
         />
 
     <TextView
@@ -26,10 +26,10 @@
         android:layout_height="49dp"
         android:layout_below="@+id/first"
         android:layout_marginTop="-670dp"
-        android:text="THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
+        android:text="  THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton" />
+        android:textColor="#000" />
 
 
     <TextView
@@ -38,30 +38,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/second"
         android:layout_marginTop="-35dp"
-        android:text="THE SECOND PERSON WILL BE SET AS THE WHITE GAME PIECE"
+        android:text="  THE SECOND PERSON WILL BE SET AS THE WHITE GAME PIECE"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton" />
+        android:textColor="#000" />
 
     <TextView
         android:id="@+id/fourth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/third"
-        android:text="IF PvP, EACH PERSON HAS ONLY 1 UNDO THAT REVERSES THEIR LAST MOVE"
+        android:text="  IF PvP, EACH PERSON HAS ONLY 1 UNDO THAT REVERSES THEIR LAST MOVE"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton"/>
+        android:textColor="#000"/>
 
     <TextView
         android:id="@+id/fifth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fourth"
-        android:text="IF PvAI, PLAYER WILL HAVE JUST 1 UNDO TO REVERSE THE PLAYER’S LAST TURN"
+        android:text="  IF PvAI, PLAYER WILL HAVE JUST 1 UNDO TO REVERSE THE PLAYER’S LAST TURN"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton"/>
+        android:textColor="#000"/>
 
     <ImageView
         android:id="@+id/C4W"
@@ -76,10 +76,11 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_below="@+id/C4W"
-        android:text="THE WINNER IS DECIDED WHEN ONE PLAYER CONNECTS 4 GAME PIECES "
+        android:text="  THE WINNER IS DECIDED WHEN ONE PLAYER CONNECTS 4 GAME PIECES "
         android:textSize="10sp"
         android:textStyle="bold"
-        android:background="@color/startButton" />
+        android:textColor="#000"
+        />
 
 
 

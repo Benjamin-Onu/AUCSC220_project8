@@ -45,7 +45,8 @@
         android:layout_marginTop="36dp"
         android:background="@color/startButton"
         android:text="START"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:textColor="#000"/>
 
     <Button
         android:id="@+id/instructions"

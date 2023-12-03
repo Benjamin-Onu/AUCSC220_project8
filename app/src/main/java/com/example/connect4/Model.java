@@ -67,6 +67,7 @@ public class Model {
     public String countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
+<<<<<<< HEAD
         boolean threeConnects = false;
         boolean winnerExist = false;
         for(int startCol = board[0].length - 1; startCol >= 0; startCol --){
@@ -80,6 +81,11 @@ public class Model {
                     threeConnects = true;
                     break;
                 }
+=======
+        for(int col = board.length - 1; col >= 0; col--){
+            if(col == 6){
+                //checkOneUpperLeftDiagLine(); → checking 4 times when col = 6 and row = 2 - 5
+>>>>>>> d31e4b2a688db0c8a6a0232587aef90959cfd4fe
             }
             else {
                 count = checkOneLowerTriangularLeftDiagLine(startCol);

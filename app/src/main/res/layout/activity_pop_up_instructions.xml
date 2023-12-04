@@ -13,55 +13,64 @@
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="670dp"
+        android:layout_marginBottom="715dp"
         android:text="  THE FIRST PERSON WILL BE CHOSEN AT RANDOM TO START THE GAME"
+        android:textColor="#000"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:textColor="#000"
-        />
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/setBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_below="@+id/firstTurn"
-        android:layout_marginTop="-670dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom = "700dp"
         android:text="   THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
+        android:textColor="#000"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:textColor="#000" />
+        android:visibility="visible"
+        tools:visibility="visible" />
 
 
     <TextView
         android:id="@+id/setWhite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setBlack"
-        android:layout_marginTop="-35dp"
+        android:layout_marginTop="30dp"
         android:text="  THE SECOND PERSON WILL BE SET AS THE WHITE GAME PIECE"
+        android:textColor="#000"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:textColor="#000" />
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/pVp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setWhite"
+        android:layout_marginTop="75dp"
         android:text="  IF PvP, EACH PERSON HAS ONLY 1 UNDO THAT REVERSES THEIR LAST MOVE"
+        android:textColor="#000"
         android:textSize="10sp"
         android:textStyle="bold"
-        android:textColor="#000"/>
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/pVAI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pVp"
+
+        android:layout_marginTop="50dp"
         android:text="  IF PvAI, PLAYER WILL HAVE JUST 1 UNDO TO REVERSE THE PLAYER’S LAST TURN"
         android:textSize="10sp"
+        android:textColor="#000"
         android:textStyle="bold"
-        android:textColor="#000"/>
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/C4W"
@@ -79,8 +88,10 @@
         android:layout_below="@+id/C4W"
         android:text="  THE WINNER IS DECIDED WHEN ONE PLAYER CONNECTS 4 GAME PIECES "
         android:textSize="10sp"
-        android:textStyle="bold"
         android:textColor="#000"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:visibility="visible"
         />
 
 

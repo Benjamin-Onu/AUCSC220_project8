@@ -357,19 +357,308 @@ public class ExampleUnitTest {
     }
     //------------------------------------------------------------------------------------
 
+    //----------Right Diagonal Tests----------
     @Test
-    public void TestcountRightDiagonally(){
+    public void TestcountLowerTriRightDiagonally1_1(){
         Model game = new Model();
-        Position[][] testBoard = new Position[5][5];
-        testBoard[4][0] = new Position(4, 0, "AI");
-        testBoard[3][1] = new Position(4, 0, "AI");
-        testBoard[2][2] = new Position(4, 0, "AI");
-        testBoard[1][3] = new Position(4, 0, "AI");
-        game.board = testBoard;
 
-        int count = game.countConsecutivePlayerSpotsRightDiag("AI");
-        assertEquals(count, 4);
+        game.updateBoard(5, 1, "AI");
+        game.updateBoard(4, 2, "Player");
+        game.updateBoard(3, 3, "AI");
+        game.updateBoard(2, 4, "AI");
+        game.updateBoard(1, 5, "AI");
+        game.updateBoard(0, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "winnerExist");
     }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally1_2(){
+        Model game = new Model();
+
+        game.updateBoard(5, 1, "AI");
+        game.updateBoard(4, 2, "Player");
+        game.updateBoard(3, 3, "Player");
+        game.updateBoard(2, 4, "AI");
+        game.updateBoard(1, 5, "AI");
+        game.updateBoard(0, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally1_3(){
+        Model game = new Model();
+
+        game.updateBoard(5, 1, "AI");
+        game.updateBoard(4, 2, "Player");
+        game.updateBoard(3, 3, "AI");
+        game.updateBoard(2, 4, "Player");
+        game.updateBoard(1, 5, "AI");
+        game.updateBoard(0, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally2_1(){
+        Model game = new Model();
+
+        game.updateBoard(5, 2, "Player");
+        game.updateBoard(4, 3, "AI");
+        game.updateBoard(3, 4, "AI");
+        game.updateBoard(2, 5, "AI");
+        game.updateBoard(1, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "winnerExist");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally2_2(){
+        Model game = new Model();
+
+        game.updateBoard(5, 2, "AI");
+        game.updateBoard(4, 3, "Player");
+        game.updateBoard(3, 4, "AI");
+        game.updateBoard(2, 5, "AI");
+        game.updateBoard(1, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally2_3(){
+        Model game = new Model();
+
+        game.updateBoard(5, 2, "AI");
+        game.updateBoard(4, 3, "Player");
+        game.updateBoard(3, 4, "Player");
+        game.updateBoard(2, 5, "AI");
+        game.updateBoard(1, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally3_1() {
+        Model game = new Model();
+
+        game.updateBoard(5, 3, "AI");
+        game.updateBoard(4, 4, "AI");
+        game.updateBoard(3, 5, "AI");
+        game.updateBoard(2, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "winnerExist");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally3_2() {
+        Model game = new Model();
+
+        game.updateBoard(5, 3, "Player");
+        game.updateBoard(4, 4, "AI");
+        game.updateBoard(3, 5, "AI");
+        game.updateBoard(2, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally3_3() {
+        Model game = new Model();
+
+        game.updateBoard(5, 3, "AI");
+        game.updateBoard(4, 4, "Player");
+        game.updateBoard(3, 5, "AI");
+        game.updateBoard(2, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally4_1(){
+        Model game = new Model();
+
+        game.updateBoard(5, 4, "AI");
+        game.updateBoard(4, 5, "AI");
+        game.updateBoard(3, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountLowerTriRightDiagonally4_2(){
+        Model game = new Model();
+
+        game.updateBoard(5, 4, "Player");
+        game.updateBoard(4, 5, "AI");
+        game.updateBoard(3, 6, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally1_1(){
+        Model game = new Model();
+
+        game.updateBoard(5, 0, "AI");
+        game.updateBoard(4, 1, "Player");
+        game.updateBoard(3, 2, "AI");
+        game.updateBoard(2, 3, "AI");
+        game.updateBoard(1, 4, "AI");
+        game.updateBoard(0, 5, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "winnerExist");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally1_2(){
+        Model game = new Model();
+
+        game.updateBoard(5, 0, "AI");
+        game.updateBoard(4, 1, "Player");
+        game.updateBoard(3, 2, "Player");
+        game.updateBoard(2, 3, "AI");
+        game.updateBoard(1, 4, "AI");
+        game.updateBoard(0, 5, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally1_3(){
+        Model game = new Model();
+
+        game.updateBoard(5, 0, "AI");
+        game.updateBoard(4, 1, "Player");
+        game.updateBoard(3, 2, "AI");
+        game.updateBoard(2, 3, "Player");
+        game.updateBoard(1, 4, "AI");
+        game.updateBoard(0, 5, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally2_1(){
+        Model game = new Model();
+
+        game.updateBoard(4, 0, "Player");
+        game.updateBoard(3, 1, "AI");
+        game.updateBoard(2, 2, "AI");
+        game.updateBoard(1, 3, "AI");
+        game.updateBoard(0, 4, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "winnerExist");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally2_2(){
+        Model game = new Model();
+
+        game.updateBoard(4, 0, "AI");
+        game.updateBoard(3, 1, "Player");
+        game.updateBoard(2, 2, "AI");
+        game.updateBoard(1, 3, "AI");
+        game.updateBoard(0, 4, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally2_3(){
+        Model game = new Model();
+
+        game.updateBoard(4, 0, "AI");
+        game.updateBoard(3, 1, "Player");
+        game.updateBoard(2, 2, "AI");
+        game.updateBoard(1, 3, "Player");
+        game.updateBoard(0, 4, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally3_1(){
+        Model game = new Model();
+
+        game.updateBoard(3, 0, "AI");
+        game.updateBoard(2, 1, "AI");
+        game.updateBoard(1, 2, "AI");
+        game.updateBoard(0, 3, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "winnerExist");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally3_2(){
+        Model game = new Model();
+
+        game.updateBoard(3, 0, "Player");
+        game.updateBoard(2, 1, "AI");
+        game.updateBoard(1, 2, "AI");
+        game.updateBoard(0, 3, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally3_3(){
+        Model game = new Model();
+
+        game.updateBoard(3, 0, "AI");
+        game.updateBoard(2, 1, "Player");
+        game.updateBoard(1, 2, "AI");
+        game.updateBoard(0, 3, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally4_1(){
+        Model game = new Model();
+
+        game.updateBoard(2, 0, "AI");
+        game.updateBoard(1, 1, "AI");
+        game.updateBoard(0, 2, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountUpperTriRightDiagonally4_2(){
+        Model game = new Model();
+
+        game.updateBoard(2, 0, "AI");
+        game.updateBoard(1, 1, "Player");
+        game.updateBoard(0, 2, "AI");
+
+        String result = game.countConsecutivePlayerSpotsRightDiag("AI");
+        assertEquals(result, "nothingHappen");
+    }
+    //------------------------------------------------------------------------------------
+
 
 }
     //Write test cases for all the count methods

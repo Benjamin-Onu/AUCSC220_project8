@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,6 +42,7 @@ public class Gameplay extends AppCompatActivity {
             }
         }
         instructions = (Button) findViewById(R.id.instructions);
+        onRestart();
         instructions.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 openInstructions();
@@ -150,6 +154,25 @@ public class Gameplay extends AppCompatActivity {
     /**
      * These functions are for the buttons that are being used to select a position
      */
+    int color1=Color.parseColor("#FF000000");
+    int color2=Color.parseColor("#FFFFFFFF");
+    int color3=Color.parseColor("#e1ba6c");
+    int turn;
+    public void changeButtonColor(Button myButton){
+        ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
+        int currentColor = buttonColor.getColor();
+        /**
+         * If its the first player's turn , change the button color to black
+         */
+        if(currentColor == color3 && turn == 0){
+            myButton.setBackgroundColor(color1);
+        }/**
+         * If its the second player's turn , change the button color to white
+         */
+        else if (currentColor == color3 && turn == 1){
+            myButton.setBackgroundColor(color2);
+        }
+    }
     public void columnOne(){
         //If column one is clicked, what should happen
 

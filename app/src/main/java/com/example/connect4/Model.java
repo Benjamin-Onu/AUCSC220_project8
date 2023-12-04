@@ -28,7 +28,7 @@ Avoiding code repetition, so that in the check three connects and check winner w
 these methods when we need it.
  */
 //----------------------------------------------------------------------------------------------
-    public int countConsecutivePlayerSpotsHorizontally(String currentTurn){
+    public String countConsecutivePlayerSpotsHorizontally(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
         for (int row = board.length - 1; row >= 0; row--) {
@@ -43,10 +43,16 @@ these methods when we need it.
                 }
             }
         }
-        return count;
+        if (count == 4) {
+            return "winnerExist";
+        } else if (count == 3){
+            return "threeConnects";
+        } else {
+            return "nothingHappen";
+        }
     }
 
-    public int countConsecutivePlayerSpotsVertically(String currentTurn){
+    public String countConsecutivePlayerSpotsVertically(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
         for(int col = 0; col < board[0].length; col++){
@@ -61,7 +67,13 @@ these methods when we need it.
                 }
             }
         }
-        return count;
+        if (count == 4) {
+            return "winnerExist";
+        } else if (count == 3){
+            return "threeConnects";
+        } else {
+            return "nothingHappen";
+        }
     }
 
     public String countConsecutivePlayerSpotsLeftDiag(String currentTurn){
@@ -287,20 +299,20 @@ these methods when we need it.
      */
             //----------------------------------------------------------------------------------------------
             protected boolean ifThreeConnects(){
-                if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
-                        countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
-                        countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
-                        countConsecutivePlayerSpotsRightDiag(currentTurn).equals("threeConnects")){
+                if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("threeConnects") ||
+                    countConsecutivePlayerSpotsVertically(currentTurn).equals("threeConnects") ||
+                    countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
+                    countConsecutivePlayerSpotsRightDiag(currentTurn).equals("threeConnects")){
                     return true;
                 }
                 return false;
             }
 
             protected boolean ifWinnerExist(){
-                if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 4 ||
-                        countConsecutivePlayerSpotsVertically(currentTurn) == 4 ||
-                        countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
-                        countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
+                if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("winnerExist") ||
+                    countConsecutivePlayerSpotsVertically(currentTurn).equals("winnerExist") ||
+                    countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
+                    countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
                     return true;
                 }
                 return false;

@@ -26,7 +26,7 @@
         android:layout_height="49dp"
         android:layout_below="@+id/firstTurn"
         android:layout_marginTop="-670dp"
-        android:text="  THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
+        android:text="   THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
         android:textSize="10sp"
         android:textStyle="bold"
         android:textColor="#000" />

@@ -44,7 +44,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="36dp"
         android:background="@color/startButton"
-        android:text="START"
+        android:text=" START"
         android:textSize="40dp"
         android:textColor="#000"/>
 

@@ -56,12 +56,12 @@ public class Gameplay extends AppCompatActivity {
         });
 
         //Main loop of the game.
-        /*while(!game.ifWinnerExist()){
+        while(!game.ifWinnerExist()){
 
 
 
 
-        }*/
+        }
     }
 
     /*
@@ -129,14 +129,6 @@ public class Gameplay extends AppCompatActivity {
         };
     }
 
-    private void setButtonBoard(Button myBTN){
-        int id = myBTN.getId();
-    }
-    private void enableNextCell(int previousRow, int buttonNumber){
-        int row = previousRow + 1;
-        board[row][buttonNumber].setEnabled(true);
-    }
-
     private void openInstructions() {
         Intent popupInstructions = new Intent(Gameplay.this, PopUpInstructions.class);
         startActivity(popupInstructions);
@@ -149,6 +141,9 @@ public class Gameplay extends AppCompatActivity {
     }
 
     public void displayWinner(){}
+    /**
+     * If there is a winner, go to the display winner page
+     */
 
 
     /**
@@ -175,17 +170,33 @@ public class Gameplay extends AppCompatActivity {
     }
     public void columnOne(){
         //If column one is clicked, what should happen
-
+        changeButtonColor(board[rowTrack[0]][0]);
+        rowTrack[0]--;
 
     }
 
-    public void columnTwo(){}
+    public void columnTwo(){
+        changeButtonColor(board[rowTrack[1]][1]);
+        rowTrack[1]--;
+    }
 
-    public void columnThree(){}
+    public void columnThree(){
+        changeButtonColor(board[rowTrack[2]][2]);
+        rowTrack[2]--;
+    }
 
-    public void columnFour(){}
+    public void columnFour(){
+        changeButtonColor(board[rowTrack[3]][3]);
+        rowTrack[3]--;
+    }
 
-    public void columnFive(){}
+    public void columnFive(){
+        changeButtonColor(board[rowTrack[4]][4]);
+        rowTrack[4]--;
+    }
 
-    public void columnSix(){}
+    public void columnSix(){
+        changeButtonColor(board[rowTrack[5]][5]);
+        rowTrack[5]--;
+    }
 }

@@ -99,9 +99,21 @@ these methods when we need it.
         }
     }
 
+
     public int checkOneLowerTriangularLeftDiagLine(int startCol){
         int lowCount = 0;
         int col = startCol;
+        //the row should start counting from row - col
+        //This is because in each diagonal we are checking different number of spots and the
+        //formula for finding the number of spots to check is row - col(current startCol)
+        //(board.length - 1 + startCol) - board.length
+        /* We want to find the stopping condition for the row
+         * Start Col = 1, row >= 0 (5 - 1 + 1) - 5
+         * Start col = 2, row >= 1 (5 - 1 + 2) - 5
+         * Start col = 3 row >= 2 (5 - 1 + 3) - 5
+         * Start col = 4 row >= 3 (5 - 1 + 4) - 5
+         * Start col = 5 row >= -1 (5 - 1 + 5) - 5 This will be checked in the for loop.
+         * */
         for(int row = board.length - 1; row >= board.length - 1 - startCol; row--) {
             if (ifEqualToNull(row, col) || row < 0) {
                 break;
@@ -125,6 +137,23 @@ these methods when we need it.
             }
             upperCount = 0;
             row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
+            /**
+             * In the case of upper triangular, starting row positions are different for
+             * each case, so it is being tracked by the for loop outside. While it is being
+             * tracked the column values are being tracked as well
+             * 1st iteration:  (5,6),(4,5),(3,4).... startRow = 5
+             * 2nd iteration: (4,6),(3,5),(2,4).....startRow = 4
+             *
+             * This is how we track the number of spots to check for each iteration
+             *  We want to find the stopping condition for the row
+             *  Start Row = 1, col >= 5 (6 - 1)
+             *  Start Row = 2, row >= 4 (6 - 2)
+             *  Start Row = 3 row >= 3 (6 - 3)
+             *  Start Row = 4 row >= 2 (6 - 4)
+             *  Start Row = 5 row >= 1 (6 - 5)
+             *  A Start Row of -1 will be checked in the for loop since the
+             */
+
             for (int col = board[0].length - 1; col >= col - row; col--) {
                 if (ifEqualToNull(row, col) || row < 0) {
                     break;
@@ -140,23 +169,142 @@ these methods when we need it.
         return upperCount;
     }
 
-    public int countConsecutivePlayerSpotsRightDiag(String currentTurn){
-        setCurrentTurn(currentTurn);
-        int count = 0;
-        int col = 0;
-        for(int row = board.length - 1; row > 0; row--){
-            if(ifEqualToCurrentturn(row, col)){
-                count += 1;
-                col++;
+
+            public String countConsecutivePlayerSpotsRightDiag(String currentTurn){
+                setCurrentTurn(currentTurn);
+                int count = 0;
+                boolean threeConnects = false;
+                boolean winnerExist = false;
+                for(int startCol = 0; startCol < board[0].length; startCol ++) {
+                    if (startCol == 0) {
+                        count = checkOneUpperTriangularRightDiagLine();
+                        if (count == 4) {
+                            winnerExist = true;
+                            break;
+                        } else if (count == 3) {
+                            threeConnects = true;
+                            break;
+                        }
+                    } else {
+                        count = checkOneLowerTriangularRightDiagLine(startCol);
+                        if (count == 4) {
+                            winnerExist = true;
+                            break;
+                        } else if (count == 3) {
+                            threeConnects = true;
+                            break;
+                        }
+                    }
+                }
+                if (winnerExist) {
+                    return "winnerExist";
+                } else if (threeConnects){
+                    return "threeConnects";
+                } else {
+                    return "nothingHappen";
+                }
             }
-            else if (ifEqualToNull(row, col)){
-                break;
-            }else{
-                break;//If the next piece is an opponent stop counting
+
+            public int checkOneLowerTriangularRightDiagLine(int startCol){
+                int lowCount = 0;
+                int col = startCol;
+                //the row should start counting from row - col
+                //This is because in each diagonal we are checking different number of spots and the
+                //formula for finding the number of spots to check is row - col(current startCol)
+
+
+                //(board.length - 1 + startCol) - board.length
+                /* We want to find the stopping condition for the row
+                * Start Col = 1, row >= 0 (5 - 1 + 1) - 5
+                * Start col = 2, row >= 1 (5 - 1 + 2) - 5
+                * Start col = 3 row >= 1 (5 - 1 + 3) - 5
+                * Start col = 4 row >= 1 (5 - 1 + 4) - 5
+                * Start col = 5 row >= -1 (5 - 1 + 5) - 5 This will be checked in the for loop.
+                * */
+                for(int row = board.length - 1; row >= (board.length - 1 + startCol) - board.length; row--) {
+                    if (ifEqualToNull(row, col) || row < 0) {
+                        break;
+                    } else if (ifEqualToCurrentturn(row, col) && col < 7) {
+                        lowCount += 1;
+                        col ++;
+                    } else if (!(ifEqualToCurrentturn(row, col)) && col < 7){
+                        lowCount = 0;//If the next piece is an opponent stop counting
+                        col ++;
+                    }
+                }
+                return lowCount;
             }
-        }
-        return count;
-    }
+
+            public int checkOneUpperTriangularRightDiagLine(){
+                int upperCount = 0;
+                int row = board.length - 1;
+                for(int startRow = board.length - 1; startRow >= 2; startRow --){
+                    if (upperCount == 3 || upperCount == 4){
+                        return upperCount;
+                    }
+                    upperCount = 0;
+                    row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
+                    /**
+                     * In the case of upper triangular, starting row positions are different for
+                     * each case, so it is being tracked by the for loop outside. While it is being
+                     * tracked the column values are being tracked as well
+                     * 1st iteration:  (5,6),(4,5),(3,4).... startRow = 5
+                     * 2nd iteration: (4,6),(3,5),(2,4).....startRow = 4
+                     *
+                     * This is how we track the number of spots to check for each iteration
+                     *  We want to find the stopping condition for the row
+                     *  Start Row = 1, col >= 5 (6 - 1)
+                     *  Start Row = 2, row >= 4 (6 - 2)
+                     *  Start Row = 3 row >= 3 (6 - 3)
+                     *  Start Row = 4 row >= 2 (6 - 4)
+                     *  Start Row = 5 row >= 1 (6 - 5)
+                     *  A Start Row of -1 will be checked in the for loop since the
+                     */
+                    for (int col = 0; col <= startRow; col++) {
+                        if (ifEqualToNull(row, col) || row < 0) {
+                            break;
+                        } else if (ifEqualToCurrentturn(row, col) && row >= 0) {
+                            upperCount += 1;
+                            row--;
+                        } else if (!ifEqualToCurrentturn(row, col) && row >= 0) {
+                            upperCount = 0;
+                            row--;
+                        }
+                    }
+                }
+                return upperCount;
+            }
+
+
+    //----------------------------------------------------------------------------------------------
+
+    /*
+        ifThreeConnects → if three connects exist, means a hint needed to tell players that one side
+        almost wins.
+        ifWinnerExist → if four connects exist, means winner exist.
+        ifEqualToCurrentturn → if the piece in this box equals to currentturn(piece)
+        ifEqualToNull → if there is a piece in this box
+     */
+            //----------------------------------------------------------------------------------------------
+            protected boolean ifThreeConnects(){
+                if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
+                        countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
+                        countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
+                        countConsecutivePlayerSpotsRightDiag(currentTurn).equals("threeConnects")){
+                    return true;
+                }
+                return false;
+            }
+
+            protected boolean ifWinnerExist(){
+                if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 4 ||
+                        countConsecutivePlayerSpotsVertically(currentTurn) == 4 ||
+                        countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
+                        countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
+                    return true;
+                }
+                return false;
+            }
 //----------------------------------------------------------------------------------------------
 
 /*
@@ -167,25 +315,6 @@ these methods when we need it.
     ifEqualToNull → if there is a piece in this box
  */
 //----------------------------------------------------------------------------------------------
-    protected boolean ifThreeConnects(){
-        if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 3 ||
-                countConsecutivePlayerSpotsVertically(currentTurn) == 3 ||
-                countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
-                countConsecutivePlayerSpotsRightDiag(currentTurn) == 3){
-            return true;
-        }
-        return false;
-    }
-
-    protected boolean ifWinnerExist(){
-        if (countConsecutivePlayerSpotsHorizontally(currentTurn) == 4 ||
-                countConsecutivePlayerSpotsVertically(currentTurn) == 4 ||
-                countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
-                countConsecutivePlayerSpotsRightDiag(currentTurn) == 4){
-            return true;
-        }
-        return false;
-    }
 
     protected void setCurrentTurn(String turn){
         this.currentTurn = turn;

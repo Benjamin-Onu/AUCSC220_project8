@@ -9,7 +9,7 @@
 >
 
     <TextView
-        android:id="@+id/first"
+        android:id="@+id/firstTurn"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -21,22 +21,22 @@
         />
 
     <TextView
-        android:id="@+id/second"
+        android:id="@+id/setBlack"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
-        android:layout_below="@+id/first"
+        android:layout_below="@+id/firstTurn"
         android:layout_marginTop="-670dp"
-        android:text="  THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
+        android:text="   THE FIRST PERSON WILL BE SET AS THE BLACK GAME PIECE"
         android:textSize="10sp"
         android:textStyle="bold"
         android:textColor="#000" />
 
 
     <TextView
-        android:id="@+id/third"
+        android:id="@+id/setWhite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/second"
+        android:layout_below="@+id/setBlack"
         android:layout_marginTop="-35dp"
         android:text="  THE SECOND PERSON WILL BE SET AS THE WHITE GAME PIECE"
         android:textSize="10sp"
@@ -44,20 +44,20 @@
         android:textColor="#000" />
 
     <TextView
-        android:id="@+id/fourth"
+        android:id="@+id/pVp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/third"
+        android:layout_below="@+id/setWhite"
         android:text="  IF PvP, EACH PERSON HAS ONLY 1 UNDO THAT REVERSES THEIR LAST MOVE"
         android:textSize="10sp"
         android:textStyle="bold"
         android:textColor="#000"/>
 
     <TextView
-        android:id="@+id/fifth"
+        android:id="@+id/pVAI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fourth"
+        android:layout_below="@+id/pVp"
         android:text="  IF PvAI, PLAYER WILL HAVE JUST 1 UNDO TO REVERSE THE PLAYER’S LAST TURN"
         android:textSize="10sp"
         android:textStyle="bold"
@@ -67,12 +67,13 @@
         android:id="@+id/C4W"
         android:layout_width="350dp"
         android:layout_height="350dp"
+        android:layout_below="@id/pVAI"
         android:layout_alignParentTop="true"
         android:layout_marginTop="125dp"
-        android:src="@drawable/connect_4_possible_wins"/>
+        android:src="@drawable/connect_4_possible_wins" />
 
     <TextView
-        android:id="@+id/six"
+        android:id="@+id/winDecision"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_below="@+id/C4W"

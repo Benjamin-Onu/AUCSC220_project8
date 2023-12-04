@@ -12,6 +12,20 @@ public class MainActivity extends AppCompatActivity {
     //Button settings;
     Button instructions;//was formerly the rules button
     Button startBTN;
+    Button undo;
+    private Model game = new Model();
+    private MovesStack movesStack = new MovesStack();
+    /*
+    While the game is still running
+    Track the moves in a stack
+    get the peek value then
+    get the buttons clicked, enable the next button
+
+
+    change the color of the previous button (create a change color method, black for player 1,
+    white for player 2.
+
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +54,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(popupInstructions);
     }
 
-//    /**
-//     * This function will run when the “view rule” button is clicked. There will be a textview
-//     * containing the rules that will be hidden and this function will enable that textview.
-//     */
-//    protected void displayRules(){
-//
-//    }
+
     /**
      * This function will take the user to the game page for human vs human
      */
@@ -59,6 +67,17 @@ public class MainActivity extends AppCompatActivity {
      * This function will take the user to the game page for human vs AI
      */
     protected void goToHAGamePage(){
+
+    }
+
+    protected void undoLastMove(){
+        undo = (Button) findViewById(R.id.undo);
+        undo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game.updateBoard(movesStack.deleteMove()[0], movesStack.deleteMove()[1], " ");
+            }
+        });
 
     }
 

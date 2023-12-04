@@ -56,13 +56,5 @@ public class HumanvsHuman {
     private String giveThreeConnectsHints(){
         return "The other player almost win.";
     }
-
-    private void undoPlayerOne(){
-
-    }
-
-    private void undoPlayerTwo(){
-
-    }
     //----------------------------------------------------------------------------------------------
 }

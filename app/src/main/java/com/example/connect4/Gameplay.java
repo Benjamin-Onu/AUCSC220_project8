@@ -20,7 +20,9 @@ public class Gameplay extends AppCompatActivity {
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
 
-    public Gameplay(){
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);

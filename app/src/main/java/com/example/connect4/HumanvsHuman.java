@@ -1,6 +1,6 @@
 package com.example.connect4;
 
-public class HumanvsHuman {
+public class HumanvsHuman{
     private Model game = new Model();
     private Position[][] board = game.board;
     private Gameplay gameplay = new Gameplay();

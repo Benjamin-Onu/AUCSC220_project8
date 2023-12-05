@@ -25,8 +25,9 @@ public class ExampleUnitTest {
         assertEquals("(0, 0, AI)", result.toString());
     }
 
+    //VerticalTest----------------------------------------------------------------------------------
     @Test
-    public void TestcountVertically(){
+    public void TestcountVertically1(){
         Model game = new Model();
 
         game.updateBoard(5, 0, "AI");
@@ -36,12 +37,44 @@ public class ExampleUnitTest {
         game.updateBoard(1, 0, "AI");
         game.updateBoard(0, 0, "AI");
 
-        int count = game.countConsecutivePlayerSpotsVertically("AI");
-        assertEquals(count, 4);
+        String result = game.countConsecutivePlayerSpotsVertically("AI");
+        assertEquals(result, "winnerExist");
     }
 
     @Test
-    public void TestcountHorizontally(){
+    public void TestcountVertically2(){
+        Model game = new Model();
+
+        game.updateBoard(5, 0, "AI");
+        game.updateBoard(4, 0, "Player");
+        game.updateBoard(3, 0, "Player");
+        game.updateBoard(2, 0, "AI");
+        game.updateBoard(1, 0, "AI");
+        game.updateBoard(0, 0, "AI");
+
+        String result = game.countConsecutivePlayerSpotsVertically("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountVertically3(){
+        Model game = new Model();
+
+        game.updateBoard(5, 0, "AI");
+        game.updateBoard(4, 0, "Player");
+        game.updateBoard(3, 0, "AI");
+        game.updateBoard(2, 0, "Player");
+        game.updateBoard(1, 0, "AI");
+        game.updateBoard(0, 0, "AI");
+
+        String result = game.countConsecutivePlayerSpotsVertically("AI");
+        assertEquals(result, "nothingHappen");
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //HorizontalTest--------------------------------------------------------------------------------
+    @Test
+    public void TestcountHorizontally1(){
         Model game = new Model();
 
         game.updateBoard(4, 0, "AI");
@@ -51,11 +84,42 @@ public class ExampleUnitTest {
         game.updateBoard(4, 4, "AI");
         game.updateBoard(4, 5, "AI");
 
-        int count = game.countConsecutivePlayerSpotsHorizontally("AI");
-        assertEquals(count, 4);
+        String result = game.countConsecutivePlayerSpotsHorizontally("AI");
+        assertEquals(result, "winnerExist");
     }
 
-    //LeftDiagonalTest--------------------------------------------------------------------
+    @Test
+    public void TestcountHorizontally2(){
+        Model game = new Model();
+
+        game.updateBoard(4, 0, "AI");
+        game.updateBoard(4, 1, "Player");
+        game.updateBoard(4, 2, "Player");
+        game.updateBoard(4, 3, "AI");
+        game.updateBoard(4, 4, "AI");
+        game.updateBoard(4, 5, "AI");
+
+        String result = game.countConsecutivePlayerSpotsHorizontally("AI");
+        assertEquals(result, "threeConnects");
+    }
+
+    @Test
+    public void TestcountHorizontally3(){
+        Model game = new Model();
+
+        game.updateBoard(4, 0, "AI");
+        game.updateBoard(4, 1, "Player");
+        game.updateBoard(4, 2, "AI");
+        game.updateBoard(4, 3, "Player");
+        game.updateBoard(4, 4, "AI");
+        game.updateBoard(4, 5, "AI");
+
+        String result = game.countConsecutivePlayerSpotsHorizontally("AI");
+        assertEquals(result, "nothingHappen");
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //LeftDiagonalTest------------------------------------------------------------------------------
     @Test
     public void TestcountLowerTriLeftDiagonally1_1(){
         Model game = new Model();
@@ -355,9 +419,9 @@ public class ExampleUnitTest {
         String result = game.countConsecutivePlayerSpotsLeftDiag("AI");
         assertEquals(result, "nothingHappen");
     }
-    //------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
 
-    //----------Right Diagonal Tests----------
+    //RightDiagonalTest-----------------------------------------------------------------------------
     @Test
     public void TestcountLowerTriRightDiagonally1_1(){
         Model game = new Model();
@@ -657,8 +721,5 @@ public class ExampleUnitTest {
         String result = game.countConsecutivePlayerSpotsRightDiag("AI");
         assertEquals(result, "nothingHappen");
     }
-    //------------------------------------------------------------------------------------
-
-
+    //----------------------------------------------------------------------------------------------
 }
-    //Write test cases for all the count methods

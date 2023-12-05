@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         startBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToHHGamePage();
+                selectGameMode();
             }
         });
     }
@@ -59,21 +59,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(popupInstructions);
     }
 
-
-    /**
-     * This function will take the user to the game page for human vs human
-     */
-    protected void goToHHGamePage(){
-        Intent startGame = new Intent(MainActivity.this, Gameplay.class);
-        startActivity(startGame);
-    }
-
-    /**
-     * This function will take the user to the game page for human vs AI
-     */
-    protected void goToHAGamePage(){
+    private void selectGameMode(){
+        Intent GameMode = new Intent(MainActivity.this, GameMode.class);
+        startActivity(GameMode);
 
     }
+
 
     protected void undoLastMove(){
         undo = (Button) findViewById(R.id.undo);

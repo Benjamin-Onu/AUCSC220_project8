@@ -4,7 +4,7 @@ public class Model {
     protected Position[][] board;
     protected int ROWS = 6;
     protected int COLUMNS = 7;
-    protected String currentTurn;
+    private String currentTurn;
     protected Model() {
         this.board = new Position[ROWS][COLUMNS];
         //Initialize all the spots in the board
@@ -15,6 +15,7 @@ public class Model {
             }
         }
     }
+
 
     public void updateBoard(int x_val, int y_val, String turn){
         Position spot = new Position(x_val, y_val, turn);

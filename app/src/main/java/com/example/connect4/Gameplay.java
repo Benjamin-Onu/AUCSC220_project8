@@ -20,14 +20,14 @@ public class Gameplay extends AppCompatActivity {
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
     Model game;
-    HumanvsHuman hvh = new HumanvsHuman();
+    //HumanvsHuman hvh = new HumanvsHuman();
     private Random rand = new Random();
     private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
     String turn;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        turn = decideWhoGoesFirst();
+        decideWhoGoesFirst();
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -38,12 +38,12 @@ public class Gameplay extends AppCompatActivity {
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
 
-        game = hvh.game;
+        game = new Model();
         column1BTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 columnOne();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
           }
         );
@@ -52,7 +52,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnTwo();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -61,7 +61,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnThree();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -70,7 +70,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnFour();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -79,7 +79,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnFive();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -88,7 +88,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnSix();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -97,7 +97,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnSeven();
-                hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -203,14 +203,25 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
-    protected String decideWhoGoesFirst(){
+    protected void decideWhoGoesFirst(){
         if (turnNum == 0){
-            game.currentTurn = "player1";
+            game.setCurrentTurn("player1");
         }
         else{
-            game.currentTurn = "player2";
+            game.setCurrentTurn("player1");
         }
-        return game.currentTurn;
+        //return game.currentTurn;
+    }
+
+    protected String changeTurns(String turn){
+        if(game.getCurrentTurn() == "player1"){
+            turn = "player2";
+            return turn;
+        }
+        else {
+            turn = "player1";
+            return turn;
+        }
     }
     public void displayWinner(){}
     /**

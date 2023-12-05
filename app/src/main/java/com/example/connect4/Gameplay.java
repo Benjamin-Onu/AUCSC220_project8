@@ -19,6 +19,7 @@ public class Gameplay extends AppCompatActivity {
      * */
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
+    Model game;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,8 @@ public class Gameplay extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
+
+        game = new Model();
         column1BTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -189,7 +192,15 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
-
+    protected String decideWhoGoesFirst(){
+        if (turnNum == 0){
+            game.currentTurn = "player1";
+        }
+        else{
+            game.currentTurn = "player2";
+        }
+        return game.currentTurn;
+    }
     public void displayWinner(){}
     /**
      * If there is a winner, go to the display winner page

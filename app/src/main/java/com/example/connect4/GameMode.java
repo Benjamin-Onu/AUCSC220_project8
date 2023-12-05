@@ -17,7 +17,8 @@ public class GameMode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gamemode);
         instructions = (Button) findViewById(R.id.instructions);
-
+        pVp = (Button) findViewById(R.id.pVp);
+        pVai = (Button) findViewById(R.id.pVai);
 
         instructions.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -20,6 +20,8 @@ public class Gameplay extends AppCompatActivity {
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
     Model game;
+    private Random rand = new Random();
+    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

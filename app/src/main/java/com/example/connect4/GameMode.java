@@ -30,7 +30,7 @@ public class GameMode extends AppCompatActivity {
         pVp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View w){
-//function for going to pVp page will be inserted here
+//function for going to pVp page is inserted here
                 Intent startGame = new Intent(GameMode.this, Gameplay.class);
                 startActivity(startGame);
             }
@@ -39,7 +39,7 @@ public class GameMode extends AppCompatActivity {
                 pVai.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View x){
-//function for going to pVai page will be inserted here
+//function for going to pVai page is inserted here
                         Intent startGame = new Intent(GameMode.this, GamePlayAI.class);
                         startActivity(startGame);
                     }

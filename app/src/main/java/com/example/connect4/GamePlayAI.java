@@ -1,7 +1,7 @@
 package com.example.connect4;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.util.Random;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +17,10 @@ public class GamePlayAI extends AppCompatActivity {
      * */
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
+    private Model game = new Model();
+    private Random rand = new Random();
+    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,7 +190,15 @@ public class GamePlayAI extends AppCompatActivity {
         startActivity(myIntent);
     }
 
-
+    protected String decideWhoGoesFirst(){
+        if (turnNum == 0){
+            game.currentTurn = "player1";
+        }
+        else{
+            game.currentTurn = "player2";
+        }
+        return game.currentTurn;
+    }
 
     public void displayWinner(){}
     /**

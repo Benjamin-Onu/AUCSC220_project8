@@ -1,35 +1,10 @@
 package com.example.connect4;
 
-import android.os.Bundle;
-
-import java.util.Random;
-
-public class HumanvsHuman extends Gameplay{
+public class HumanvsHuman {
     private Model game = new Model();
     private Position[][] board = game.board;
-    private Random rand = new Random();
-    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        while(!game.ifWinnerExist()){
+    private Gameplay gameplay = new Gameplay();
 
-
-
-
-        }
-
-    }
-
-    protected String decideWhoGoesFirst(){
-        if (turnNum == 0){
-            game.currentTurn = "player1";
-        }
-        else{
-            game.currentTurn = "player2";
-        }
-        return game.currentTurn;
-    }
     //Methods about turns changing------------------------------------------------------------------
     private String changeTurns(String turn){
         if(game.currentTurn == "player1"){
@@ -53,7 +28,7 @@ public class HumanvsHuman extends Gameplay{
     }
 
     private void afterClickedByPlayers(int col){
-        showPiecesWherePlayersClicked(col, changeTurns(decideWhoGoesFirst()));
+        showPiecesWherePlayersClicked(col, changeTurns(gameplay.decideWhoGoesFirst()));
     }
     //----------------------------------------------------------------------------------------------
 

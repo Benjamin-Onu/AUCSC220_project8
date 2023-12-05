@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         startBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectGameMode();
+                Intent GameMode = new Intent(MainActivity.this, GameMode.class);
+                startActivity(GameMode);
             }
         });
     }
@@ -57,12 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private void openInstructions() {
         Intent popupInstructions = new Intent(MainActivity.this, PopUpInstructions.class);
         startActivity(popupInstructions);
-    }
-
-    private void selectGameMode(){
-        Intent GameMode = new Intent(MainActivity.this, GameMode.class);
-        startActivity(GameMode);
-
     }
 
 

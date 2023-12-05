@@ -104,7 +104,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void TestcountHorizontally3(){/
+    public void TestcountHorizontally3(){
         Model game = new Model();
 
         game.updateBoard(4, 0, "AI");

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
     //Button settings;
@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
     Button undo;
     private Model game = new Model();
     private MovesStack movesStack = new MovesStack();
+    String gameMode;
+    String[] modes = {"HVH", "HVA"};
+    RadioButton hvhBTN;
+    RadioButton hvaBTN;
     /*
     While the game is still running
     Track the moves in a stack

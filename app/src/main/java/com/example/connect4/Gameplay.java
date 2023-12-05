@@ -13,21 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Gameplay extends AppCompatActivity {
     Button instructions;
-    Model game;
     /*
      * The next field is keeping track of the row number after each column have been clicked
      * If column1 is clicked the first value will be
      * */
-    int[] rowTrack = {5, 5, 5, 5, 5, 5};
-    Button[][] board;
-    private Random rand = new Random();
-    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
+    protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
+    protected Button[][] board;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        //game = new Model();
+    public Gameplay(){
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -37,6 +30,61 @@ public class Gameplay extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
+        column1BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnOne();
+            }
+          }
+        );
+
+        column2BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnTwo();
+            }
+        }
+        );
+
+        column3BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnThree();
+            }
+        }
+        );
+
+        column4BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnFour();
+            }
+        }
+        );
+
+        column5BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnFive();
+            }
+        }
+        );
+
+        column6BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnSix();
+            }
+        }
+        );
+
+        column7BTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                columnSeven();
+            }
+        }
+        );
         /**
          * Disable all the buttons from the second bottom row to the very top row
          */
@@ -59,13 +107,7 @@ public class Gameplay extends AppCompatActivity {
             }
         });
 
-        //Main loop of the game.
-        while(!game.ifWinnerExist()){
-
-
-
-
-        }
+        //Main loop of the game
     }
 
     /*
@@ -144,15 +186,7 @@ public class Gameplay extends AppCompatActivity {
         startActivity(myIntent);
     }
 
-    protected String decideWhoGoesFirst(){
-        if (turnNum == 0){
-            game.currentTurn = "player1";
-        }
-        else{
-            game.currentTurn = "player2";
-        }
-        return game.currentTurn;
-    }
+
 
     public void displayWinner(){}
     /**
@@ -212,5 +246,12 @@ public class Gameplay extends AppCompatActivity {
     public void columnSix(){
         changeButtonColor(board[rowTrack[5]][5]);
         rowTrack[5]--;
+
     }
+
+    public void columnSeven() {
+        changeButtonColor(board[rowTrack[6]][6]);
+        rowTrack[6]--;
+    }
+
 }

@@ -3,7 +3,6 @@ package com.example.connect4;
 public class HumanvsHuman{
     protected Model game = new Model();
     private Position[][] board = game.board;
-    private Gameplay gameplay = new Gameplay();
 
     //Methods about turns changing------------------------------------------------------------------
     protected String changeTurns(String turn){
@@ -28,7 +27,7 @@ public class HumanvsHuman{
     }
 
     private void afterClickedByPlayers(int col){
-        showPiecesWherePlayersClicked(col, changeTurns(gameplay.decideWhoGoesFirst()));
+        showPiecesWherePlayersClicked(col, changeTurns(game.currentTurn));
     }
     //----------------------------------------------------------------------------------------------
 

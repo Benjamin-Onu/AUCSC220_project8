@@ -1,2 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Gameplay">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".MainActivity">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="296dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="9dp"
+            android:text="        CONNECT-4"
+            android:textColor="@color/homepageHeader"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:visibility="visible"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="121dp"
+            android:layout_height="59dp"
+            android:layout_below="@id/textView"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="572dp"
+            android:text="GAME"
+            android:textAlignment="center"
+            android:textColor="@color/homepageHeader"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="36dp"
+            android:background="@color/startButton"
+            android:text="START"
+            android:textSize="40dp" />
+
+        <Button
+            android:id="@+id/instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="21dp"
+            android:background="@color/buttonColor"
+            android:text=" ? "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/HvH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginRight="100dp"
+            android:text="HUMAN vs HUMAN"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:id="@+id/HvA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="550dp"
+            android:layout_marginEnd="155dp"
+            android:layout_marginRight="100dp"
+            android:text="HUMAN vs AI"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

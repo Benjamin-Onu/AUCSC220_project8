@@ -70,30 +70,6 @@
         android:visibility="visible"
         tools:visibility="visible" />
 
-    <RadioButton
-        android:id="@+id/HvH"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="100dp"
-        android:text="HUMAN vs HUMAN"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
-
-    <RadioButton
-        android:id="@+id/HvA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="550dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginRight="100dp"
-        android:text="HUMAN vs AI"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
-
 
 </RelativeLayout>
 

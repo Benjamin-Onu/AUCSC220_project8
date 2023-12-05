@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".Gameplay">
+    tools:context=".GameMode">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        tools:context=".MainActivity"
+        tools:context=".GameMode"
         tools:layout_editor_absoluteX="-34dp"
         tools:layout_editor_absoluteY="16dp">
 

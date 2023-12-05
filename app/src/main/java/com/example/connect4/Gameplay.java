@@ -20,12 +20,14 @@ public class Gameplay extends AppCompatActivity {
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
     Model game;
+    HumanvsHuman hvh = new HumanvsHuman();
     private Random rand = new Random();
     private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
-
+    String turn;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        turn = decideWhoGoesFirst();
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -36,11 +38,12 @@ public class Gameplay extends AppCompatActivity {
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
 
-        game = new Model();
+        game = hvh.game;
         column1BTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 columnOne();
+                hvh.changeTurns(game.currentTurn);
             }
           }
         );
@@ -49,6 +52,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnTwo();
+                hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -57,6 +61,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnThree();
+                hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -65,6 +70,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnFour();
+                hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -73,6 +79,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnFive();
+                hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -81,6 +88,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnSix();
+                hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -89,6 +97,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnSeven();
+                hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -215,19 +224,19 @@ public class Gameplay extends AppCompatActivity {
     int color1=Color.parseColor("#FF000000");
     int color2=Color.parseColor("#FFFFFFFF");
     int color3=Color.parseColor("#e1ba6c");
-    int turn;
+
     public void changeButtonColor(Button myButton){
         ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
         int currentColor = buttonColor.getColor();
         /**
          * If its the first player's turn , change the button color to black
          */
-        if(currentColor == color3 && turn == 0){
+        if(currentColor == color3 && turn.equals("player1")){
             myButton.setBackgroundColor(color1);
         }/**
          * If its the second player's turn , change the button color to white
          */
-        else if (currentColor == color3 && turn == 1){
+        else if (currentColor == color3 && turn.equals("player2")){
             myButton.setBackgroundColor(color2);
         }
     }

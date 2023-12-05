@@ -629,6 +629,16 @@ public class ExampleUnitTest {
         movesStack.recordMove(1, 2);
         String result = movesStack.movesInRow.toString() + movesStack.movesInCol.toString();
 
-        assertEquals(result, "12");
+        assertEquals(result, "[1][2]");
+    }
+
+    @Test
+    public void TestDeleteMove(){
+        movesStack.recordMove(5, 0);
+        movesStack.recordMove(5, 1);
+        movesStack.deleteMove();
+        String result = movesStack.movesInRow.toString() + movesStack.movesInCol.toString();
+
+        assertEquals(result, "[5][0]");
     }
 }

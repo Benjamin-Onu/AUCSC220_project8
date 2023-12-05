@@ -10,6 +10,9 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    private Model game = new Model();
+    private MovesStack movesStack = new MovesStack();
+    private  Position[][] board;
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
@@ -17,8 +20,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestUpdateBoard(){
-        Model game = new Model();
-
         game.updateBoard(0, 0, "AI");
         Position result = game.board[0][0];
 
@@ -28,8 +29,6 @@ public class ExampleUnitTest {
     //VerticalTest----------------------------------------------------------------------------------
     @Test
     public void TestcountVertically1(){
-        Model game = new Model();
-
         game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 0, "Player");
         game.updateBoard(3, 0, "AI");
@@ -43,8 +42,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountVertically2(){
-        Model game = new Model();
-
         game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 0, "Player");
         game.updateBoard(3, 0, "Player");
@@ -58,8 +55,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountVertically3(){
-        Model game = new Model();
-
         game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 0, "Player");
         game.updateBoard(3, 0, "AI");
@@ -75,8 +70,6 @@ public class ExampleUnitTest {
     //HorizontalTest--------------------------------------------------------------------------------
     @Test
     public void TestcountHorizontally1(){
-        Model game = new Model();
-
         game.updateBoard(4, 0, "AI");
         game.updateBoard(4, 1, "Player");
         game.updateBoard(4, 2, "AI");
@@ -90,8 +83,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountHorizontally2(){
-        Model game = new Model();
-
         game.updateBoard(4, 0, "AI");
         game.updateBoard(4, 1, "Player");
         game.updateBoard(4, 2, "Player");
@@ -105,8 +96,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountHorizontally3(){
-        Model game = new Model();
-
         game.updateBoard(4, 0, "AI");
         game.updateBoard(4, 1, "Player");
         game.updateBoard(4, 2, "AI");
@@ -122,8 +111,6 @@ public class ExampleUnitTest {
     //LeftDiagonalTest------------------------------------------------------------------------------
     @Test
     public void TestcountLowerTriLeftDiagonally1_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 5, "AI");
         game.updateBoard(4, 4, "Player");
         game.updateBoard(3, 3, "AI");
@@ -137,8 +124,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally1_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 5, "AI");
         game.updateBoard(4, 4, "Player");
         game.updateBoard(3, 3, "Player");
@@ -152,8 +137,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally1_3(){
-        Model game = new Model();
-
         game.updateBoard(5, 5, "AI");
         game.updateBoard(4, 4, "Player");
         game.updateBoard(3, 3, "AI");
@@ -167,8 +150,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally2_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 4, "Player");
         game.updateBoard(4, 3, "AI");
         game.updateBoard(3, 2, "AI");
@@ -181,8 +162,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally2_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 4, "AI");
         game.updateBoard(4, 3, "Player");
         game.updateBoard(3, 2, "AI");
@@ -195,8 +174,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally2_3(){
-        Model game = new Model();
-
         game.updateBoard(5, 4, "AI");
         game.updateBoard(4, 3, "Player");
         game.updateBoard(3, 2, "Player");
@@ -209,8 +186,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally3_1() {
-        Model game = new Model();
-
         game.updateBoard(5, 3, "AI");
         game.updateBoard(4, 2, "AI");
         game.updateBoard(3, 1, "AI");
@@ -222,8 +197,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally3_2() {
-        Model game = new Model();
-
         game.updateBoard(5, 3, "Player");
         game.updateBoard(4, 2, "AI");
         game.updateBoard(3, 1, "AI");
@@ -235,8 +208,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally3_3() {
-        Model game = new Model();
-
         game.updateBoard(5, 3, "AI");
         game.updateBoard(4, 2, "Player");
         game.updateBoard(3, 1, "AI");
@@ -248,8 +219,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally4_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 2, "AI");
         game.updateBoard(4, 1, "AI");
         game.updateBoard(3, 0, "AI");
@@ -260,8 +229,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriLeftDiagonally4_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 2, "Player");
         game.updateBoard(4, 1, "AI");
         game.updateBoard(3, 0, "AI");
@@ -272,8 +239,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally1_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 6, "AI");
         game.updateBoard(4, 5, "Player");
         game.updateBoard(3, 4, "AI");
@@ -287,8 +252,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally1_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 6, "AI");
         game.updateBoard(4, 5, "Player");
         game.updateBoard(3, 4, "Player");
@@ -302,8 +265,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally1_3(){
-        Model game = new Model();
-
         game.updateBoard(5, 6, "AI");
         game.updateBoard(4, 5, "Player");
         game.updateBoard(3, 4, "AI");
@@ -317,8 +278,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally2_1(){
-        Model game = new Model();
-
         game.updateBoard(4, 6, "Player");
         game.updateBoard(3, 5, "AI");
         game.updateBoard(2, 4, "AI");
@@ -331,8 +290,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally2_2(){
-        Model game = new Model();
-
         game.updateBoard(4, 6, "AI");
         game.updateBoard(3, 5, "Player");
         game.updateBoard(2, 4, "AI");
@@ -345,8 +302,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally2_3(){
-        Model game = new Model();
-
         game.updateBoard(4, 6, "AI");
         game.updateBoard(3, 5, "Player");
         game.updateBoard(2, 4, "AI");
@@ -359,8 +314,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally3_1(){
-        Model game = new Model();
-
         game.updateBoard(3, 6, "AI");
         game.updateBoard(2, 5, "AI");
         game.updateBoard(1, 4, "AI");
@@ -372,8 +325,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally3_2(){
-        Model game = new Model();
-
         game.updateBoard(3, 6, "Player");
         game.updateBoard(2, 5, "AI");
         game.updateBoard(1, 4, "AI");
@@ -385,8 +336,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally3_3(){
-        Model game = new Model();
-
         game.updateBoard(3, 6, "AI");
         game.updateBoard(2, 5, "Player");
         game.updateBoard(1, 4, "AI");
@@ -398,8 +347,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally4_1(){
-        Model game = new Model();
-
         game.updateBoard(2, 6, "AI");
         game.updateBoard(1, 5, "AI");
         game.updateBoard(0, 4, "AI");
@@ -410,8 +357,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriLeftDiagonally4_2(){
-        Model game = new Model();
-
         game.updateBoard(2, 6, "AI");
         game.updateBoard(1, 5, "Player");
         game.updateBoard(0, 4, "AI");
@@ -424,8 +369,6 @@ public class ExampleUnitTest {
     //RightDiagonalTest-----------------------------------------------------------------------------
     @Test
     public void TestcountLowerTriRightDiagonally1_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 1, "AI");
         game.updateBoard(4, 2, "Player");
         game.updateBoard(3, 3, "AI");
@@ -439,8 +382,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally1_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 1, "AI");
         game.updateBoard(4, 2, "Player");
         game.updateBoard(3, 3, "Player");
@@ -454,8 +395,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally1_3(){
-        Model game = new Model();
-
         game.updateBoard(5, 1, "AI");
         game.updateBoard(4, 2, "Player");
         game.updateBoard(3, 3, "AI");
@@ -469,8 +408,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally2_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 2, "Player");
         game.updateBoard(4, 3, "AI");
         game.updateBoard(3, 4, "AI");
@@ -483,8 +420,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally2_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 2, "AI");
         game.updateBoard(4, 3, "Player");
         game.updateBoard(3, 4, "AI");
@@ -497,8 +432,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally2_3(){
-        Model game = new Model();
-
         game.updateBoard(5, 2, "AI");
         game.updateBoard(4, 3, "Player");
         game.updateBoard(3, 4, "Player");
@@ -511,8 +444,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally3_1() {
-        Model game = new Model();
-
         game.updateBoard(5, 3, "AI");
         game.updateBoard(4, 4, "AI");
         game.updateBoard(3, 5, "AI");
@@ -524,8 +455,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally3_2() {
-        Model game = new Model();
-
         game.updateBoard(5, 3, "Player");
         game.updateBoard(4, 4, "AI");
         game.updateBoard(3, 5, "AI");
@@ -537,8 +466,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally3_3() {
-        Model game = new Model();
-
         game.updateBoard(5, 3, "AI");
         game.updateBoard(4, 4, "Player");
         game.updateBoard(3, 5, "AI");
@@ -550,8 +477,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally4_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 4, "AI");
         game.updateBoard(4, 5, "AI");
         game.updateBoard(3, 6, "AI");
@@ -562,8 +487,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountLowerTriRightDiagonally4_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 4, "Player");
         game.updateBoard(4, 5, "AI");
         game.updateBoard(3, 6, "AI");
@@ -574,8 +497,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally1_1(){
-        Model game = new Model();
-
         game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 1, "Player");
         game.updateBoard(3, 2, "AI");
@@ -589,8 +510,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally1_2(){
-        Model game = new Model();
-
         game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 1, "Player");
         game.updateBoard(3, 2, "Player");
@@ -604,8 +523,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally1_3(){
-        Model game = new Model();
-
         game.updateBoard(5, 0, "AI");
         game.updateBoard(4, 1, "Player");
         game.updateBoard(3, 2, "AI");
@@ -619,8 +536,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally2_1(){
-        Model game = new Model();
-
         game.updateBoard(4, 0, "Player");
         game.updateBoard(3, 1, "AI");
         game.updateBoard(2, 2, "AI");
@@ -633,8 +548,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally2_2(){
-        Model game = new Model();
-
         game.updateBoard(4, 0, "AI");
         game.updateBoard(3, 1, "Player");
         game.updateBoard(2, 2, "AI");
@@ -647,8 +560,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally2_3(){
-        Model game = new Model();
-
         game.updateBoard(4, 0, "AI");
         game.updateBoard(3, 1, "Player");
         game.updateBoard(2, 2, "AI");
@@ -661,8 +572,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally3_1(){
-        Model game = new Model();
-
         game.updateBoard(3, 0, "AI");
         game.updateBoard(2, 1, "AI");
         game.updateBoard(1, 2, "AI");
@@ -674,8 +583,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally3_2(){
-        Model game = new Model();
-
         game.updateBoard(3, 0, "Player");
         game.updateBoard(2, 1, "AI");
         game.updateBoard(1, 2, "AI");
@@ -687,8 +594,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally3_3(){
-        Model game = new Model();
-
         game.updateBoard(3, 0, "AI");
         game.updateBoard(2, 1, "Player");
         game.updateBoard(1, 2, "AI");
@@ -700,8 +605,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally4_1(){
-        Model game = new Model();
-
         game.updateBoard(2, 0, "AI");
         game.updateBoard(1, 1, "AI");
         game.updateBoard(0, 2, "AI");
@@ -712,8 +615,6 @@ public class ExampleUnitTest {
 
     @Test
     public void TestcountUpperTriRightDiagonally4_2(){
-        Model game = new Model();
-
         game.updateBoard(2, 0, "AI");
         game.updateBoard(1, 1, "Player");
         game.updateBoard(0, 2, "AI");
@@ -722,4 +623,12 @@ public class ExampleUnitTest {
         assertEquals(result, "nothingHappen");
     }
     //----------------------------------------------------------------------------------------------
+
+    @Test
+    public void TestRecordMove(){
+        movesStack.recordMove(1, 2);
+        String result = movesStack.movesInRow.toString() + movesStack.movesInCol.toString();
+
+        assertEquals(result, "12");
+    }
 }

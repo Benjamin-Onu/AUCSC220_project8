@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,9 @@ public class Gameplay extends AppCompatActivity {
      * */
     int[] rowTrack = {5, 5, 5, 5, 5, 5};
     Button[][] board;
+    private Random rand = new Random();
+    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +142,16 @@ public class Gameplay extends AppCompatActivity {
         Intent myIntent;
         myIntent = new Intent(this, MainActivity.class);
         startActivity(myIntent);
+    }
+
+    protected String decideWhoGoesFirst(){
+        if (turnNum == 0){
+            game.currentTurn = "player1";
+        }
+        else{
+            game.currentTurn = "player2";
+        }
+        return game.currentTurn;
     }
 
     public void displayWinner(){}

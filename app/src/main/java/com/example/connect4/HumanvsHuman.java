@@ -1,25 +1,11 @@
 package com.example.connect4;
 
-import java.util.Random;
-
 public class HumanvsHuman {
-
     private Model game = new Model();
-    private Random rand = new Random();
     private Position[][] board = game.board;
-    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
+    private Gameplay gameplay = new Gameplay();
 
     //Methods about turns changing------------------------------------------------------------------
-    private String decideWhoGoesFirst(){
-        if (turnNum == 0){
-            game.currentTurn = "player1";
-        }
-        else{
-            game.currentTurn = "player2";
-        }
-        return game.currentTurn;
-    }
-
     private String changeTurns(String turn){
         if(game.currentTurn == "player1"){
             turn = "player2";
@@ -42,7 +28,7 @@ public class HumanvsHuman {
     }
 
     private void afterClickedByPlayers(int col){
-        showPiecesWherePlayersClicked(col, changeTurns(decideWhoGoesFirst()));
+        showPiecesWherePlayersClicked(col, changeTurns(gameplay.decideWhoGoesFirst()));
     }
     //----------------------------------------------------------------------------------------------
 

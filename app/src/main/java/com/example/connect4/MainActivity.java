@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.widget.RadioButton;
+import android.media.MediaPlayer;
 
 public class MainActivity extends AppCompatActivity {
     //Button settings;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String[] modes = {"HVH", "HVA"};
     RadioButton hvhBTN;
     RadioButton hvaBTN;
+    MediaPlayer mediaPlayer;
     /*
     While the game is still running
     Track the moves in a stack
@@ -51,8 +53,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent GameMode = new Intent(MainActivity.this, GameMode.class);
                 startActivity(GameMode);
+                mediaPlayer.start();
             }
         });
+
+        // Initialize MediaPlayer with the audio file in the res/raw directory
+        mediaPlayer = MediaPlayer.create(this, R.raw.music_file);
+
     }
 
     private void openInstructions() {
@@ -71,5 +78,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
 
 }

@@ -17,6 +17,7 @@ public class Model {
         this.currentTurn = turn;
     }
 
+
     public void updateBoard(int x_val, int y_val, String turn){
         Position spot = new Position(x_val, y_val, turn);
         this.board[x_val][y_val] = spot;

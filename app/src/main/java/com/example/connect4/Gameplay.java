@@ -30,6 +30,7 @@ public class Gameplay extends AppCompatActivity {
         //Call decide who goes first to initialize the current turn
         decideWhoGoesFirst();
         game = new Model(turn);
+        decideWhoGoesFirst();
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -40,12 +41,12 @@ public class Gameplay extends AppCompatActivity {
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
 
-        //game = hvh.game;
         column1BTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 columnOne();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
           }
         );
@@ -55,6 +56,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnTwo();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -64,6 +66,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnThree();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -73,6 +76,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnFour();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -82,6 +86,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnFive();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -91,6 +96,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnSix();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -100,6 +106,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnSeven();
                 changeTurns(game.getCurrentTurn());
+                //hvh.changeTurns(game.currentTurn);
             }
         }
         );
@@ -210,7 +217,7 @@ public class Gameplay extends AppCompatActivity {
             turn = "player1";
         }
         else{
-          turn = "player2";
+            turn = "player2";
         }
         //return game.currentTurn;
     }

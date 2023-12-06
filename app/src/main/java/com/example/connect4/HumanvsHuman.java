@@ -1,12 +1,16 @@
 package com.example.connect4;
 
 public class HumanvsHuman{
-    protected Model game = new Model("player1");
+    protected Model game;
     private Position[][] board = game.board;
+    protected String currentTurn;
 
+    public HumanvsHuman(){
+        game = new Model("player1");
+    }
     //Methods about turns changing------------------------------------------------------------------
     protected String changeTurns(String turn){
-        if(game.currentTurn == "player1"){
+        if(game.getCurrentTurn() == "player1"){
             turn = "player2";
             return turn;
         }
@@ -27,7 +31,7 @@ public class HumanvsHuman{
     }
 
     private void afterClickedByPlayers(int col){
-        showPiecesWherePlayersClicked(col, changeTurns(game.currentTurn));
+        showPiecesWherePlayersClicked(col, changeTurns(game.getCurrentTurn()));
     }
     //----------------------------------------------------------------------------------------------
 

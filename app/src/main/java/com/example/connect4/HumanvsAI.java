@@ -15,7 +15,7 @@ public class HumanvsAI {
     ArrayList aiClicked; //This list will contain the positions on the board that the AI has clicked
     int randomCol;
     public HumanvsAI(){
-        game = new Model();
+        game = new Model("player1");
         aiClicked = new ArrayList<>();
     }
 

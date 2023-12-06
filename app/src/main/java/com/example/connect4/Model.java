@@ -5,7 +5,7 @@ public class Model {
     protected int ROWS = 6;
     protected int COLUMNS = 7;
     protected String currentTurn;
-    protected Model() {
+    protected Model(String turn) {
         this.board = new Position[ROWS][COLUMNS];
         //Initialize all the spots in the board
         for (int row = board.length - 1; row >= 0; row--){
@@ -14,6 +14,7 @@ public class Model {
                 this.board[row][col] = iniSpot;
             }
         }
+        this.currentTurn = turn;
     }
 
     public void updateBoard(int x_val, int y_val, String turn){

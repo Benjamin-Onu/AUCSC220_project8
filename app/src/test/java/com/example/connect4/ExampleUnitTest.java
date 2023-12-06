@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    private Model game = new Model();
+    private Model game = new Model("Player");
     private MovesStack movesStack = new MovesStack();
     private  Position[][] board;
     @Test

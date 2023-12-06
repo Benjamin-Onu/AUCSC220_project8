@@ -17,7 +17,7 @@ public class GamePlayAI extends AppCompatActivity {
      * */
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
-    private Model game = new Model();
+    private Model game = new Model("player");
     private Random rand = new Random();
     private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
 
@@ -192,10 +192,10 @@ public class GamePlayAI extends AppCompatActivity {
 
     protected String decideWhoGoesFirst(){
         if (turnNum == 0){
-            game.currentTurn = "player1";
+            game.currentTurn = "player";
         }
         else{
-            game.currentTurn = "player2";
+            game.currentTurn = "AI";
         }
         return game.currentTurn;
     }

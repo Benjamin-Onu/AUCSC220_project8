@@ -1,7 +1,7 @@
 package com.example.connect4;
 
 public class HumanvsHuman{
-    protected Model game = new Model();
+    protected Model game = new Model("player1");
     private Position[][] board = game.board;
 
     //Methods about turns changing------------------------------------------------------------------

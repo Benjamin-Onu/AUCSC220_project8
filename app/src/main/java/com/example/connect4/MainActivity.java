@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button instructions;//was formerly the rules button
     Button startBTN;
     Button undo;
-    private Model game = new Model();
+    private Model game = new Model("player1");
     private MovesStack movesStack = new MovesStack();
     String gameMode;
     String[] modes = {"HVH", "HVA"};

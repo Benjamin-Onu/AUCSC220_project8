@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ResultMessage">
+    tools:context=".P2Win">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,13 +49,13 @@
             android:layout_width="785dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="400dp"
-            android:text="NOBODY WON!"
+            android:text="PLAYER 2 WINS!"
             android:textColor="@color/black"
-            android:textSize="100dp"
+            android:textSize="75dp"
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible" />
-<!--         this will be the default result signaling a tie/no winner-->
+        <!--         this will be the message saying P2 won-->
 
 
     </RelativeLayout>

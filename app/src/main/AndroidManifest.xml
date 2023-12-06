@@ -16,6 +16,18 @@
             android:name=".ResultMessage"
             android:exported="false" />
         <activity
+            android:name=".P2Win"
+            android:exported="false" />
+        <activity
+            android:name=".P1Win"
+            android:exported="false" />
+        <activity
+            android:name=".AIWinMessage"
+            android:exported="false" />
+        <activity
+            android:name=".ui.theme.AIWinMessage"
+            android:exported="false" />
+        <activity
             android:name=".GameMode"
             android:exported="false" />
         <activity

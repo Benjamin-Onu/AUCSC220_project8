@@ -5,6 +5,7 @@ public class Model {
     protected int ROWS = 6;
     protected int COLUMNS = 7;
     protected String currentTurn;
+    protected String winner;
     protected Model(String turn) {
         this.board = new Position[ROWS][COLUMNS];
         //Initialize all the spots in the board
@@ -310,14 +311,13 @@ these methods when we need it.
                 return false;
             }
 
-            protected boolean ifWinnerExist(){
+            protected void ifWinnerExist(){
                 if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsVertically(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
-                    return true;
+                    setWinner("WIN");
                 }
-                return false;
             }
 //----------------------------------------------------------------------------------------------
 
@@ -335,6 +335,13 @@ these methods when we need it.
     }
     protected String getCurrentTurn(){
         return this.currentTurn;
+    }
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
     protected boolean ifEqualToCurrentturn(int row, int col){
         String currentPlayer = this.board[row][col].getPlayer();

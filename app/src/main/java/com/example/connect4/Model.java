@@ -16,6 +16,7 @@ public class Model {
             }
         }
         this.currentTurn = turn;
+        this.winner = "noWIN";
     }
 
 

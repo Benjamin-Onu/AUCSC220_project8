@@ -265,6 +265,7 @@ public class Gameplay extends AppCompatActivity {
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
         game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[0]--;
 
     }
@@ -272,36 +273,42 @@ public class Gameplay extends AppCompatActivity {
     public void columnTwo(){
         changeButtonColor(board[rowTrack[1]][1]);
         game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[1]--;
     }
 
     public void columnThree(){
         changeButtonColor(board[rowTrack[2]][2]);
         game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[2]--;
     }
 
     public void columnFour(){
         changeButtonColor(board[rowTrack[3]][3]);
         game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[3]--;
     }
 
     public void columnFive(){
         changeButtonColor(board[rowTrack[4]][4]);
         game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[4]--;
     }
 
     public void columnSix(){
         changeButtonColor(board[rowTrack[5]][5]);
         game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[5]--;
     }
 
     public void columnSeven() {
         changeButtonColor(board[rowTrack[6]][6]);
         game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
+        game.ifWinnerExist();
         rowTrack[6]--;
     }
 

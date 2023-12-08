@@ -45,7 +45,8 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnOne();
                 changeTurns(game.getCurrentTurn());
-                //hvh.changeTurns(game.currentTurn);
+                //hvh.changeTurns(game.currentTurn)
+                //Check 
             }
           }
         );

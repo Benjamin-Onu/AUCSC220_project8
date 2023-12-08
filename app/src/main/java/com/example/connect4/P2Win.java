@@ -11,6 +11,10 @@ public class P2Win extends AppCompatActivity {
 
     Gameplay previousGame = new Gameplay();
     String winner = previousGame.getWinner();
+
+    /*
+    * We need to find a way to save the winner of th
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

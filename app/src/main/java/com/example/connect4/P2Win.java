@@ -9,6 +9,8 @@ import android.view.WindowManager;
 
 public class P2Win extends AppCompatActivity {
 
+    Gameplay previousGame = new Gameplay();
+    String winner = previousGame.getWinner();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

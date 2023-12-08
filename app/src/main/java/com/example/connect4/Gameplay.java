@@ -25,6 +25,7 @@ public class Gameplay extends AppCompatActivity {
     String turn;
     Button undo;
     Button restart;
+    String winner;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -264,10 +265,32 @@ public class Gameplay extends AppCompatActivity {
             game.setCurrentTurn("player1");
         }
     }
-    public void displayWinner(){}
+    public void displayWinner(){
+        if(game.currentTurn.equals("player1")){
+            winner = "player1";
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(Gameplay.this, P2Win.class);
+            startActivity(P1Win);
+        }else if(game.currentTurn.equals("player2")) {
+            //go to this page if player 2 has won the game
+            winner = "player2";
+            Intent P2Win = new Intent(Gameplay.this, P2Win.class);
+            startActivity(P2Win);
+        }else if(game.currentTurn.equals("noWinner")){
+            winner = "noWinner";
+            //go to this page if there is not a winner of the game
+            Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
+            startActivity(ResultMessage);
+        }
+    }
     /**
      * If there is a winner, go to the display winner page
      */
+
+    public String getWinner() {
+        return winner;
+    }
+
 
 
     /**

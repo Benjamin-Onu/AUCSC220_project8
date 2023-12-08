@@ -15,8 +15,7 @@ public class Model {
                 this.board[row][col] = iniSpot;
             }
         }
-        this.currentTurn = turn;
-        this.winner = "noWIN";
+        this.currentTurn = "player1";
     }
 
 
@@ -312,13 +311,14 @@ these methods when we need it.
                 return false;
             }
 
-            protected void ifWinnerExist(){
+            protected boolean ifWinnerExist(){
                 if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsVertically(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
-                    setWinner("WIN");
+                    return true;
                 }
+                return false;
             }
 //----------------------------------------------------------------------------------------------
 

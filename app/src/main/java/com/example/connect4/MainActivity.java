@@ -13,9 +13,7 @@ public class MainActivity extends AppCompatActivity {
     //Button settings;
     Button instructions;//was formerly the rules button
     Button startBTN;
-    Button undo;
     private Model game = new Model("player1");
-    private MovesStack movesStack = new MovesStack();
     String gameMode;
     String[] modes = {"HVH", "HVA"};
     RadioButton hvhBTN;
@@ -59,27 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize MediaPlayer with the audio file in the res/raw directory
         mediaPlayer = MediaPlayer.create(this, R.raw.music_file);
-
     }
 
     private void openInstructions() {
         Intent popupInstructions = new Intent(MainActivity.this, PopUpInstructions.class);
         startActivity(popupInstructions);
     }
-
-
-    protected void undoLastMove(){
-        undo = (Button) findViewById(R.id.undo);
-        undo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                game.updateBoard(movesStack.deleteMove()[0], movesStack.deleteMove()[1], " ");
-            }
-        });
-
-    }
-
-
-
-
 }

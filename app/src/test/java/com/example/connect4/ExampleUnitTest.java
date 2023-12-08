@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     private Model game = new Model("Player");
     private MovesStack movesStack = new MovesStack();
+    private Gameplay gameplay = new Gameplay();
     private  Position[][] board;
     @Test
     public void addition_isCorrect() {
@@ -626,10 +627,10 @@ public class ExampleUnitTest {
 
     @Test
     public void TestRecordMove(){
-        movesStack.recordMove(1, 2);
+        gameplay.columnOne();
         String result = movesStack.movesInRow.toString() + movesStack.movesInCol.toString();
 
-        assertEquals(result, "[1][2]");
+        assertEquals(result, "[5][0]");
     }
 
     @Test

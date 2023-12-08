@@ -18,8 +18,10 @@ public class GamePlayAI extends AppCompatActivity {
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
     protected Button[][] board;
     private Model game = new Model("player");
+    protected MovesStack movesStack = new MovesStack();
     private Random rand = new Random();
     private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
+    Button undo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +104,13 @@ public class GamePlayAI extends AppCompatActivity {
         instructions.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 openInstructions();
+            }
+        });
+        undo = (Button) findViewById(R.id.undo);
+        undo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                undoLastMove();
             }
         });
         backToHomepage.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +237,10 @@ public class GamePlayAI extends AppCompatActivity {
             myButton.setBackgroundColor(color2);
         }
     }
+    public void changeButtonColorUNDO(Button myButton){
+        myButton.setBackgroundColor(color3);
+    }
+
     public void columnOne(){
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
@@ -264,6 +277,15 @@ public class GamePlayAI extends AppCompatActivity {
     public void columnSeven() {
         changeButtonColor(board[rowTrack[6]][6]);
         rowTrack[6]--;
+    }
+
+    protected void undoLastMove(){
+        int[] deletedPiecesPosition = movesStack.deleteMove();
+        int deletedRow = deletedPiecesPosition[0];
+        int deletedCol = deletedPiecesPosition[1];
+        game.updateBoard(deletedRow, deletedCol, " ");
+        changeButtonColorUNDO(board[deletedRow][deletedCol]);
+        rowTrack[deletedCol]++;
     }
 
 }

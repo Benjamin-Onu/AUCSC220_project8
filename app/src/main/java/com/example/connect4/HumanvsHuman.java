@@ -6,7 +6,7 @@ public class HumanvsHuman{
     protected String currentTurn;
 
     public HumanvsHuman(){
-        game = new Model("player1");
+        game = new Model();
     }
     //Methods about turns changing------------------------------------------------------------------
     protected String changeTurns(String turn){

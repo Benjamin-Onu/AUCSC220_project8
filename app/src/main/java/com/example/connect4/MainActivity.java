@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     //Button settings;
     Button instructions;//was formerly the rules button
     Button startBTN;
-    private Model game = new Model("player1");
+    private Model game = new Model();
     String gameMode;
     String[] modes = {"HVH", "HVA"};
     RadioButton hvhBTN;

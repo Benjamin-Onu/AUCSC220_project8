@@ -1,12 +1,14 @@
 package com.example.connect4;
-
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class Model {
     protected Position[][] board;
     protected int ROWS = 6;
     protected int COLUMNS = 7;
     protected String currentTurn;
     protected String winner;
-    protected Model(String turn) {
+    protected Model() {
         this.board = new Position[ROWS][COLUMNS];
         //Initialize all the spots in the board
         for (int row = board.length - 1; row >= 0; row--){
@@ -353,4 +355,50 @@ these methods when we need it.
         return this.board[row][col].getPlayer().equals(" ");
     }
 //----------------------------------------------------------------------------------------------
+
+    /*
+    * This function will save the current game state in a string so that it will be stored in a file
+    * it will be loaded when the load game button is clicked
+    * */
+    protected String saveGameState(){
+        String currentGame = "";
+        for(int row = 0; row < 6; row++){
+            for(int col = 0; col < 7; col++){
+                if(board[row][col].getPlayer().equals("player1")){
+                    currentGame += "1 ";
+                }else if(board[row][col].getPlayer().equals("player2")){
+                    currentGame += "2 ";
+                } else{
+                    currentGame += "0 ";
+                }
+            }
+            currentGame += "\n";
+            //This moves to the next row since we want to simplify each row in the file as a single line
+        }
+        return currentGame;
+    }
+
+    protected int[] determineNextTurnprevGAME(){
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
+        int[] counts = new int[2];
+        /**
+         * The way to determine the last turn from a previous game state is to compare the number of
+         * pieces player1 has on the board to that of the other player.
+         * If black and white are the same number then it's black's turn
+         * If black is greater than white , then it is white's turn
+         */
+        for(int row = 0; row < 6; row++){
+            for(int col = 0; col < 7; col++){
+                if(board[row][col].getPlayer().equals("player1")){
+                    playerOneCount += 1;
+                }else if(board[row][col].getPlayer().equals("player2")){
+                    playerTwoCount += 2;
+                }
+            }
+        }
+        counts[0] = playerOneCount;
+        counts[1] = playerTwoCount;
+        return counts;
+    }
 }

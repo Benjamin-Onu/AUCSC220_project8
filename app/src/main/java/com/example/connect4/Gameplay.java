@@ -7,8 +7,14 @@ import android.widget.Button;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Random;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +39,7 @@ public class Gameplay extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         //Call decide who goes first to initialize the current turn
         decideWhoGoesFirst();
-        game = new Model(turn);
+        game = new Model();
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -48,7 +54,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnOne();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -60,7 +66,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnTwo();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -72,7 +78,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnThree();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -84,7 +90,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnFour();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -96,7 +102,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnFive();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -108,7 +114,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnSix();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -120,7 +126,7 @@ public class Gameplay extends AppCompatActivity {
             public void onClick(View v) {
                 columnSeven();
                 if(game.ifWinnerExist()){
-                    displayWinner();
+                    displayWinner(game.getWinner());
                 }
                 changeTurns();
             }
@@ -147,7 +153,14 @@ public class Gameplay extends AppCompatActivity {
         undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String deletedTurn;
+                if(game.getCurrentTurn().equals("player1")){
+                    deletedTurn = "player2";
+                }else{
+                    deletedTurn = "player1";
+                }
                 undoLastMove();
+                game.setCurrentTurn(deletedTurn);
             }
         });
 
@@ -250,10 +263,10 @@ public class Gameplay extends AppCompatActivity {
     protected String decideWhoGoesFirst(){
         int turnNum = rand.nextInt(2);
         if (turnNum == 0){
-            turn = "left";
+            turn = "Left";
         }
         else{
-            turn = "right";
+            turn = "Right";
         }
         return turn;
     }
@@ -266,33 +279,44 @@ public class Gameplay extends AppCompatActivity {
             game.setCurrentTurn("player1");
         }
     }
-    public void displayWinner(){
-        if(game.currentTurn.equals("player1")){
-            winner = "player1";
+    public void displayWinner(String winner){
+        if(game.getWinner().equals("player1")){
+            saveWinner();
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(Gameplay.this, P2Win.class);
             startActivity(P1Win);
-        }else if(game.currentTurn.equals("player2")) {
+        }else if(game.getWinner().equals("player2")) {
             //go to this page if player 2 has won the game
-            winner = "player2";
+            saveWinner();
             Intent P2Win = new Intent(Gameplay.this, P2Win.class);
             startActivity(P2Win);
-        }else if(game.currentTurn.equals("noWinner")){
-            winner = "noWinner";
+        }//If the board is full there is no winner
+        else if(game.getCurrentTurn().equals("noWinner")){
+            saveWinner();
             //go to this page if there is not a winner of the game
             Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
             startActivity(ResultMessage);
         }
     }
-    /**
-     * If there is a winner, go to the display winner page
-     */
 
-    public String getWinner() {
-        return winner;
+    public void saveWinner(){
+        File filename;
+        //BUG- Writing into winners winners.txt not working
+        try{
+            filename = new File("app/src/main/java/com/example/connect4/winners.txt");
+            FileWriter fw = new FileWriter(filename);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            String winner = game.getWinner();
+            bw.write(winner);
+        }
+        catch (FileNotFoundException e){
+            System.out.println("ERROR - File not found");
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-
 
     /**
      * These functions are for the buttons that are being used to select a position

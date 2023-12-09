@@ -1,6 +1,12 @@
 package com.example.connect4;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import java.util.ArrayList;
 
 public class GamePlayAI extends AppCompatActivity {
     Button instructions;
@@ -15,18 +22,21 @@ public class GamePlayAI extends AppCompatActivity {
      * The next field is keeping track of the row number after each column have been clicked
      * If column1 is clicked the first value will be
      * */
-    protected int[] rowTrack = {5, 5, 5, 5, 5, 5};
+    protected int[] rowTrack = {5, 5, 5, 5, 5, 5, 5};
     protected Button[][] board;
-    private Model game = new Model("player");
     protected MovesStack movesStack = new MovesStack();
     private Random rand = new Random();
-    private int turnNum = rand.nextInt(2); //turnNum → 0/1 → player 1/2 goes first
     Button undo;
+    Model game;
+    String turn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_play_ai);
+        setContentView(R.layout.activity_game);
+        game = new Model();
+        decideWhoGoesFirst();
+        //setContentView(R.layout.activity_game_play_ai);
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -36,60 +46,93 @@ public class GamePlayAI extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
+
+        if(turn.equals("AI")){
+            AITurn();
+        }
+
         column1BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnOne();
-                                          }
-                                      }
+              @Override
+              public void onClick(View v) {
+                  columnOne();
+                  if(game.ifWinnerExist()){
+                      displayWinner(game.getWinner());
+                  }
+                  AITurn();
+              }
+          }
         );
 
         column2BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnTwo();
-                                          }
-                                      }
+                @Override
+                public void onClick(View v) {
+                    columnTwo();
+                    if(game.ifWinnerExist()){
+                        displayWinner(game.getWinner());
+                    }
+                    AITurn();
+                }
+            }
         );
 
         column3BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnThree();
-                                          }
-                                      }
+                @Override
+                public void onClick(View v) {
+                    columnThree();
+                    if(game.ifWinnerExist()){
+                        displayWinner(game.getWinner());
+                    }
+                    AITurn();
+                }
+            }
         );
 
         column4BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnFour();
-                                          }
-                                      }
+                @Override
+                public void onClick(View v) {
+                    columnFour();
+                    if(game.ifWinnerExist()){
+                        displayWinner(game.getWinner());
+                    }
+                    AITurn();
+                }
+            }
         );
 
         column5BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnFive();
-                                          }
-                                      }
+                @Override
+                public void onClick(View v) {
+                    columnFive();
+                    if(game.ifWinnerExist()){
+                        displayWinner(game.getWinner());
+                    }
+                    AITurn();
+                }
+            }
         );
 
         column6BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnSix();
-                                          }
-                                      }
+                @Override
+                public void onClick(View v) {
+                    columnSix();
+                    if(game.ifWinnerExist()){
+                        displayWinner(game.getWinner());
+                    }
+                    AITurn();
+                }
+            }
         );
 
         column7BTN.setOnClickListener(new View.OnClickListener(){
-                                          @Override
-                                          public void onClick(View v) {
-                                              columnSeven();
-                                          }
-                                      }
+                @Override
+                public void onClick(View v) {
+                    columnSeven();
+                    if(game.ifWinnerExist()){
+                        displayWinner(game.getWinner());
+                    }
+                    AITurn();
+                }
+            }
         );
         /**
          * Disable all the buttons from the second bottom row to the very top row
@@ -200,13 +243,23 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     protected String decideWhoGoesFirst(){
+        int turnNum = rand.nextInt(2);
         if (turnNum == 0){
-            game.currentTurn = "player";
+            turn = "AI";
         }
         else{
-            game.currentTurn = "AI";
+            turn = "Player";
         }
-        return game.currentTurn;
+        return turn;
+    }
+
+    protected void changeTurns(){
+        if(game.getCurrentTurn().equals("player1")){//currentTurn == "player1"){
+            game.setCurrentTurn("player2");
+        }
+        else {
+            game.setCurrentTurn("player1");
+        }
     }
 
     public void displayWinner(){}
@@ -221,22 +274,23 @@ public class GamePlayAI extends AppCompatActivity {
     int color1= Color.parseColor("#FF000000");
     int color2=Color.parseColor("#FFFFFFFF");
     int color3=Color.parseColor("#e1ba6c");
-    int turn;
+
     public void changeButtonColor(Button myButton){
         ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
         int currentColor = buttonColor.getColor();
         /**
          * If its the first player's turn , change the button color to black
          */
-        if(currentColor == color3 && turn == 0){
+        if(currentColor == color3 && game.getCurrentTurn().equals("player1")){
             myButton.setBackgroundColor(color1);
         }/**
          * If its the second player's turn , change the button color to white
          */
-        else if (currentColor == color3 && turn == 1){
+        else if (currentColor == color3 && game.getCurrentTurn().equals("player2")){
             myButton.setBackgroundColor(color2);
         }
     }
+
     public void changeButtonColorUNDO(Button myButton){
         myButton.setBackgroundColor(color3);
     }
@@ -244,39 +298,101 @@ public class GamePlayAI extends AppCompatActivity {
     public void columnOne(){
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
+        game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[0], 0);
         rowTrack[0]--;
-
     }
 
     public void columnTwo(){
         changeButtonColor(board[rowTrack[1]][1]);
+        game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[1], 1);
         rowTrack[1]--;
     }
 
     public void columnThree(){
         changeButtonColor(board[rowTrack[2]][2]);
+        game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[2], 2);
         rowTrack[2]--;
     }
 
     public void columnFour(){
         changeButtonColor(board[rowTrack[3]][3]);
+        game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[3], 3);
         rowTrack[3]--;
     }
 
     public void columnFive(){
         changeButtonColor(board[rowTrack[4]][4]);
+        game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[4], 4);
         rowTrack[4]--;
     }
 
     public void columnSix(){
         changeButtonColor(board[rowTrack[5]][5]);
+        game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[5], 5);
         rowTrack[5]--;
 
     }
 
     public void columnSeven() {
         changeButtonColor(board[rowTrack[6]][6]);
+        game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[6], 6);
         rowTrack[6]--;
+    }
+
+    public void AITurn(){
+        changeTurns();
+        ArrayList<Position> availableSpots = new ArrayList<>();
+        availableSpots = generateAvailableSpots();
+        Position chosenSpot = pickAIspot(availableSpots);
+        game.updateBoard(chosenSpot.getRow(), chosenSpot.getColumn(),
+        game.getCurrentTurn());
+        switch (chosenSpot.getColumn()){
+            case 0:
+                columnOne();
+                break;
+            case 1:
+                columnTwo();
+                break;
+            case 2:
+                columnThree();
+                break;
+            case 3:
+                columnFour();
+                break;
+            case 4:
+                columnFive();
+                break;
+            case 5:
+                columnSix();
+                break;
+            case 6:
+                columnSeven();
+                break;
+        }
+        changeTurns();
+    }
+
+    public Position pickAIspot(ArrayList<Position> availableSpots){
+        int randomSpotIndex = rand.nextInt(availableSpots.size() - 1);
+        Position randomSpot = availableSpots.get(randomSpotIndex);
+
+        return randomSpot;
+    }
+
+    public ArrayList<Position> generateAvailableSpots(){
+        ArrayList<Position> availableSpots = new ArrayList<>();
+        for(int col = 0; col <= 6; col++){
+            Position newSpot = new Position(rowTrack[col], col, " ");
+            availableSpots.add(newSpot);
+        }
+        return availableSpots;
     }
 
     protected void undoLastMove(){
@@ -288,6 +404,44 @@ public class GamePlayAI extends AppCompatActivity {
         rowTrack[deletedCol]++;
     }
 
+    public void displayWinner(String winner){
+        if(game.getWinner().equals("player1")){
+            saveWinner();
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(GamePlayAI.this, P2Win.class);
+            startActivity(P1Win);
+        }else if(game.getWinner().equals("player2")) {
+            //go to this page if player 2 has won the game
+            saveWinner();
+            Intent P2Win = new Intent(GamePlayAI.this, P2Win.class);
+            startActivity(P2Win);
+        }//If the board is full there is no winner
+        else if(game.getCurrentTurn().equals("noWinner")){
+            saveWinner();
+            //go to this page if there is not a winner of the game
+            Intent ResultMessage = new Intent(GamePlayAI.this, P2Win.class);
+            startActivity(ResultMessage);
+        }
+    }
+
+    public void saveWinner(){
+        File filename;
+        //BUG- Writing into winners winners.txt not working
+        try{
+            filename = new File("app/src/main/java/com/example/connect4/winners.txt");
+            FileWriter fw = new FileWriter(filename);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            String winner = game.getWinner();
+            bw.write(winner);
+        }
+        catch (FileNotFoundException e){
+            System.out.println("ERROR - File not found");
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

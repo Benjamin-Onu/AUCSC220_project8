@@ -6,7 +6,7 @@ public class Model {
     protected int COLUMNS = 7;
     protected String currentTurn;
     protected String winner;
-    protected Model(String turn) {
+    protected Model() {
         this.board = new Position[ROWS][COLUMNS];
         //Initialize all the spots in the board
         for (int row = board.length - 1; row >= 0; row--){
@@ -300,12 +300,13 @@ these methods when we need it.
         ifEqualToCurrentturn → if the piece in this box equals to currentturn(piece)
         ifEqualToNull → if there is a piece in this box
      */
-            //----------------------------------------------------------------------------------------------
+            //--------------------------------------------------------------------------------------
             protected boolean ifThreeConnects(){
                 if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("threeConnects") ||
                     countConsecutivePlayerSpotsVertically(currentTurn).equals("threeConnects") ||
                     countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
                     countConsecutivePlayerSpotsRightDiag(currentTurn).equals("threeConnects")){
+                    setWinner(getCurrentTurn());
                     return true;
                 }
                 return false;
@@ -316,27 +317,26 @@ these methods when we need it.
                     countConsecutivePlayerSpotsVertically(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
+                    setWinner(currentTurn);
                     return true;
                 }
                 return false;
             }
-//----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 /*
-    ifThreeConnects → if three connects exist, means a hint needed to tell players that one side
-    almost wins.
-    ifWinnerExist → if four connects exist, means winner exist.
     ifEqualToCurrentturn → if the piece in this box equals to currentturn(piece)
     ifEqualToNull → if there is a piece in this box
  */
-//----------------------------------------------------------------------------------------------
-
+//--------------------------------------------------------------------------------------------------
     protected void setCurrentTurn(String turn){
         this.currentTurn = turn;
     }
+
     protected String getCurrentTurn(){
         return this.currentTurn;
     }
+
     public String getWinner() {
         return winner;
     }
@@ -344,6 +344,7 @@ these methods when we need it.
     public void setWinner(String winner) {
         this.winner = winner;
     }
+
     protected boolean ifEqualToCurrentturn(int row, int col){
         String currentPlayer = this.board[row][col].getPlayer();
         return currentPlayer.equals(currentTurn);
@@ -352,5 +353,18 @@ these methods when we need it.
     protected boolean ifEqualToNull(int row, int col){
         return this.board[row][col].getPlayer().equals(" ");
     }
-//----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+
+    protected boolean ifFullBoard(){
+        if(ifWinnerExist()){
+            return false;
+        }
+        boolean boardIsFull = true;
+        for(int topCol = 0; topCol <= 6; topCol++){
+            if(board[0][topCol].equals(" ")){
+                boardIsFull = false;
+            }
+        }
+        return boardIsFull;
+    }
 }

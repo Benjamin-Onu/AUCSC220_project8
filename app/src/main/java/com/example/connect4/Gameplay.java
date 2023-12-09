@@ -7,13 +7,13 @@ import android.widget.Button;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Random;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -410,4 +410,55 @@ public class Gameplay extends AppCompatActivity {
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
     }
+    /*
+    *
+    *
+    *
+    * */
+    protected void saveGame(){
+        String lastGameState = game.saveGameState();
+        /**
+         * Write a function that write this game state into a file
+         */
+    }
+
+    /**
+     * This will
+     *
+     */
+    protected void loadGame(){
+
+    }
+
+    private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
+            "\\app\\src\\main\\java\\com\\example\\connect4\\textGameState.txt";
+    protected void loadGameState(){
+        String previousGame;
+        File myFile = new File(GAME_STATE);
+
+        Scanner input;//This scanner object reads the number of lines in the file
+        try {
+            input = new Scanner(myFile);
+            int rowCount = 0;
+            while (input.hasNextLine()) {
+                String eachRow = input.nextLine();
+                String[] eachSpot = eachRow.split(" ");
+                for (int col = 0; col < board[rowCount].length; col++) {
+                    if(eachSpot[col].equals("1")){
+                        game.updateBoard(rowCount, col, "player1");
+                        Button myButton = board[rowCount][col];
+                        myButton.setBackgroundColor(color1);
+                    }else if (eachSpot[col].equals("2")){
+                        game.updateBoard(rowCount, col, "player2");
+                        Button myButton = board[rowCount][col];
+                        myButton.setBackgroundColor(color2);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR - File not found");
+        }
+    }
+
+
 }

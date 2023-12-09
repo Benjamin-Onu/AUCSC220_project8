@@ -14,6 +14,7 @@ import java.util.Random;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -300,15 +301,15 @@ public class Gameplay extends AppCompatActivity {
     }
 
     public void saveWinner(){
-        File filename;
+        String winner = game.getWinner();
         //BUG- Writing into winners winners.txt not working
         try{
-            filename = new File("app/src/main/java/com/example/connect4/winners.txt");
+            File filename = new File("winners.txt");
             FileWriter fw = new FileWriter(filename);
             BufferedWriter bw = new BufferedWriter(fw);
-
-            String winner = game.getWinner();
             bw.write(winner);
+            bw.close();
+
         }
         catch (FileNotFoundException e){
             System.out.println("ERROR - File not found");

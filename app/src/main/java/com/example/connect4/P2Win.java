@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class P2Win extends AppCompatActivity {
-    private static final String WINNER = "app/src/main/java/com/example/connect4/winners.txt";
+    private static final String WINNER = "app\\src\\main\\java\\com\\example\\connect4\\winners.txt";
     File myFile = new File(WINNER);
     String winner;
     @Override

@@ -53,6 +53,7 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 columnOne();
+                boolean winnerCheck = game.ifWinnerExist();
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
@@ -280,22 +281,50 @@ public class Gameplay extends AppCompatActivity {
         }
     }
     public void displayWinner(String winner){
+         /*
+            Select the winner textview
+             */
         if(game.getWinner().equals("player1")){
-            saveWinner();
+
             //go to this page if player 1 has won the game
-            Intent P1Win = new Intent(Gameplay.this, P2Win.class);
-            startActivity(P1Win);
+            /**
+             * Set the text to
+             * "    PLAYER ONE WIN
+             * CLICK RESTART or HOME to Start a New Game
+             * "
+             * disable undo, column buttons , leave only restart and home buttons
+             *
+             */
+
+            //WE ARE NO LONGER DISPLAYING WINNER ON A NEW PAGE
+            //Intent P1Win = new Intent(Gameplay.this, P2Win.class);
+            //startActivity(P1Win);
         }else if(game.getWinner().equals("player2")) {
             //go to this page if player 2 has won the game
-            saveWinner();
-            Intent P2Win = new Intent(Gameplay.this, P2Win.class);
-            startActivity(P2Win);
+
+            /**
+             * Set the text to
+             * "    PLAYER TWO WIN
+             * CLICK RESTART or HOME to Start a New Game
+             * "
+             * disable undo, column buttons , leave only restart and home buttons
+             *
+             */
+            //Intent P2Win = new Intent(Gameplay.this, P2Win.class);
+            //startActivity(P2Win);
         }//If the board is full there is no winner
         else if(game.getCurrentTurn().equals("noWinner")){
-            saveWinner();
             //go to this page if there is not a winner of the game
-            Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
-            startActivity(ResultMessage);
+            /**
+             * Set the text to
+             * "    NO ONE WIN
+             * CLICK RESTART or HOME to Start a New Game
+             * "
+             * disable undo, column buttons , leave only restart and home buttons
+             *
+             */
+            //Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
+            //startActivity(ResultMessage);
         }
     }
 

@@ -51,6 +51,7 @@ public class GamePlayAI extends AppCompatActivity {
             AITurn();
         }
 
+        //region columnButtons onClinkListeners
         column1BTN.setOnClickListener(new View.OnClickListener(){
               @Override
               public void onClick(View v) {
@@ -134,6 +135,8 @@ public class GamePlayAI extends AppCompatActivity {
                 }
             }
         );
+        //endregion
+
         /**
          * Disable all the buttons from the second bottom row to the very top row
          */
@@ -295,6 +298,7 @@ public class GamePlayAI extends AppCompatActivity {
         myButton.setBackgroundColor(color3);
     }
 
+    //region sevenColumnButtons' implementation
     public void columnOne(){
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
@@ -345,6 +349,7 @@ public class GamePlayAI extends AppCompatActivity {
         movesStack.recordMove(rowTrack[6], 6);
         rowTrack[6]--;
     }
+    //endregion
 
     public void AITurn(){
         changeTurns();

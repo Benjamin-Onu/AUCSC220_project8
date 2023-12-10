@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        tools:context=".GameMode"
         tools:layout_editor_absoluteX="-34dp"
         tools:layout_editor_absoluteY="16dp">
 
@@ -27,7 +26,7 @@
             android:text="        CONNECT-4"
             android:textAlignment="center"
             android:textColor="@color/homepageHeader"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible" />
@@ -44,7 +43,7 @@
             android:text="GAME"
             android:textAlignment="center"
             android:textColor="@color/homepageHeader"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible" />
@@ -54,15 +53,14 @@
             android:layout_width="192dp"
             android:layout_height="65dp"
             android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="36dp"
             android:background="@color/startButton"
             android:text="SELECT MODE"
-            android:textSize="25dp"
             android:textColor="@color/black"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:visibility="visible"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/instructions"
@@ -84,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="425dp"
             android:layout_marginEnd="250dp"
             android:text="P v P"
             android:background="@color/buttonColor"
@@ -98,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="425dp"
             android:layout_marginEnd="100dp"
             android:text="P v AI"
             android:background="@color/buttonColor"
@@ -106,6 +104,21 @@
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/mute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="21dp"
+            android:background="@color/buttonColor"
+            android:text="MUTE"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:visibility="visible" />
 
 
     </RelativeLayout>

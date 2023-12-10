@@ -1,6 +1,7 @@
 package com.example.connect4;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,10 @@ public class GameMode extends AppCompatActivity {
     Button pVp;
     Button pVai;
     Button instructions;
+    Button mute;
+
+    private MediaPlayer mediaPlayer;
+    private boolean isMuted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,7 @@ public class GameMode extends AppCompatActivity {
         instructions = (Button) findViewById(R.id.instructions);
         pVp = (Button) findViewById(R.id.pVp);
         pVai = (Button) findViewById(R.id.pVai);
+        mute = findViewById(R.id.mute);
 
         instructions.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,12 +52,41 @@ public class GameMode extends AppCompatActivity {
                     }
                 });
 
-
+        mute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleMute();
+            }
+        });
     }
+
+
+
 
     private void openInstructions() {
         Intent popupInstructions = new Intent(GameMode.this, PopUpInstructions.class);
         startActivity(popupInstructions);
+    }
+
+    private void toggleMute(){
+        isMuted = !isMuted;
+        if (mediaPlayer != null){
+
+
+        if (isMuted){
+            mediaPlayer.setVolume(0,0);
+        }
+        else {
+            mediaPlayer.setVolume(1,1);
+        }
+    }}
+
+    protected void onDestroy(){
+        super.onDestroy();
+        if (mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
 

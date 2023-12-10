@@ -17,7 +17,6 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class GamePlayAI extends AppCompatActivity {
-    Button instructions;
     /*
      * The next field is keeping track of the row number after each column have been clicked
      * If column1 is clicked the first value will be
@@ -26,6 +25,7 @@ public class GamePlayAI extends AppCompatActivity {
     protected Button[][] board;
     protected MovesStack movesStack = new MovesStack();
     private Random rand = new Random();
+    Button instructions;
     Button undo;
     Model game;
     String turn;

@@ -26,8 +26,8 @@ public class Model {
     }
 
     /*
-    Cover check winner in four steps
-    Avoid code repetition, so that in the checking winner part we can call these methods
+        Cover check winner in four steps
+        Avoid code repetition, so that in the checking winner part we can call these methods
      */
     //----------------------------------------------------------------------------------------------
     //region **Checking Part**
@@ -302,10 +302,11 @@ public class Model {
         ifWinnerExist → if four connects exist, means winner exist.
         ifEqualToCurrentTurn → if the piece in this box equals to currentTurn(piece)
         ifEqualToNull → if there is a piece in this box
-        ifFullBoard → if the board is full, always be implemented after the ifWinnerExist check
+        ifFullBoard → if the board is full, output true
+        ifFullColumn → if the current column is full, output true
     */
     //----------------------------------------------------------------------------------------------
-    //region **ifWinnerExist & ifEqualToCurrentTurn & ifEqualToNull & ifFullBoard**
+    //region **ifWinnerExist & ifEqualToCurrentTurn & ifEqualToNull & ifFullBoard & ifFullColumn**
     protected boolean ifWinnerExist(){
         if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("winnerExist") ||
             countConsecutivePlayerSpotsVertically(currentTurn).equals("winnerExist") ||
@@ -337,6 +338,14 @@ public class Model {
             }
         }
         return boardIsFull;
+    }
+
+    protected boolean ifFullColumn(int checkColIndex){
+        boolean columnIsFull = false;
+        if(!board[0][checkColIndex].getPlayer().equals(" ")){
+            columnIsFull = true;
+        }
+        return columnIsFull;
     }
     //endregion
     //----------------------------------------------------------------------------------------------

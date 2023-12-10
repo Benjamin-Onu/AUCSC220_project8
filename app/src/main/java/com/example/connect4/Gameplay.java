@@ -50,6 +50,9 @@ public class Gameplay extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
+
+        //------------------------------------------------------------------------------------------
+        //region **Seven ColumnBTNs OnClickListener**
         column1BTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -58,6 +61,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(0)){
+                    //disableColumnBTN(column1BTN);
+                };
                 changeTurns();
             }
           }
@@ -70,6 +76,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(1)){
+                    //disableColumnBTN(column2BTN);
+                };
                 changeTurns();
             }
         }
@@ -134,6 +143,8 @@ public class Gameplay extends AppCompatActivity {
             }
         }
         );
+        //endregion
+        //------------------------------------------------------------------------------------------
 
         /**
          * Disable all the buttons from the second bottom row to the very top row

@@ -26,7 +26,7 @@
             android:text="        CONNECT-4"
             android:textAlignment="center"
             android:textColor="@color/homepageHeader"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible" />
@@ -43,7 +43,7 @@
             android:text="GAME"
             android:textAlignment="center"
             android:textColor="@color/homepageHeader"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible" />
@@ -57,7 +57,7 @@
             android:background="@color/startButton"
             android:text="SELECT MODE"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:visibility="visible"
             tools:visibility="visible" />

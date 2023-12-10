@@ -34,10 +34,19 @@ these methods when we need it.
     public String countConsecutivePlayerSpotsHorizontally(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
+        boolean threeConnects = false;
+        boolean winnerExist = false;
         for (int row = board.length - 1; row >= 0; row--) {
             for (int col = 0; col < board[0].length; col++) {
                 if (ifEqualToCurrentturn(row, col)) {
                     count += 1;
+                    if (count == 4) {
+                        winnerExist = true;
+                        break;
+                    } else if (count == 3) {
+                        threeConnects = true;
+                        break;
+                    }
                 }
                 else if (ifEqualToNull(row, col)){
                     break;
@@ -46,9 +55,9 @@ these methods when we need it.
                 }
             }
         }
-        if (count == 4) {
+        if (winnerExist) {
             return "winnerExist";
-        } else if (count == 3){
+        } else if (threeConnects){
             return "threeConnects";
         } else {
             return "nothingHappen";
@@ -58,10 +67,15 @@ these methods when we need it.
     public String countConsecutivePlayerSpotsVertically(String currentTurn){
         setCurrentTurn(currentTurn);
         int count = 0;
+        boolean winnerExist = false;
         for(int col = 0; col < board[0].length; col++){
             for(int row = board.length - 1; row >= 0; row--){
                 if(ifEqualToCurrentturn(row, col)){
                     count += 1;
+                    if (count == 4) {
+                        winnerExist = true;
+                        break;
+                    }
                 }
                 else if (ifEqualToNull(row, col)){
                     break;
@@ -70,11 +84,9 @@ these methods when we need it.
                 }
             }
         }
-        if (count == 4) {
+        if (winnerExist) {
             return "winnerExist";
-        } else if (count == 3){
-            return "threeConnects";
-        } else {
+        }else {
             return "nothingHappen";
         }
     }
@@ -82,7 +94,6 @@ these methods when we need it.
     public String countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         setCurrentTurn(currentTurn);
         int count;
-        boolean threeConnects = false;
         boolean winnerExist = false;
         for(int startCol = board[0].length - 1; startCol >= 0; startCol --) {
             if (startCol == 6) {
@@ -91,8 +102,7 @@ these methods when we need it.
                     winnerExist = true;
                     break;
                 } else if (count == 3) {
-                    threeConnects = true;
-                    break;
+                    ifThreeConnects();
                 }
             } else {
                 count = checkOneLowerTriangularLeftDiagLine(startCol);
@@ -100,16 +110,13 @@ these methods when we need it.
                     winnerExist = true;
                     break;
                 } else if (count == 3) {
-                    threeConnects = true;
-                    break;
+                    ifThreeConnects();
                 }
             }
         }
         if (winnerExist) {
             return "winnerExist";
-        } else if (threeConnects){
-            return "threeConnects";
-        } else {
+        }else {
             return "nothingHappen";
         }
     }
@@ -188,7 +195,6 @@ these methods when we need it.
             public String countConsecutivePlayerSpotsRightDiag(String currentTurn){
                 setCurrentTurn(currentTurn);
                 int count = 0;
-                boolean threeConnects = false;
                 boolean winnerExist = false;
                 for(int startCol = 0; startCol < board[0].length; startCol ++) {
                     if (startCol == 0) {
@@ -197,8 +203,7 @@ these methods when we need it.
                             winnerExist = true;
                             break;
                         } else if (count == 3) {
-                            threeConnects = true;
-                            break;
+                            ifThreeConnects();
                         }
                     } else {
                         count = checkOneLowerTriangularRightDiagLine(startCol);
@@ -206,16 +211,13 @@ these methods when we need it.
                             winnerExist = true;
                             break;
                         } else if (count == 3) {
-                            threeConnects = true;
-                            break;
+                            ifThreeConnects();
                         }
                     }
                 }
                 if (winnerExist) {
                     return "winnerExist";
-                } else if (threeConnects){
-                    return "threeConnects";
-                } else {
+                }else {
                     return "nothingHappen";
                 }
             }
@@ -302,14 +304,15 @@ these methods when we need it.
      */
             //--------------------------------------------------------------------------------------
             protected boolean ifThreeConnects(){
-                if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("threeConnects") ||
+                return true;
+                /*if (countConsecutivePlayerSpotsHorizontally(currentTurn).equals("threeConnects") ||
                     countConsecutivePlayerSpotsVertically(currentTurn).equals("threeConnects") ||
                     countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("threeConnects")||
                     countConsecutivePlayerSpotsRightDiag(currentTurn).equals("threeConnects")){
-                    setWinner(getCurrentTurn());
+                    //setWinner(getCurrentTurn());
                     return true;
                 }
-                return false;
+                return false;*/
             }
 
             protected boolean ifWinnerExist(){
@@ -317,7 +320,7 @@ these methods when we need it.
                     countConsecutivePlayerSpotsVertically(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsLeftDiag(currentTurn).equals("winnerExist") ||
                     countConsecutivePlayerSpotsRightDiag(currentTurn).equals("winnerExist")){
-                    setWinner(currentTurn);
+                    setWinner(getCurrentTurn());
                     return true;
                 }
                 return false;

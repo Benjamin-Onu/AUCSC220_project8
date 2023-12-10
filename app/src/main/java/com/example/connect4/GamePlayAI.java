@@ -29,6 +29,7 @@ public class GamePlayAI extends AppCompatActivity {
     Button undo;
     Model game;
     String turn;
+    int AIcolor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +49,11 @@ public class GamePlayAI extends AppCompatActivity {
         createButtons();
 
         if(turn.equals("AI")){
+            game.setCurrentTurn("player1");
+            AIcolor = color1;
             AITurn();
         }
 
-        //region columnButtons onClinkListeners
         column1BTN.setOnClickListener(new View.OnClickListener(){
               @Override
               public void onClick(View v) {
@@ -59,6 +61,7 @@ public class GamePlayAI extends AppCompatActivity {
                   if(game.ifWinnerExist()){
                       displayWinner(game.getWinner());
                   }
+                  changeTurns();
                   AITurn();
               }
           }
@@ -71,6 +74,7 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    changeTurns();
                     AITurn();
                 }
             }
@@ -83,6 +87,7 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    changeTurns();
                     AITurn();
                 }
             }
@@ -95,6 +100,7 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    changeTurns();
                     AITurn();
                 }
             }
@@ -107,6 +113,7 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    changeTurns();
                     AITurn();
                 }
             }
@@ -119,6 +126,7 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    changeTurns();
                     AITurn();
                 }
             }
@@ -131,6 +139,7 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    changeTurns();
                     AITurn();
                 }
             }
@@ -252,6 +261,7 @@ public class GamePlayAI extends AppCompatActivity {
         }
         else{
             turn = "Player";
+            AIcolor = color2;
         }
         return turn;
     }
@@ -352,7 +362,6 @@ public class GamePlayAI extends AppCompatActivity {
     //endregion
 
     public void AITurn(){
-        changeTurns();
         ArrayList<Position> availableSpots = new ArrayList<>();
         availableSpots = generateAvailableSpots();
         Position chosenSpot = pickAIspot(availableSpots);
@@ -383,10 +392,28 @@ public class GamePlayAI extends AppCompatActivity {
         }
         changeTurns();
     }
-
+    /*
+    * IT generates all the spots
+    * it checks for the last spot
+    * */
     public Position pickAIspot(ArrayList<Position> availableSpots){
-        int randomSpotIndex = rand.nextInt(availableSpots.size() - 1);
-        Position randomSpot = availableSpots.get(randomSpotIndex);
+        ArrayList<Position> optimizedSpots = new ArrayList<>();
+        int rowT;
+        for(int indx= 0; indx<availableSpots.size(); indx++){
+            if(rowTrack[indx] == 5){
+                optimizedSpots.add(availableSpots.get(indx));
+            }else {
+                rowT = rowTrack[indx] + 1;
+                Button myButton = board[rowT][indx];
+                ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
+                int currentColor = buttonColor.getColor();
+                if (currentColor == AIcolor) {
+                    optimizedSpots.add(availableSpots.get(indx));
+                }
+            }
+        }
+        int randomSpotIndex = rand.nextInt(optimizedSpots.size() - 1);
+        Position randomSpot = optimizedSpots.get(randomSpotIndex);
 
         return randomSpot;
     }
@@ -410,24 +437,53 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
+         /*
+            Select the winner textview
+             */
         if(game.getWinner().equals("player1")){
-            saveWinner();
+
             //go to this page if player 1 has won the game
-            Intent P1Win = new Intent(GamePlayAI.this, P2Win.class);
-            startActivity(P1Win);
+            /**
+             * Set the text to
+             * "    PLAYER ONE WIN
+             * CLICK RESTART or HOME to Start a New Game
+             * "
+             * disable undo, column buttons , leave only restart and home buttons
+             *
+             */
+
+            //WE ARE NO LONGER DISPLAYING WINNER ON A NEW PAGE
+            //Intent P1Win = new Intent(Gameplay.this, P2Win.class);
+            //startActivity(P1Win);
         }else if(game.getWinner().equals("player2")) {
             //go to this page if player 2 has won the game
-            saveWinner();
-            Intent P2Win = new Intent(GamePlayAI.this, P2Win.class);
-            startActivity(P2Win);
+
+            /**
+             * Set the text to
+             * "    PLAYER TWO WIN
+             * CLICK RESTART or HOME to Start a New Game
+             * "
+             * disable undo, column buttons , leave only restart and home buttons
+             *
+             */
+            //Intent P2Win = new Intent(Gameplay.this, P2Win.class);
+            //startActivity(P2Win);
         }//If the board is full there is no winner
         else if(game.getCurrentTurn().equals("noWinner")){
-            saveWinner();
             //go to this page if there is not a winner of the game
-            Intent ResultMessage = new Intent(GamePlayAI.this, P2Win.class);
-            startActivity(ResultMessage);
+            /**
+             * Set the text to
+             * "    NO ONE WIN
+             * CLICK RESTART or HOME to Start a New Game
+             * "
+             * disable undo, column buttons , leave only restart and home buttons
+             *
+             */
+            //Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
+            //startActivity(ResultMessage);
         }
     }
+
 
     public void saveWinner(){
         File filename;

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".P1Win">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ResultMessage"
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="-69dp">
+
+        <Button
+            android:id="@+id/restart"
+            android:layout_width="273dp"
+            android:layout_height="203dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="684dp"
+            android:layout_marginEnd="476dp"
+            android:background="@color/buttonColor"
+            android:text="RESTART"
+            android:textSize="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="273dp"
+            android:layout_height="203dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="684dp"
+            android:layout_marginEnd="155dp"
+            android:background="@color/buttonColor"
+            android:onClick="backToHomePage"
+            android:text="HOME"
+            android:textSize="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/defaultMessage"
+            android:layout_width="785dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:text="PLAYER 1 WINS!"
+            android:textColor="@color/black"
+            android:textSize="75dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:visibility="visible" />
+        <!--         this will be the message saying P1 won-->
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

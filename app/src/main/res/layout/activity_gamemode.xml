@@ -76,34 +76,33 @@
             tools:visibility="visible" />
 
 
-
         <Button
-            android:id="@+id/pVp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/pVai"
+            android:layout_width="80dp"
+            android:layout_height="74dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="425dp"
             android:layout_marginEnd="250dp"
-            android:text="P v P"
-            android:background="@color/buttonColor"
+            android:background="@drawable/connect_4_1_player"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:visibility="visible"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <Button
-            android:id="@+id/pVai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/pVp"
+            android:layout_width="80dp"
+            android:layout_height="74dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="425dp"
             android:layout_marginEnd="100dp"
-            android:text="P v AI"
-            android:background="@color/buttonColor"
+            android:background="@drawable/connect_4_2_player"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:visibility="visible"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
+
+
 
         <Button
             android:id="@+id/mute"

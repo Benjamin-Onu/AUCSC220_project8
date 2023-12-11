@@ -57,12 +57,7 @@ public class Gameplay extends AppCompatActivity {
          * This button is technically for loading the game and it should be at the home
          * page and should be loaded if the user wants to restore their last game.
          */
-        undo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadGameState();
-            }
-        });
+
         //Disable all the buttons from the second bottom row to the very top row
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
@@ -190,7 +185,7 @@ public class Gameplay extends AppCompatActivity {
         });
 
         undo = (Button) findViewById(R.id.undo);
-        /*undo.setOnClickListener(new View.OnClickListener() {
+        undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String deletedTurn;
@@ -202,7 +197,8 @@ public class Gameplay extends AppCompatActivity {
                 undoLastMove();
                 game.setCurrentTurn(deletedTurn);
             }
-        });*/
+        });
+
 
         backToHomepage.setOnClickListener(new View.OnClickListener() {
             @Override

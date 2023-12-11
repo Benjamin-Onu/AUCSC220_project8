@@ -5,50 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".AIWinMessage">
+    tools:context=".AIWinMessage"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
         tools:context=".ResultMessage"
-        tools:layout_editor_absoluteX="204dp"
-        tools:layout_editor_absoluteY="-69dp">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="39dp">
 
         <Button
             android:id="@+id/restart"
             android:layout_width="273dp"
             android:layout_height="203dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="684dp"
-            android:layout_marginEnd="476dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="425dp"
             android:background="@color/buttonColor"
             android:text="RESTART"
-            android:textSize="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:textSize="50dp" />
 
         <Button
             android:id="@+id/home"
             android:layout_width="273dp"
             android:layout_height="203dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="684dp"
-            android:layout_marginEnd="155dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="100dp"
             android:background="@color/buttonColor"
             android:onClick="backToHomePage"
             android:text="HOME"
-            android:textSize="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:textSize="50dp" />
 
         <TextView
-            android:id="@+id/defaultMessage"
-            android:layout_width="785dp"
+            android:id="@+id/WinMessage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="73dp"
             android:text="CPU WINS!"
             android:textColor="@color/black"
             android:textSize="75dp"

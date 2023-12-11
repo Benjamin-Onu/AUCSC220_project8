@@ -293,6 +293,8 @@ public class Model {
     protected String getWinner() {
         return winner;
     }
+    protected String getLastGame(){return lastGame;}
+    protected void setLastGame(String game){this.lastGame = game;}
     protected void setCurrentTurn(String turn){
         this.currentTurn = turn;
     }
@@ -350,7 +352,7 @@ public class Model {
     * This function will save the current game state in a string so that it will be stored in a file
     * it will be loaded when the load game button is clicked
     * */
-    protected String saveGameState(){
+    protected void saveGameState(){
         String currentGame = "";
         for(int row = 0; row < 6; row++){
             for(int col = 0; col < 7; col++){
@@ -365,10 +367,11 @@ public class Model {
             currentGame += "\n";
             //This moves to the next row since we want to simplify each row in the file as a single line
         }
-        return currentGame;
+
+        setLastGame(currentGame);
     }
 
-    protected int[] determineNextTurnprevGAME(){
+    protected int determineNextTurnprevGAME(){
         int playerOneCount = 0;
         int playerTwoCount = 0;
         int[] counts = new int[2];
@@ -389,7 +392,11 @@ public class Model {
         }
         counts[0] = playerOneCount;
         counts[1] = playerTwoCount;
-        return counts;
+        if(counts[0] > counts[1]){
+            return 2;//player 2 turn
+        } else{
+            return 1;//player 1 turn
+        }
     }
 
     protected boolean ifFullColumn(int checkColIndex){

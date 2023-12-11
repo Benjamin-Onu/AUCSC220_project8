@@ -64,6 +64,7 @@ public class Model {
         boolean winnerExist = false;
         for(int col = 0; col < board[0].length; col++){
             if (count == 4) { break;}
+            count = 0;
             for(int row = board.length - 1; row >= 0; row--){
                 if(ifEqualToCurrentturn(row, col)){
                     count += 1;
@@ -90,7 +91,6 @@ public class Model {
         int count;
         boolean winnerExist = false;
         for(int startCol = board[0].length - 1; startCol >= 0; startCol --) {
-
             if (startCol == 6) {
                 count = checkOneUpperTriangularLeftDiagLine();
                 if (count == 4) {
@@ -144,9 +144,7 @@ public class Model {
         int upperCount = 0;
         int row = board.length - 1;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
-            if (upperCount == 4){
-                return upperCount;
-            }
+            if (upperCount == 4){ return upperCount; }
             upperCount = 0;
             row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
             /**
@@ -182,7 +180,6 @@ public class Model {
     }
 
     protected String countConsecutivePlayerSpotsRightDiag(String currentTurn){
-
         int count = 0;
         boolean winnerExist = false;
         for(int startCol = 0; startCol < board[0].length; startCol ++) {
@@ -239,11 +236,9 @@ public class Model {
 
     protected int checkOneUpperTriangularRightDiagLine(){
         int upperCount = 0;
-        int row = board.length - 1;
+        int row;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
-            if (upperCount == 4){
-                return upperCount;
-            }
+            if (upperCount == 4){ return upperCount; }
             upperCount = 0;
             row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
             /**
@@ -263,12 +258,12 @@ public class Model {
              *  A Start Row of -1 will be checked in the for loop since the
              */
             for (int col = 0; col <= startRow; col++) {
-                if (ifEqualToNull(row, col) || row < 0) {
-                    break;
-                } else if (ifEqualToCurrentturn(row, col) && row >= 0) {
+                if (ifEqualToNull(row, col) || row < 0) { break; }
+                else if (ifEqualToCurrentturn(row, col) && row >= 0) {
                     upperCount += 1;
                     row--;
-                } else if (!ifEqualToCurrentturn(row, col) && row >= 0) {
+                }
+                else if (!ifEqualToCurrentturn(row, col) && row >= 0) {
                     upperCount = 0;
                     row--;
                 }

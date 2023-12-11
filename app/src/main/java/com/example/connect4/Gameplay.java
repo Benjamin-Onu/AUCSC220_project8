@@ -32,7 +32,7 @@ public class Gameplay extends AppCompatActivity {
     String turn;
     Button undo;
     Button restart;
-    Button save;
+    Button save; //save game button
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +51,13 @@ public class Gameplay extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
-        save = findViewById(R.id.save);
+        //save = findViewById(R.id.save);
 
         /**
          * This button is technically for loading the game and it should be at the home
          * page and should be loaded if the user wants to restore their last game.
          */
-        save.setOnClickListener(new View.OnClickListener() {
+        undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadGameState();
@@ -190,7 +190,7 @@ public class Gameplay extends AppCompatActivity {
         });
 
         undo = (Button) findViewById(R.id.undo);
-        undo.setOnClickListener(new View.OnClickListener() {
+        /*undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String deletedTurn;
@@ -202,7 +202,7 @@ public class Gameplay extends AppCompatActivity {
                 undoLastMove();
                 game.setCurrentTurn(deletedTurn);
             }
-        });
+        });*/
 
         backToHomepage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -519,7 +519,7 @@ public class Gameplay extends AppCompatActivity {
      *
      */
     protected void loadGameState(){
-        String previousGame;
+        String previousGame; //previousGame = game.getLastGame()
         previousGame = "0 0 0 0 0 0 0 \n" +
                 "0 0 0 0 0 0 0 \n" +
                 "0 0 0 0 0 0 0\n" +

@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height = "wrap_content"
     android:background="@color/background"
     tools:context=".Gameplay">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="-69dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        tools:layout_editor_absoluteX="204dp"
-        tools:layout_editor_absoluteY="-69dp">
+        app:layout_constraintRight_toRightOf="parent" >
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -37,15 +35,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <Button
                     android:id="@+id/b00"
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@color/buttonColor"
                     android:enabled="false" />
+
 
                 <Button
                     android:id="@+id/b01"
@@ -524,20 +522,18 @@
             </TableRow>
         </TableLayout>
 
-
-
         <Button
             android:id="@+id/undo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_marginTop="684dp"
             android:layout_marginEnd="325dp"
             android:background="@color/buttonColor"
             android:text="UNDO"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/home"
@@ -560,7 +556,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="684dp"
-            android:layout_marginEnd="255dp"
+            android:layout_marginEnd="225dp"
             android:background="@color/buttonColor"
             android:onClick="openInstructions"
             android:text=" ? "
@@ -576,46 +572,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="684dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginEnd="115dp"
             android:background="@color/buttonColor"
             android:text="RESTART"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tableLayout"
             app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_below="@+id/tableLayout"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="164dp"
-            android:layout_marginBottom="62dp"
-            android:background="@color/buttonColor"
-            android:text="LOAD PREVIOUS GAME"
-            app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
     </RelativeLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.00" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.98" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

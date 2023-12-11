@@ -31,7 +31,7 @@ public class Model {
      */
     //----------------------------------------------------------------------------------------------
     //region **Checking Part**
-    public String countConsecutivePlayerSpotsHorizontally(String currentTurn){
+    protected String countConsecutivePlayerSpotsHorizontally(String currentTurn){
         int count = 0;
         boolean winnerExist = false;
         for (int row = board.length - 1; row >= 0; row--) {
@@ -57,7 +57,7 @@ public class Model {
         }
     }
 
-    public String countConsecutivePlayerSpotsVertically(String currentTurn){
+    protected String countConsecutivePlayerSpotsVertically(String currentTurn){
         int count = 0;
         boolean winnerExist = false;
         for(int col = 0; col < board[0].length; col++){
@@ -83,8 +83,7 @@ public class Model {
         }
     }
 
-    public String countConsecutivePlayerSpotsLeftDiag(String currentTurn){
-        setCurrentTurn(currentTurn);
+    protected String countConsecutivePlayerSpotsLeftDiag(String currentTurn){
         int count;
         boolean winnerExist = false;
         for(int startCol = board[0].length - 1; startCol >= 0; startCol --) {
@@ -109,8 +108,7 @@ public class Model {
         }
     }
 
-
-    public int checkOneLowerTriangularLeftDiagLine(int startCol){
+    protected int checkOneLowerTriangularLeftDiagLine(int startCol){
         int lowCount = 0;
         int col = startCol;
         //the row should start counting from row - col
@@ -138,7 +136,7 @@ public class Model {
         return lowCount;
     }
 
-    public int checkOneUpperTriangularLeftDiagLine(){
+    protected int checkOneUpperTriangularLeftDiagLine(){
         int upperCount = 0;
         int row = board.length - 1;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
@@ -179,9 +177,8 @@ public class Model {
         return upperCount;
     }
 
+    protected String countConsecutivePlayerSpotsRightDiag(String currentTurn){
 
-    public String countConsecutivePlayerSpotsRightDiag(String currentTurn){
-        setCurrentTurn(currentTurn);
         int count = 0;
         boolean winnerExist = false;
         for(int startCol = 0; startCol < board[0].length; startCol ++) {
@@ -206,7 +203,7 @@ public class Model {
         }
     }
 
-    public int checkOneLowerTriangularRightDiagLine(int startCol){
+    protected int checkOneLowerTriangularRightDiagLine(int startCol){
         int lowCount = 0;
         int col = startCol;
         //the row should start counting from row - col
@@ -236,7 +233,7 @@ public class Model {
         return lowCount;
     }
 
-    public int checkOneUpperTriangularRightDiagLine(){
+    protected int checkOneUpperTriangularRightDiagLine(){
         int upperCount = 0;
         int row = board.length - 1;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){

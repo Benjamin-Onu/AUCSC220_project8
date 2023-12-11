@@ -54,6 +54,8 @@ public class GamePlayAI extends AppCompatActivity {
             AITurn();
         }
 
+        //------------------------------------------------------------------------------------------
+        //region **Seven ColumnBTNs OnClickListener**
         column1BTN.setOnClickListener(new View.OnClickListener(){
               @Override
               public void onClick(View v) {
@@ -61,6 +63,9 @@ public class GamePlayAI extends AppCompatActivity {
                   if(game.ifWinnerExist()){
                       displayWinner(game.getWinner());
                   }
+                  if(game.ifFullColumn(0)){
+                      //disableColumnBTN(column1BTN);
+                  };
                   changeTurns();
                   AITurn();
               }
@@ -74,6 +79,9 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    if(game.ifFullColumn(0)){
+                        //disableColumnBTN(column1BTN);
+                    };
                     changeTurns();
                     AITurn();
                 }
@@ -87,6 +95,9 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    if(game.ifFullColumn(0)){
+                        //disableColumnBTN(column1BTN);
+                    };
                     changeTurns();
                     AITurn();
                 }
@@ -100,6 +111,9 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    if(game.ifFullColumn(0)){
+                        //disableColumnBTN(column1BTN);
+                    };
                     changeTurns();
                     AITurn();
                 }
@@ -113,6 +127,9 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    if(game.ifFullColumn(0)){
+                        //disableColumnBTN(column1BTN);
+                    };
                     changeTurns();
                     AITurn();
                 }
@@ -126,6 +143,9 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    if(game.ifFullColumn(0)){
+                        //disableColumnBTN(column1BTN);
+                    };
                     changeTurns();
                     AITurn();
                 }
@@ -139,12 +159,16 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
+                    if(game.ifFullColumn(0)){
+                        //disableColumnBTN(column1BTN);
+                    };
                     changeTurns();
                     AITurn();
                 }
             }
         );
         //endregion
+        //------------------------------------------------------------------------------------------
 
         /**
          * Disable all the buttons from the second bottom row to the very top row
@@ -308,7 +332,11 @@ public class GamePlayAI extends AppCompatActivity {
         myButton.setBackgroundColor(color3);
     }
 
-    //region sevenColumnButtons' implementation
+    /*
+        What happen once player click Seven ColumnBTNs
+     */
+    //----------------------------------------------------------------------------------------------
+    //region **Columns' Changes**
     public void columnOne(){
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
@@ -360,6 +388,7 @@ public class GamePlayAI extends AppCompatActivity {
         rowTrack[6]--;
     }
     //endregion
+    //----------------------------------------------------------------------------------------------
 
     public void AITurn(){
         ArrayList<Position> availableSpots = new ArrayList<>();
@@ -392,6 +421,7 @@ public class GamePlayAI extends AppCompatActivity {
         }
         changeTurns();
     }
+
     /*
     * IT generates all the spots
     * it checks for the last spot

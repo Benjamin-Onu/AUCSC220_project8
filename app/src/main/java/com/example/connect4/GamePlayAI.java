@@ -380,6 +380,22 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
+        if(game.getWinner().equals("player1")){
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
+            startActivity(P1Win);
+        }else if(game.getWinner().equals("player2")) {
+            //go to this page if player 2 has won the game
+            Intent P2Win = new Intent(GamePlayAI.this, P2Win.class);
+            startActivity(P2Win);
+        }//If the board is full there is no winner
+        else if(game.getCurrentTurn().equals("noWinner")) {
+            //go to this page if there is not a winner of the game
+            Intent ResultMessage = new Intent(GamePlayAI.this, DefaultMessage.class);
+            startActivity(ResultMessage);
+        }
+    }
+    public void displayWinner2(String winner){
          /*
             Select the winner textview
              */

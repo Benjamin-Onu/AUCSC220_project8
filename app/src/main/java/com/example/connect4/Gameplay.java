@@ -38,9 +38,11 @@ public class Gameplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
         //Call decide who goes first to initialize the current turn
         decideWhoGoesFirst();
         game = new Model();
+
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -51,13 +53,19 @@ public class Gameplay extends AppCompatActivity {
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
 
+        //Disable all the buttons from the second bottom row to the very top row
+        for(int row = 5;row >= 0;row--){
+            for(int col = 0; col < 6; col++){
+                board[row][col].setEnabled(false);
+            }
+        }
+
         //------------------------------------------------------------------------------------------
         //region **Seven ColumnBTNs OnClickListener**
         column1BTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 columnOne();
-                boolean winnerCheck = game.ifWinnerExist();
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
@@ -161,14 +169,8 @@ public class Gameplay extends AppCompatActivity {
         //endregion
         //------------------------------------------------------------------------------------------
 
-        /*
-            Disable all the buttons from the second bottom row to the very top row
-         */
-        for(int row = 5;row >= 0;row--){
-            for(int col = 0; col < 6; col++){
-                board[row][col].setEnabled(false);
-            }
-        }
+        //------------------------------------------------------------------------------------------
+        //region **Bottom Buttons' OnClickListener**
         instructions = (Button) findViewById(R.id.instructions);
         onRestart();
         instructions.setOnClickListener(new View.OnClickListener(){
@@ -206,16 +208,17 @@ public class Gameplay extends AppCompatActivity {
                 restartGame();
             }
         });
+        //endregion
+        //------------------------------------------------------------------------------------------
+
         //Main loop of the game
     }
 
-
-
     /*
-  We have 42 buttons to implement and in order to keep this file readable without having
-  to add 42 lines of initializing buttons, I created a buttons class to initialize all
-  the buttons.
-   */
+      We have 42 buttons to implement and in order to keep this file readable without having
+      to add 42 lines of initializing buttons, I created a buttons class to initialize all
+      the buttons.
+    */
     public void createButtons(){
         board = new Button[6][7];
         Button b00 = findViewById(R.id.b00);
@@ -276,18 +279,6 @@ public class Gameplay extends AppCompatActivity {
         };
     }
 
-    private void openInstructions() {
-        Intent popupInstructions = new Intent(Gameplay.this, PopUpInstructions.class);
-        startActivity(popupInstructions);
-    }
-
-    public void backToHomePage() {
-        Intent myIntent;
-        myIntent = new Intent(this, MainActivity.class);
-        startActivity(myIntent);
-    }
-
-
     protected String decideWhoGoesFirst(){
         int turnNum = rand.nextInt(2);
         if (turnNum == 0){
@@ -307,6 +298,7 @@ public class Gameplay extends AppCompatActivity {
             game.setCurrentTurn("player1");
         }
     }
+
     public void displayWinner(String winner){
          /*
             Select the winner textview
@@ -374,24 +366,24 @@ public class Gameplay extends AppCompatActivity {
         }
     }
 
-    /**
-     * These functions are for the buttons that are being used to select a position
+    /*
+        These functions are for the buttons that are being used to select a position
      */
-    int color1=Color.parseColor("#FF000000");
-    int color2=Color.parseColor("#FFFFFFFF");
-    int color3=Color.parseColor("#e1ba6c");
+    //----------------------------------------------------------------------------------------------
+    //region **Change Color**
+    int color1 = Color.parseColor("#FF000000");
+    int color2 = Color.parseColor("#FFFFFFFF");
+    int color3 = Color.parseColor("#e1ba6c");
 
     public void changeButtonColor(Button myButton){
         ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
         int currentColor = buttonColor.getColor();
-        /**
-         * If its the first player's turn , change the button color to black
-         */
+
+        //If its the first player's turn , change the button color to black
         if(currentColor == color3 && game.getCurrentTurn().equals("player1")){
             myButton.setBackgroundColor(color1);
-        }/**
-         * If its the second player's turn , change the button color to white
-         */
+        }
+        //If its the second player's turn , change the button color to white
         else if (currentColor == color3 && game.getCurrentTurn().equals("player2")){
             myButton.setBackgroundColor(color2);
         }
@@ -400,12 +392,14 @@ public class Gameplay extends AppCompatActivity {
     public void changeButtonColorUNDO(Button myButton){
         myButton.setBackgroundColor(color3);
     }
+    //endregion
+    //----------------------------------------------------------------------------------------------
 
     /*
         What happen once player click Seven ColumnBTNs
      */
     //----------------------------------------------------------------------------------------------
-    //region **Columns' Changes**
+    //region **Columns' Actions**
     public void columnOne(){
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
@@ -458,6 +452,14 @@ public class Gameplay extends AppCompatActivity {
     //endregion
     //----------------------------------------------------------------------------------------------
 
+    /*
+        undoLastMove → change the last pieces the other player moved to be origin color
+        restartGame → clean the board and implement decideWhoGoesFirst again
+        openInstructions → show another page that is about the instructions of the game
+        backToHomepage → go back to the homepage
+     */
+    //----------------------------------------------------------------------------------------------
+    //region **Bottom Buttons' Actions**
     protected void undoLastMove(){
         int[] deletedPiecesPosition = movesStack.deleteMove();
         int deletedRow = deletedPiecesPosition[0];
@@ -467,11 +469,24 @@ public class Gameplay extends AppCompatActivity {
         rowTrack[deletedCol]++;
     }
 
-    protected  void restartGame(){
+    protected void restartGame(){
         while(!movesStack.movesInRow.isEmpty()){
             undoLastMove();
         }
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
     }
+
+    private void openInstructions() {
+        Intent popupInstructions = new Intent(Gameplay.this, PopUpInstructions.class);
+        startActivity(popupInstructions);
+    }
+
+    public void backToHomePage() {
+        Intent myIntent;
+        myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
+    }
+    //endregion
+    //----------------------------------------------------------------------------------------------
 }

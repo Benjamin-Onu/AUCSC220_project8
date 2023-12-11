@@ -61,6 +61,7 @@ public class Model {
         int count = 0;
         boolean winnerExist = false;
         for(int col = 0; col < board[0].length; col++){
+            if (count == 4) { break;}
             for(int row = board.length - 1; row >= 0; row--){
                 if(ifEqualToCurrentturn(row, col)){
                     count += 1;

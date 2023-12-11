@@ -18,15 +18,18 @@ import java.util.ArrayList;
 
 public class GamePlayAI extends AppCompatActivity {
     /*
-     * The next field is keeping track of the row number after each column have been clicked
-     * If column1 is clicked the first value will be
-     * */
+       rowTrack Explanation:
+       The next field is keeping track of the row number after each column have been clicked
+       If column1 is clicked the first value will be 4 because the next availale row is the one
+       above it.
+     */
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5, 5};
     protected Button[][] board;
     protected MovesStack movesStack = new MovesStack();
     private Random rand = new Random();
     Button instructions;
     Button undo;
+    Button restart;
     Model game;
     String turn;
     int AIcolor;
@@ -35,9 +38,10 @@ public class GamePlayAI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
         game = new Model();
         decideWhoGoesFirst();
-        //setContentView(R.layout.activity_game_play_ai);
+
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -48,6 +52,14 @@ public class GamePlayAI extends AppCompatActivity {
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
 
+        //Disable all the buttons from the second bottom row to the very top row
+        for(int row = 5;row >= 0;row--){
+            for(int col = 0; col < 6; col++){
+                board[row][col].setEnabled(false);
+            }
+        }
+
+        //If AI goes first, set it to be player1
         if(turn.equals("AI")){
             game.setCurrentTurn("player1");
             AIcolor = color1;
@@ -61,6 +73,7 @@ public class GamePlayAI extends AppCompatActivity {
               public void onClick(View v) {
                   columnOne();
                   if(game.ifWinnerExist()){
+                      restartGame();
                       displayWinner(game.getWinner());
                   }
                   if(game.ifFullColumn(0)){
@@ -77,6 +90,7 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnTwo();
                     if(game.ifWinnerExist()){
+                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -93,6 +107,7 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnThree();
                     if(game.ifWinnerExist()){
+                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -109,6 +124,7 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnFour();
                     if(game.ifWinnerExist()){
+                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -125,6 +141,7 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnFive();
                     if(game.ifWinnerExist()){
+                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -141,6 +158,7 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnSix();
                     if(game.ifWinnerExist()){
+                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -157,6 +175,7 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnSeven();
                     if(game.ifWinnerExist()){
+                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -170,14 +189,8 @@ public class GamePlayAI extends AppCompatActivity {
         //endregion
         //------------------------------------------------------------------------------------------
 
-        /**
-         * Disable all the buttons from the second bottom row to the very top row
-         */
-        for(int row = 5;row >= 0;row--){
-            for(int col = 0; col < 6; col++){
-                board[row][col].setEnabled(false);
-            }
-        }
+        //------------------------------------------------------------------------------------------
+        //region **Bottom Buttons' OnClickListener**
         instructions = (Button) findViewById(R.id.instructions);
         onRestart();
         instructions.setOnClickListener(new View.OnClickListener(){
@@ -185,6 +198,7 @@ public class GamePlayAI extends AppCompatActivity {
                 openInstructions();
             }
         });
+
         undo = (Button) findViewById(R.id.undo);
         undo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,14 +213,24 @@ public class GamePlayAI extends AppCompatActivity {
             }
         });
 
+        restart = (Button) findViewById(R.id.restart);
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartGame();
+            }
+        });
+        //endregion
+        //------------------------------------------------------------------------------------------
+
         //Main loop of the game
     }
 
     /*
-  We have 42 buttons to implement and in order to keep this file readable without having
-  to add 42 lines of initializing buttons, I created a buttons class to initialize all
-  the buttons.
-   */
+      We have 42 buttons to implement and in order to keep this file readable without having
+      to add 42 lines of initializing buttons, I created a buttons class to initialize all
+      the buttons.
+    */
     public void createButtons(){
         board = new Button[6][7];
         Button b00 = findViewById(R.id.b00);
@@ -267,17 +291,6 @@ public class GamePlayAI extends AppCompatActivity {
         };
     }
 
-    private void openInstructions() {
-        Intent popupInstructions = new Intent(GamePlayAI.this, PopUpInstructions.class);
-        startActivity(popupInstructions);
-    }
-
-    public void backToHomePage() {
-        Intent myIntent;
-        myIntent = new Intent(this, MainActivity.class);
-        startActivity(myIntent);
-    }
-
     protected String decideWhoGoesFirst(){
         int turnNum = rand.nextInt(2);
         if (turnNum == 0){
@@ -298,97 +311,6 @@ public class GamePlayAI extends AppCompatActivity {
             game.setCurrentTurn("player1");
         }
     }
-
-    public void displayWinner(){}
-    /**
-     * If there is a winner, go to the display winner page
-     */
-
-
-    /**
-     * These functions are for the buttons that are being used to select a position
-     */
-    int color1= Color.parseColor("#FF000000");
-    int color2=Color.parseColor("#FFFFFFFF");
-    int color3=Color.parseColor("#e1ba6c");
-
-    public void changeButtonColor(Button myButton){
-        ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
-        int currentColor = buttonColor.getColor();
-        /**
-         * If its the first player's turn , change the button color to black
-         */
-        if(currentColor == color3 && game.getCurrentTurn().equals("player1")){
-            myButton.setBackgroundColor(color1);
-        }/**
-         * If its the second player's turn , change the button color to white
-         */
-        else if (currentColor == color3 && game.getCurrentTurn().equals("player2")){
-            myButton.setBackgroundColor(color2);
-        }
-    }
-
-    public void changeButtonColorUNDO(Button myButton){
-        myButton.setBackgroundColor(color3);
-    }
-
-    /*
-        What happen once player click Seven ColumnBTNs
-     */
-    //----------------------------------------------------------------------------------------------
-    //region **Columns' Changes**
-    public void columnOne(){
-        //If column one is clicked, what should happen
-        changeButtonColor(board[rowTrack[0]][0]);
-        game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[0], 0);
-        rowTrack[0]--;
-    }
-
-    public void columnTwo(){
-        changeButtonColor(board[rowTrack[1]][1]);
-        game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[1], 1);
-        rowTrack[1]--;
-    }
-
-    public void columnThree(){
-        changeButtonColor(board[rowTrack[2]][2]);
-        game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[2], 2);
-        rowTrack[2]--;
-    }
-
-    public void columnFour(){
-        changeButtonColor(board[rowTrack[3]][3]);
-        game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[3], 3);
-        rowTrack[3]--;
-    }
-
-    public void columnFive(){
-        changeButtonColor(board[rowTrack[4]][4]);
-        game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[4], 4);
-        rowTrack[4]--;
-    }
-
-    public void columnSix(){
-        changeButtonColor(board[rowTrack[5]][5]);
-        game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[5], 5);
-        rowTrack[5]--;
-
-    }
-
-    public void columnSeven() {
-        changeButtonColor(board[rowTrack[6]][6]);
-        game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[6], 6);
-        rowTrack[6]--;
-    }
-    //endregion
-    //----------------------------------------------------------------------------------------------
 
     public void AITurn(){
         ArrayList<Position> availableSpots = new ArrayList<>();
@@ -457,15 +379,6 @@ public class GamePlayAI extends AppCompatActivity {
         return availableSpots;
     }
 
-    protected void undoLastMove(){
-        int[] deletedPiecesPosition = movesStack.deleteMove();
-        int deletedRow = deletedPiecesPosition[0];
-        int deletedCol = deletedPiecesPosition[1];
-        game.updateBoard(deletedRow, deletedCol, " ");
-        changeButtonColorUNDO(board[deletedRow][deletedCol]);
-        rowTrack[deletedCol]++;
-    }
-
     public void displayWinner(String winner){
          /*
             Select the winner textview
@@ -514,7 +427,6 @@ public class GamePlayAI extends AppCompatActivity {
         }
     }
 
-
     public void saveWinner(){
         File filename;
         //BUG- Writing into winners winners.txt not working
@@ -533,6 +445,133 @@ public class GamePlayAI extends AppCompatActivity {
             throw new RuntimeException(e);
         }
     }
+
+    /*
+        These functions are for the buttons that are being used to select a position
+    */
+    //----------------------------------------------------------------------------------------------
+    //region **Change Color**
+    int color1= Color.parseColor("#FF000000");
+    int color2=Color.parseColor("#FFFFFFFF");
+    int color3=Color.parseColor("#e1ba6c");
+
+    public void changeButtonColor(Button myButton){
+        ColorDrawable buttonColor = (ColorDrawable) myButton.getBackground();
+        int currentColor = buttonColor.getColor();
+        /**
+         * If its the first player's turn , change the button color to black
+         */
+        if(currentColor == color3 && game.getCurrentTurn().equals("player1")){
+            myButton.setBackgroundColor(color1);
+        }/**
+         * If its the second player's turn , change the button color to white
+         */
+        else if (currentColor == color3 && game.getCurrentTurn().equals("player2")){
+            myButton.setBackgroundColor(color2);
+        }
+    }
+
+    public void changeButtonColorUNDO(Button myButton){
+        myButton.setBackgroundColor(color3);
+    }
+    //endregion
+    //----------------------------------------------------------------------------------------------
+
+    /*
+        What happen once player click Seven ColumnBTNs
+    */
+    //----------------------------------------------------------------------------------------------
+    //region **Columns' Actions**
+    public void columnOne(){
+        //If column one is clicked, what should happen
+        changeButtonColor(board[rowTrack[0]][0]);
+        game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[0], 0);
+        rowTrack[0]--;
+    }
+
+    public void columnTwo(){
+        changeButtonColor(board[rowTrack[1]][1]);
+        game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[1], 1);
+        rowTrack[1]--;
+    }
+
+    public void columnThree(){
+        changeButtonColor(board[rowTrack[2]][2]);
+        game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[2], 2);
+        rowTrack[2]--;
+    }
+
+    public void columnFour(){
+        changeButtonColor(board[rowTrack[3]][3]);
+        game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[3], 3);
+        rowTrack[3]--;
+    }
+
+    public void columnFive(){
+        changeButtonColor(board[rowTrack[4]][4]);
+        game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[4], 4);
+        rowTrack[4]--;
+    }
+
+    public void columnSix(){
+        changeButtonColor(board[rowTrack[5]][5]);
+        game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[5], 5);
+        rowTrack[5]--;
+
+    }
+
+    public void columnSeven() {
+        changeButtonColor(board[rowTrack[6]][6]);
+        game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
+        movesStack.recordMove(rowTrack[6], 6);
+        rowTrack[6]--;
+    }
+    //endregion
+    //----------------------------------------------------------------------------------------------
+
+    /*
+        undoLastMove → change the last pieces the other player moved to be origin color
+        restartGame → clean the board and implement decideWhoGoesFirst again
+        openInstructions → show another page that is about the instructions of the game
+        backToHomepage → go back to the homepage
+     */
+    //----------------------------------------------------------------------------------------------
+    //region **Bottom Buttons' Actions**
+    protected void undoLastMove(){
+        int[] deletedPiecesPosition = movesStack.deleteMove();
+        int deletedRow = deletedPiecesPosition[0];
+        int deletedCol = deletedPiecesPosition[1];
+        game.updateBoard(deletedRow, deletedCol, " ");
+        changeButtonColorUNDO(board[deletedRow][deletedCol]);
+        rowTrack[deletedCol]++;
+    }
+
+    protected void restartGame(){
+        while(!movesStack.movesInRow.isEmpty()){
+            undoLastMove();
+        }
+        game.setCurrentTurn("player1");
+        decideWhoGoesFirst();
+    }
+
+    private void openInstructions() {
+        Intent popupInstructions = new Intent(GamePlayAI.this, PopUpInstructions.class);
+        startActivity(popupInstructions);
+    }
+
+    public void backToHomePage() {
+        Intent myIntent;
+        myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
+    }
+    //endregion
+    //----------------------------------------------------------------------------------------------
 }
 
 

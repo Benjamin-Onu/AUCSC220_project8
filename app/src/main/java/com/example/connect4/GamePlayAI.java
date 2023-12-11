@@ -357,7 +357,7 @@ public class GamePlayAI extends AppCompatActivity {
                 }
             }
         }
-        int randomSpotIndex = rand.nextInt(optimizedSpots.size() - 1);
+        int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
         Position randomSpot = optimizedSpots.get(randomSpotIndex);
 
         return randomSpot;

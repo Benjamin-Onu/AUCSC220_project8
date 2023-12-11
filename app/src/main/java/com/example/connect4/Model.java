@@ -90,6 +90,7 @@ public class Model {
         int count;
         boolean winnerExist = false;
         for(int startCol = board[0].length - 1; startCol >= 0; startCol --) {
+
             if (startCol == 6) {
                 count = checkOneUpperTriangularLeftDiagLine();
                 if (count == 4) {
@@ -143,7 +144,7 @@ public class Model {
         int upperCount = 0;
         int row = board.length - 1;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
-            if (upperCount == 3 || upperCount == 4){
+            if (upperCount == 4){
                 return upperCount;
             }
             upperCount = 0;
@@ -240,7 +241,7 @@ public class Model {
         int upperCount = 0;
         int row = board.length - 1;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
-            if (upperCount == 3 || upperCount == 4){
+            if (upperCount == 4){
                 return upperCount;
             }
             upperCount = 0;

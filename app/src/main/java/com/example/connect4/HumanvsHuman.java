@@ -34,16 +34,4 @@ public class HumanvsHuman{
         showPiecesWherePlayersClicked(col, changeTurns(game.getCurrentTurn()));
     }
     //----------------------------------------------------------------------------------------------
-
-    //Methods about three connects checking and hints giving----------------------------------------
-    private void checkThreeConnects(String currentTurn){
-        if (game.ifThreeConnects()) {
-            giveThreeConnectsHints();
-        }
-    }
-
-    private String giveThreeConnectsHints(){
-        return "The other player almost win.";
-    }
-    //----------------------------------------------------------------------------------------------
 }

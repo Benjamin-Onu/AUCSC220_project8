@@ -91,6 +91,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(1)){
+                    //disableColumnBTN(column2BTN);
+                };
                 changeTurns();
             }
         }
@@ -103,6 +106,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(1)){
+                    //disableColumnBTN(column2BTN);
+                };
                 changeTurns();
             }
         }
@@ -115,6 +121,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(1)){
+                    //disableColumnBTN(column2BTN);
+                };
                 changeTurns();
             }
         }
@@ -127,6 +136,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(1)){
+                    //disableColumnBTN(column2BTN);
+                };
                 changeTurns();
             }
         }
@@ -139,6 +151,9 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
+                if(game.ifFullColumn(1)){
+                    //disableColumnBTN(column2BTN);
+                };
                 changeTurns();
             }
         }
@@ -146,8 +161,8 @@ public class Gameplay extends AppCompatActivity {
         //endregion
         //------------------------------------------------------------------------------------------
 
-        /**
-         * Disable all the buttons from the second bottom row to the very top row
+        /*
+            Disable all the buttons from the second bottom row to the very top row
          */
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
@@ -385,6 +400,12 @@ public class Gameplay extends AppCompatActivity {
     public void changeButtonColorUNDO(Button myButton){
         myButton.setBackgroundColor(color3);
     }
+
+    /*
+        What happen once player click Seven ColumnBTNs
+     */
+    //----------------------------------------------------------------------------------------------
+    //region **Columns' Changes**
     public void columnOne(){
         //If column one is clicked, what should happen
         changeButtonColor(board[rowTrack[0]][0]);
@@ -434,6 +455,8 @@ public class Gameplay extends AppCompatActivity {
         movesStack.recordMove(rowTrack[6], 6);
         rowTrack[6]--;
     }
+    //endregion
+    //----------------------------------------------------------------------------------------------
 
     protected void undoLastMove(){
         int[] deletedPiecesPosition = movesStack.deleteMove();

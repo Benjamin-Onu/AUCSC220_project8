@@ -3,18 +3,12 @@ package com.example.connect4;
 import java.util.Stack;
 
 public class MovesStack {
-<<<<<<< HEAD
     private static MovesStack instance;
-=======
     MovesStack movesStack = new MovesStack();
     Stack<Integer> movesInRow = new Stack<>();
     Stack<Integer> movesInCol = new Stack<>();
     Stack<Integer> reverseRowStack = new Stack<>();
     Stack<Integer> reverseColStack = new Stack<>();
->>>>>>> 6c33f6f5b1b188c58c6739a97b09a91cf4f58072
-
-    private Stack<Integer> movesInRow = new Stack<>();
-    private Stack<Integer> movesInCol = new Stack<>();
 
     private MovesStack() {
     }
@@ -43,8 +37,6 @@ public class MovesStack {
         deletedPosition[1] = deletedCol;
         return deletedPosition;
     }
-
-<<<<<<< HEAD
     public Stack<Integer> getMovesInRow() {
         return movesInRow;
     }
@@ -52,7 +44,6 @@ public class MovesStack {
     public Stack<Integer> getMovesInCol() {
         return movesInCol;
     }
-=======
     protected void reverseStack(){
         /*
         This is done in order not to clear the board and the previous game model object.
@@ -64,9 +55,6 @@ public class MovesStack {
             reverseColStack.push(colStackBridge.pop());
         }
     }
-
-
->>>>>>> 6c33f6f5b1b188c58c6739a97b09a91cf4f58072
 }
 
 /*class ReverseStackGetter {

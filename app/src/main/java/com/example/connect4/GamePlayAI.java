@@ -73,7 +73,6 @@ public class GamePlayAI extends AppCompatActivity {
               public void onClick(View v) {
                   columnOne();
                   if(game.ifWinnerExist()){
-                      restartGame();
                       displayWinner(game.getWinner());
                   }
                   if(game.ifFullColumn(0)){
@@ -90,7 +89,6 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnTwo();
                     if(game.ifWinnerExist()){
-                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -107,7 +105,6 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnThree();
                     if(game.ifWinnerExist()){
-                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -124,7 +121,6 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnFour();
                     if(game.ifWinnerExist()){
-                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -141,7 +137,6 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnFive();
                     if(game.ifWinnerExist()){
-                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -158,7 +153,6 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnSix();
                     if(game.ifWinnerExist()){
-                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){
@@ -175,7 +169,6 @@ public class GamePlayAI extends AppCompatActivity {
                 public void onClick(View v) {
                     columnSeven();
                     if(game.ifWinnerExist()){
-                        restartGame();
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(0)){

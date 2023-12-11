@@ -57,7 +57,6 @@ public class Gameplay extends AppCompatActivity {
          * This button is technically for loading the game and it should be at the home
          * page and should be loaded if the user wants to restore their last game.
          */
-
         //Disable all the buttons from the second bottom row to the very top row
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
@@ -198,7 +197,6 @@ public class Gameplay extends AppCompatActivity {
                 game.setCurrentTurn(deletedTurn);
             }
         });
-
 
         backToHomepage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -498,50 +496,42 @@ public class Gameplay extends AppCompatActivity {
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
     }
-    /*
-    *
-    *
-    *
-    * */
+
     protected void saveGame(){
       game.saveGameState();
         /**
          * Write a function that write this game state into a file
          */
+        //movesStack.reverseStack();
     }
 
-    /**
-     * This will
-     *
-     */
+    private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
+            "\\app\\src\\main\\java\\com\\example\\connect4\\GameState.txt";
     protected void loadGameState(){
-        String previousGame; //previousGame = game.getLastGame()
-        previousGame = "0 0 0 0 0 0 0 \n" +
-                "0 0 0 0 0 0 0 \n" +
-                "0 0 0 0 0 0 0\n" +
-                "0 0 0 0 0 0 0\n" +
-                "0 1 2 2 0 1 1\n" +
-                "1 1 2 2 0 1 2";
-        String[] rows = previousGame.split("\n");
-        int rowCount = 0;
-        for (int rowCounter = 0; rowCounter < rows.length; rowCounter++){
-            String[] eachSpot = rows[rowCounter].split(" ");
-            for (int col = 0; col < board[rowCounter].length; col++) {
-                if(eachSpot[col].equals("1")){
-                    game.updateBoard(rowCounter, col, "player1");
-                    Button myButton = board[rowCounter][col];
-                    myButton.setBackgroundColor(color1);
-                }else if (eachSpot[col].equals("2")){
-                    game.updateBoard(rowCounter, col, "player2");
-                    Button myButton = board[rowCounter][col];
-                    myButton.setBackgroundColor(color2);
+        String previousGame;
+        File myFile = new File(GAME_STATE);
+
+        Scanner input;//This scanner object reads the number of lines in the file
+        try {
+            input = new Scanner(myFile);
+            int rowCount = 0;
+            while (input.hasNextLine()) {
+                String eachRow = input.nextLine();
+                String[] eachSpot = eachRow.split(" ");
+                for (int col = 0; col < board[rowCount].length; col++) {
+                    if(eachSpot[col].equals("1")){
+                        game.updateBoard(rowCount, col, "player1");
+                        Button myButton = board[rowCount][col];
+                        myButton.setBackgroundColor(color1);
+                    }else if (eachSpot[col].equals("2")){
+                        game.updateBoard(rowCount, col, "player2");
+                        Button myButton = board[rowCount][col];
+                        myButton.setBackgroundColor(color2);
+                    }
                 }
             }
-        }
-        if(game.determineNextTurnprevGAME() == 1){
-            game.setCurrentTurn("player1");
-        }else{
-            game.setCurrentTurn("player2");
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR - File not found");
         }
     }
 

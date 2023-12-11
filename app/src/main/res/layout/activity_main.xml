@@ -55,19 +55,27 @@
         android:text="START"
         android:textSize="40sp" />
 
+
+
     <Button
         android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="21dp"
-        android:background="@color/buttonColor"
-        android:text=" ? "
+        android:background = "@drawable/ic_help_foreground"
         android:src="@drawable/ic_help_foreground"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:visibility="visible"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonColor"
+        android:text="LOAD PREVIOUS GAME" />
 
 
 </RelativeLayout>

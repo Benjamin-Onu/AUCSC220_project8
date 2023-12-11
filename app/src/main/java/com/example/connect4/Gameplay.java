@@ -26,7 +26,7 @@ public class Gameplay extends AppCompatActivity {
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5, 5};
     protected Button[][] board;
     protected Random rand = new Random();
-    protected MovesStack movesStack = new MovesStack();
+    protected MovesStack movesStack = MovesStack.getInstance();
     Model game;
     Button instructions;
     String turn;
@@ -490,7 +490,7 @@ public class Gameplay extends AppCompatActivity {
     }
 
     protected void restartGame(){
-        while(!movesStack.movesInRow.isEmpty()){
+        while(!movesStack.getMovesInRow().isEmpty()){
             undoLastMove();
         }
         game.setCurrentTurn("player1");

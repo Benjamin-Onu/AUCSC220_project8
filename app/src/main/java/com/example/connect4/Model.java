@@ -386,7 +386,7 @@ public class Model {
                 if(board[row][col].getPlayer().equals("player1")){
                     playerOneCount += 1;
                 }else if(board[row][col].getPlayer().equals("player2")){
-                    playerTwoCount += 2;
+                    playerTwoCount += 1;
                 }
             }
         }

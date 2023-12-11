@@ -39,7 +39,7 @@ public class Gameplay extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         //Call decide who goes first to initialize the current turn
-        decideWhoGoesFirst();
+        //decideWhoGoesFirst();
         game = new Model();
 
         Button backToHomepage = findViewById(R.id.home);
@@ -61,11 +61,6 @@ public class Gameplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadGameState();
-                if(game.determineNextTurnprevGAME() == 1){
-                    game.setCurrentTurn("player1");
-                }else{
-                    game.setCurrentTurn("player2");
-                }
             }
         });
         //Disable all the buttons from the second bottom row to the very top row
@@ -523,13 +518,6 @@ public class Gameplay extends AppCompatActivity {
      * This will
      *
      */
-    protected void loadGame(){
-
-    }
-
-    private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
-            "\\app\\src\\main\\java\\com\\example\\connect4\\textGameState.txt";
-    File myFile = new File(GAME_STATE);
     protected void loadGameState(){
         String previousGame;
         previousGame = "0 0 0 0 0 0 0 \n" +
@@ -553,6 +541,11 @@ public class Gameplay extends AppCompatActivity {
                     myButton.setBackgroundColor(color2);
                 }
             }
+        }
+        if(game.determineNextTurnprevGAME() == 1){
+            game.setCurrentTurn("player1");
+        }else{
+            game.setCurrentTurn("player2");
         }
     }
 

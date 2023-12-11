@@ -2,10 +2,13 @@ package com.example.connect4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 /**
  * This file indicates tht there was not a winner found.
@@ -34,5 +37,20 @@ public class DefaultMessage extends AppCompatActivity {
         params.y = -20;
 
         getWindow().setAttributes(params);
+
+        Button backToHomepage = findViewById(R.id.home);
+        backToHomepage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToHomePage();
+            }
+        });
+
+    }
+
+    public void backToHomePage() {
+        Intent myIntent;
+        myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
     }
 }

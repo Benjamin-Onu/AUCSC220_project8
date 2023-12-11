@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     private Model game = new Model();
-    private MovesStack movesStack = new MovesStack();
+    protected MovesStack movesStack = MovesStack.getInstance();
     private Gameplay gameplay = new Gameplay();
     private  Position[][] board;
 

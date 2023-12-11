@@ -25,7 +25,7 @@ public class GamePlayAI extends AppCompatActivity {
      */
     protected int[] rowTrack = {5, 5, 5, 5, 5, 5, 5};
     protected Button[][] board;
-    protected MovesStack movesStack = new MovesStack();
+    protected MovesStack movesStack = MovesStack.getInstance();
     private Random rand = new Random();
     Button instructions;
     Button undo;
@@ -562,7 +562,7 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     protected void restartGame(){
-        while(!movesStack.movesInRow.isEmpty()){
+        while(!movesStack.getMovesInRow().isEmpty()){
             undoLastMove();
         }
         game.setCurrentTurn("player1");

@@ -37,6 +37,7 @@ public class MovesStack {
         deletedPosition[1] = deletedCol;
         return deletedPosition;
     }
+
     public Stack<Integer> getMovesInRow() {
         return movesInRow;
     }

@@ -319,7 +319,7 @@ public class Gameplay extends AppCompatActivity {
         }//If the board is full there is no winner
         else if(game.getCurrentTurn().equals("noWinner")) {
             //go to this page if there is not a winner of the game
-            Intent ResultMessage = new Intent(Gameplay.this, ResultMessage.class);
+            Intent ResultMessage = new Intent(Gameplay.this, DefaultMessage.class);
             startActivity(ResultMessage);
         }
     }

@@ -1,11 +1,14 @@
 package com.example.connect4;
-
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class Model {
     protected Position[][] board;
     protected int ROWS = 6;
     protected int COLUMNS = 7;
     protected String currentTurn;
     protected String winner;
+    protected String lastGame;//This variable stores the last game state if the user chooses to save game
 
     protected Model() {
         this.board = new Position[ROWS][COLUMNS];
@@ -64,6 +67,7 @@ public class Model {
         boolean winnerExist = false;
         for(int col = 0; col < board[0].length; col++){
             if (count == 4) { break;}
+            count = 0;
             for(int row = board.length - 1; row >= 0; row--){
                 if(ifEqualToCurrentturn(row, col)){
                     count += 1;
@@ -90,7 +94,6 @@ public class Model {
         int count;
         boolean winnerExist = false;
         for(int startCol = board[0].length - 1; startCol >= 0; startCol --) {
-
             if (startCol == 6) {
                 count = checkOneUpperTriangularLeftDiagLine();
                 if (count == 4) {
@@ -144,9 +147,7 @@ public class Model {
         int upperCount = 0;
         int row = board.length - 1;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
-            if (upperCount == 4){
-                return upperCount;
-            }
+            if (upperCount == 4){ return upperCount; }
             upperCount = 0;
             row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
             /**
@@ -182,7 +183,6 @@ public class Model {
     }
 
     protected String countConsecutivePlayerSpotsRightDiag(String currentTurn){
-
         int count = 0;
         boolean winnerExist = false;
         for(int startCol = 0; startCol < board[0].length; startCol ++) {
@@ -239,11 +239,9 @@ public class Model {
 
     protected int checkOneUpperTriangularRightDiagLine(){
         int upperCount = 0;
-        int row = board.length - 1;
+        int row;
         for(int startRow = board.length - 1; startRow >= 2; startRow --){
-            if (upperCount == 4){
-                return upperCount;
-            }
+            if (upperCount == 4){ return upperCount; }
             upperCount = 0;
             row = startRow;//After the loop finish, row becomes -1, we reset it to the new startRow
             /**
@@ -263,12 +261,12 @@ public class Model {
              *  A Start Row of -1 will be checked in the for loop since the
              */
             for (int col = 0; col <= startRow; col++) {
-                if (ifEqualToNull(row, col) || row < 0) {
-                    break;
-                } else if (ifEqualToCurrentturn(row, col) && row >= 0) {
+                if (ifEqualToNull(row, col) || row < 0) { break; }
+                else if (ifEqualToCurrentturn(row, col) && row >= 0) {
                     upperCount += 1;
                     row--;
-                } else if (!ifEqualToCurrentturn(row, col) && row >= 0) {
+                }
+                else if (!ifEqualToCurrentturn(row, col) && row >= 0) {
                     upperCount = 0;
                     row--;
                 }
@@ -290,6 +288,8 @@ public class Model {
     protected String getWinner() {
         return winner;
     }
+    protected String getLastGame(){return lastGame;}
+    protected void setLastGame(String game){this.lastGame = game;}
     protected void setCurrentTurn(String turn){
         this.currentTurn = turn;
     }
@@ -339,6 +339,59 @@ public class Model {
             }
         }
         return boardIsFull;
+    }
+
+//----------------------------------------------------------------------------------------------
+
+    /*
+    * This function will save the current game state in a string so that it will be stored in a file
+    * it will be loaded when the load game button is clicked
+    * */
+    protected void saveGameState(){
+        String currentGame = "";
+        for(int row = 0; row < 6; row++){
+            for(int col = 0; col < 7; col++){
+                if(board[row][col].getPlayer().equals("player1")){
+                    currentGame += "1 ";
+                }else if(board[row][col].getPlayer().equals("player2")){
+                    currentGame += "2 ";
+                } else{
+                    currentGame += "0 ";
+                }
+            }
+            currentGame += "\n";
+            //This moves to the next row since we want to simplify each row in the file as a single line
+        }
+
+        setLastGame(currentGame);
+    }
+
+    protected int determineNextTurnprevGAME(){
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
+        int[] counts = new int[2];
+        /**
+         * The way to determine the last turn from a previous game state is to compare the number of
+         * pieces player1 has on the board to that of the other player.
+         * If black and white are the same number then it's black's turn
+         * If black is greater than white , then it is white's turn
+         */
+        for(int row = 0; row < 6; row++){
+            for(int col = 0; col < 7; col++){
+                if(board[row][col].getPlayer().equals("player1")){
+                    playerOneCount += 1;
+                }else if(board[row][col].getPlayer().equals("player2")){
+                    playerTwoCount += 1;
+                }
+            }
+        }
+        counts[0] = playerOneCount;
+        counts[1] = playerTwoCount;
+        if(counts[0] > counts[1]){
+            return 2;//player 2 turn
+        } else{
+            return 1;//player 1 turn
+        }
     }
 
     protected boolean ifFullColumn(int checkColIndex){

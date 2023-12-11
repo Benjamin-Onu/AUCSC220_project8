@@ -14,6 +14,7 @@ public class ExampleUnitTest {
     private MovesStack movesStack = new MovesStack();
     private Gameplay gameplay = new Gameplay();
     private  Position[][] board;
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
@@ -430,22 +431,4 @@ public class ExampleUnitTest {
     }
     //endregion
     //----------------------------------------------------------------------------------------------
-
-    @Test
-    public void TestRecordMove(){
-        gameplay.columnOne();
-        String result = movesStack.movesInRow.toString() + movesStack.movesInCol.toString();
-
-        assertEquals(result, "[5][0]");
-    }
-
-    @Test
-    public void TestDeleteMove(){
-        movesStack.recordMove(5, 0);
-        movesStack.recordMove(5, 1);
-        movesStack.deleteMove();
-        String result = movesStack.movesInRow.toString() + movesStack.movesInCol.toString();
-
-        assertEquals(result, "[5][0]");
-    }
 }

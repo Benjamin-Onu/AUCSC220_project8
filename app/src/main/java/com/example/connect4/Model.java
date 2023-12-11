@@ -35,6 +35,8 @@ public class Model {
         int count = 0;
         boolean winnerExist = false;
         for (int row = board.length - 1; row >= 0; row--) {
+            if (count == 4) { break;}
+            count = 0;
             for (int col = 0; col < board[0].length; col++) {
                 if (ifEqualToCurrentturn(row, col)) {
                     count += 1;
@@ -44,7 +46,7 @@ public class Model {
                     }
                 }
                 else if (ifEqualToNull(row, col)){
-                    break;
+                    count = 0;
                 }else{
                     count = 0;//If the next piece is an opponent stop counting
                 }

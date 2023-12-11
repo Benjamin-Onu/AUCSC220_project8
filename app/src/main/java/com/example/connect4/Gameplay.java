@@ -70,7 +70,7 @@ public class Gameplay extends AppCompatActivity {
                     displayWinner(game.getWinner());
                 }
                 if(game.ifFullColumn(0)){
-                    //disableColumnBTN(column1BTN);
+                    //disableColumnBTN(0);
                 };
                 changeTurns();
             }
@@ -85,7 +85,7 @@ public class Gameplay extends AppCompatActivity {
                     displayWinner(game.getWinner());
                 }
                 if(game.ifFullColumn(1)){
-                    //disableColumnBTN(column2BTN);
+                    //disableColumnBTN(1);
                 };
                 changeTurns();
             }
@@ -99,8 +99,8 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
-                if(game.ifFullColumn(1)){
-                    //disableColumnBTN(column2BTN);
+                if(game.ifFullColumn(2)){
+                    //disableColumnBTN(2);
                 };
                 changeTurns();
             }
@@ -114,8 +114,8 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
-                if(game.ifFullColumn(1)){
-                    //disableColumnBTN(column2BTN);
+                if(game.ifFullColumn(3)){
+                    //disableColumnBTN(3);
                 };
                 changeTurns();
             }
@@ -129,8 +129,8 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
-                if(game.ifFullColumn(1)){
-                    //disableColumnBTN(column2BTN);
+                if(game.ifFullColumn(4)){
+                    //disableColumnBTN(4);
                 };
                 changeTurns();
             }
@@ -144,8 +144,8 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
-                if(game.ifFullColumn(1)){
-                    //disableColumnBTN(column2BTN);
+                if(game.ifFullColumn(5)){
+                    //disableColumnBTN(5);
                 };
                 changeTurns();
             }
@@ -159,8 +159,8 @@ public class Gameplay extends AppCompatActivity {
                 if(game.ifWinnerExist()){
                     displayWinner(game.getWinner());
                 }
-                if(game.ifFullColumn(1)){
-                    //disableColumnBTN(column2BTN);
+                if(game.ifFullColumn(6)){
+                    //disableColumnBTN(6);
                 };
                 changeTurns();
             }

@@ -91,8 +91,8 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
-                    if(game.ifFullColumn(0)){
-                        //disableColumnBTN(column1BTN);
+                    if(game.ifFullColumn(1)){
+                        //disableColumnBTN(1);
                     };
                     changeTurns();
                     AITurn();
@@ -107,8 +107,8 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
-                    if(game.ifFullColumn(0)){
-                        //disableColumnBTN(column1BTN);
+                    if(game.ifFullColumn(2)){
+                        //disableColumnBTN(2);
                     };
                     changeTurns();
                     AITurn();
@@ -123,8 +123,8 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
-                    if(game.ifFullColumn(0)){
-                        //disableColumnBTN(column1BTN);
+                    if(game.ifFullColumn(3)){
+                        //disableColumnBTN(3);
                     };
                     changeTurns();
                     AITurn();
@@ -139,8 +139,8 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
-                    if(game.ifFullColumn(0)){
-                        //disableColumnBTN(column1BTN);
+                    if(game.ifFullColumn(4)){
+                        //disableColumnBTN(4);
                     };
                     changeTurns();
                     AITurn();
@@ -155,8 +155,8 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
-                    if(game.ifFullColumn(0)){
-                        //disableColumnBTN(column1BTN);
+                    if(game.ifFullColumn(5)){
+                        //disableColumnBTN(5);
                     };
                     changeTurns();
                     AITurn();
@@ -171,8 +171,8 @@ public class GamePlayAI extends AppCompatActivity {
                     if(game.ifWinnerExist()){
                         displayWinner(game.getWinner());
                     }
-                    if(game.ifFullColumn(0)){
-                        //disableColumnBTN(column1BTN);
+                    if(game.ifFullColumn(6)){
+                        //disableColumnBTN(6);
                     };
                     changeTurns();
                     AITurn();

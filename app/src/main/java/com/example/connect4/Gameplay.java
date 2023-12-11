@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Random;
@@ -33,14 +32,14 @@ public class Gameplay extends AppCompatActivity {
     String turn;
     Button undo;
     Button restart;
-    String winner;
+    Button save;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         //Call decide who goes first to initialize the current turn
-        decideWhoGoesFirst();
+        //decideWhoGoesFirst();
         game = new Model();
 
         Button backToHomepage = findViewById(R.id.home);
@@ -52,7 +51,18 @@ public class Gameplay extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
+        save = findViewById(R.id.save);
 
+        /**
+         * This button is technically for loading the game and it should be at the home
+         * page and should be loaded if the user wants to restore their last game.
+         */
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadGameState();
+            }
+        });
         //Disable all the buttons from the second bottom row to the very top row
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
@@ -491,6 +501,52 @@ public class Gameplay extends AppCompatActivity {
         }
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
+    }
+    /*
+    *
+    *
+    *
+    * */
+    protected void saveGame(){
+      game.saveGameState();
+        /**
+         * Write a function that write this game state into a file
+         */
+    }
+
+    /**
+     * This will
+     *
+     */
+    protected void loadGameState(){
+        String previousGame;
+        previousGame = "0 0 0 0 0 0 0 \n" +
+                "0 0 0 0 0 0 0 \n" +
+                "0 0 0 0 0 0 0\n" +
+                "0 0 0 0 0 0 0\n" +
+                "0 1 2 2 0 1 1\n" +
+                "1 1 2 2 0 1 2";
+        String[] rows = previousGame.split("\n");
+        int rowCount = 0;
+        for (int rowCounter = 0; rowCounter < rows.length; rowCounter++){
+            String[] eachSpot = rows[rowCounter].split(" ");
+            for (int col = 0; col < board[rowCounter].length; col++) {
+                if(eachSpot[col].equals("1")){
+                    game.updateBoard(rowCounter, col, "player1");
+                    Button myButton = board[rowCounter][col];
+                    myButton.setBackgroundColor(color1);
+                }else if (eachSpot[col].equals("2")){
+                    game.updateBoard(rowCounter, col, "player2");
+                    Button myButton = board[rowCounter][col];
+                    myButton.setBackgroundColor(color2);
+                }
+            }
+        }
+        if(game.determineNextTurnprevGAME() == 1){
+            game.setCurrentTurn("player1");
+        }else{
+            game.setCurrentTurn("player2");
+        }
     }
 
     private void openInstructions() {

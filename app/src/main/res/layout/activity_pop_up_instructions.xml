@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,55 +7,50 @@
     tools:context=".PopUpInstructions"
     android:background="@color/background"
 >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".PopUpInstructions"
-        android:background="@color/background"
-        >
-
-        <TextView
-            android:id="@+id/firstTurn"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="  THE FIRST PERSON WILL BE CHOSEN AT RANDOM "
-            android:textColor="#000"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/setBlack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="   THE FIRST PERSON WILL BE SET AS BLACK "
-            android:textColor="#000"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            tools:visibility="visible" />
 
 
-        <TextView
-            android:id="@+id/setWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="  THE SECOND PERSON WILL BE SET AS WHITE "
-            android:textColor="#000"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            tools:visibility="visible" />
+    <TextView
+        android:id="@+id/firstTurn"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="  THE FIRST PERSON WILL BE CHOSEN AT RANDOM "
+        android:textColor="#000"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
-        <TextView
+    <TextView
+        android:id="@+id/setBlack"
+        android:layout_width="263dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="   THE FIRST PERSON WILL BE SET AS BLACK "
+        android:textColor="#000"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/setWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:text="  THE SECOND PERSON WILL BE SET AS WHITE "
+        android:textColor="#000"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <TextView
             android:id="@+id/pVp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="115dp"
             android:text="  IF PvP, EACH PERSON HAS ONLY 1 UNDO PER GAME"
             android:textColor="#000"
             android:textSize="11sp"
@@ -63,41 +58,39 @@
             android:visibility="visible"
             tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/pVAI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
-            android:text="  IF PvAI, PLAYER WILL HAVE JUST 1 UNDO PER GAME"
-            android:textSize="11sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:visibility="visible"
-            tools:visibility="visible" />
+    <TextView
+        android:id="@+id/pVAI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="  IF PvAI, PLAYER WILL HAVE JUST 1 UNDO PER GAME"
+        android:textColor="#000"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/C4W"
-            android:layout_width="399dp"
-            android:layout_height="328dp"
-            android:layout_below="@id/pVAI"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="139dp"
-            android:src="@drawable/connect_4_possible_wins" />
+    <ImageView
+        android:id="@+id/C4W"
+        android:layout_width="399dp"
+        android:layout_height="328dp"
+        android:layout_below="@id/pVAI"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="184dp"
+        android:src="@drawable/connect_4_possible_wins" />
 
-        <TextView
-            android:id="@+id/winDecision"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/C4W"
-            android:layout_marginTop="25dp"
-            android:text="  THE WINNER IS DECIDED WHEN 4 GAME PIECES ARE CONNECTED "
-            android:textColor="#000"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            tools:visibility="visible" />
+    <TextView
+        android:id="@+id/winDecision"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/C4W"
+        android:layout_marginTop="25dp"
+        android:text="  THE WINNER IS DECIDED WHEN 4 GAME PIECES ARE CONNECTED "
+        android:textColor="#000"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
 
-    </RelativeLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

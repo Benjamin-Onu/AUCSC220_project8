@@ -465,7 +465,7 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
-        }else if(game.getWinner().equals("player1")){
+        }else if(AIcolor == color2 && game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
             startActivity(P1Win);
@@ -473,7 +473,7 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
-        }else if(game.getWinner().equals("player2")) {
+        }else if(AIcolor == color1 && game.getWinner().equals("player2")) {
             //go to this page if player 2 has won the game
             Intent P2Win = new Intent(GamePlayAI.this, P2Win.class);
             startActivity(P2Win);

@@ -10,9 +10,9 @@
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="415dp"
-        android:layout_height="385dp"
+        android:layout_height="383dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="125dp"
         android:layout_marginRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -571,6 +571,14 @@
             app:layout_constraintTop_toBottomOf="@+id/tableLayout"
             app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp"
+        android:background="@color/buttonColor"
+        android:text="SAVE" />
 
 
 </RelativeLayout>

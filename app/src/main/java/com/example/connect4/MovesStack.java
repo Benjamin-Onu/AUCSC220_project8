@@ -41,9 +41,6 @@ public class MovesStack {
         return movesInRow;
     }
 
-    public Stack<Integer> getMovesInCol() {
-        return movesInCol;
-    }
     protected void reverseStack(){
         /*
         This is done in order not to clear the board and the previous game model object.
@@ -57,14 +54,4 @@ public class MovesStack {
         movesInRow = reverseRowStack;
         movesInCol = reverseColStack;
     }
-
 }
-
-/*class ReverseStackGetter {
-    protected Stack<Integer> getReverseRowStack(){
-        return re;
-    }
-    protected Stack<Integer> getReverseColStack(){
-        return super.reverseColStack;
-    }
-}*/

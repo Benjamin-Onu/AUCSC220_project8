@@ -284,6 +284,7 @@ public class Gameplay extends AppCompatActivity {
 
         //Main loop of the game
     }
+
     /*
       We have 42 buttons to implement and in order to keep this file readable without having
       to add 42 lines of initializing buttons, I created a buttons class to initialize all

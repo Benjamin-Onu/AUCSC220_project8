@@ -34,15 +34,6 @@ public class GameMode extends AppCompatActivity {
 
         });
 
-//        pVp.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View w){
-//            //function for going to pVp page is inserted here
-//                Intent startGame = new Intent(GameMode.this, Gameplay.class);
-//                startActivity(startGame);
-//            }
-//        });
-
         pVp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View x){
@@ -51,14 +42,15 @@ public class GameMode extends AppCompatActivity {
                 startActivity(startGame);
             }
         });
-                pVai.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View x){
-            //function for going to pVai page is inserted here
-                        Intent startGame = new Intent(GameMode.this, GamePlayAI.class);
-                        startActivity(startGame);
-                    }
-                });
+
+        pVai.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View x){
+                //function for going to pVai page is inserted here
+                Intent startGame = new Intent(GameMode.this, GamePlayAI.class);
+                startActivity(startGame);
+            }
+        });
 
         mute.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +60,6 @@ public class GameMode extends AppCompatActivity {
         });
     }
 
-
-
-
     private void openInstructions() {
         Intent popupInstructions = new Intent(GameMode.this, PopUpInstructions.class);
         startActivity(popupInstructions);
@@ -79,15 +68,14 @@ public class GameMode extends AppCompatActivity {
     private void toggleMute(){
         isMuted = !isMuted;
         if (mediaPlayer != null){
-
-
-        if (isMuted){
-            mediaPlayer.setVolume(0,0);
+            if (isMuted){
+                mediaPlayer.setVolume(0,0);
+            }
+            else {
+                mediaPlayer.setVolume(1,1);
+            }
         }
-        else {
-            mediaPlayer.setVolume(1,1);
-        }
-    }}
+    }
 
     protected void onDestroy(){
         super.onDestroy();
@@ -96,8 +84,4 @@ public class GameMode extends AppCompatActivity {
             mediaPlayer = null;
         }
     }
-
-
-
-
 }

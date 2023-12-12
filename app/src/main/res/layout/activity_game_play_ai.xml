@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -297,7 +297,6 @@
                 android:enabled="false" />
         </TableRow>
 
-
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -518,8 +517,8 @@
         android:id="@+id/undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="320dp"
+        android:layout_marginTop="684dp"
+        android:layout_marginEnd="325dp"
         android:background = "@drawable/ic_undo_foreground"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -531,9 +530,11 @@
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background = "@drawable/ic_home_foreground"
+        android:background="@drawable/ic_home_foreground"
         android:onClick="backToHomePage"
-
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="684dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
@@ -543,8 +544,9 @@
         android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="216dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="684dp"
+        android:layout_marginEnd="225dp"
         android:background = "@drawable/ic_help_foreground"
         android:onClick="openInstructions"
 
@@ -558,8 +560,9 @@
         android:id="@+id/restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="112dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="684dp"
+        android:layout_marginEnd="115dp"
         android:background = "@drawable/ic_restart_foreground"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -567,7 +570,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp"
+        android:background="@color/buttonColor"
+        android:text="SAVE"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
 
 

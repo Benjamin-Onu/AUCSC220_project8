@@ -41,6 +41,8 @@ public class GamePlayAI extends AppCompatActivity {
     Model game;
     String turn;
     int AIcolor;
+    String AI_turn;
+    String AIturn_PrevGame;
     Button save; //save game button
 
     @Override
@@ -70,7 +72,7 @@ public class GamePlayAI extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game_play_ai);
 
         game = new Model();
         decideWhoGoesFirst();
@@ -124,6 +126,7 @@ public class GamePlayAI extends AppCompatActivity {
         if(turn.equals("AI")){
             game.setCurrentTurn("player1");
             AIcolor = color1;
+            AI_turn = "player1";
             AITurn();
         }
 
@@ -372,6 +375,7 @@ public class GamePlayAI extends AppCompatActivity {
         else{
             turn = "Player";
             AIcolor = color2;
+            AI_turn = "player2";
         }
         return turn;
     }
@@ -461,7 +465,7 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
-        if(AIcolor == color1 && game.getWinner().equals("player1")){
+        if(AI_turn.equals("player1") && game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
@@ -469,7 +473,7 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
             startActivity(P1Win);
-        }else if(AIcolor == color2 && game.getWinner().equals("player2")){
+        }else if(AI_turn.equals("player2") && game.getWinner().equals("player2")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);

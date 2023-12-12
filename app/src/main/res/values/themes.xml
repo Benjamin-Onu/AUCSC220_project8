@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.Connect4" parent="Base.Theme.Connect4" />
+
+    <style name="Theme.Connect4.popMe">
+        <item name="android:windowIsTranslucent"> true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
 </resources>

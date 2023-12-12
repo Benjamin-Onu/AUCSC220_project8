@@ -73,10 +73,10 @@ public class GamePlayAI extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_play_ai);
-
-        game = new Model();
-        decideWhoGoesFirst();
-
+        instructions = (Button) findViewById(R.id.instructions);
+        save = (Button) findViewById(R.id.save);
+        restart = (Button) findViewById(R.id.restart);
+        undo = (Button) findViewById(R.id.undo);
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
         Button column2BTN = findViewById(R.id.column2);
@@ -97,18 +97,6 @@ public class GamePlayAI extends AppCompatActivity {
         boolean checker = stringBuilder.toString().equals("true\n");
         if(checker){
             readDataFromInternalStorage(getApplicationContext());
-
-            if(game.determineNextTurnprevGAME() == 1){
-                game.setCurrentTurn("player1");
-            }else if (game.determineNextTurnprevGAME() == 1 && AIturn_PrevGame.equals("player1")){
-                game.setCurrentTurn("player1");
-                AITurn();
-            }else if (game.determineNextTurnprevGAME() == 2 && AIturn_PrevGame.equals("player2")){
-                game.setCurrentTurn("player1");
-                AITurn();
-            }else{
-                game.setCurrentTurn("player2");
-            }
             Context newContext = getApplicationContext();
             File file2 = new File(newContext.getFilesDir(), "loadGameCheck.txt");
             try {
@@ -119,15 +107,27 @@ public class GamePlayAI extends AppCompatActivity {
                 // Close the FileOutputStream
                 fos.close();
                 //Determine the next turn from the previous game
-                if(game.determineNextTurnprevGAME() == 1){
+                /*if(game.determineNextTurnprevGAME() == 1){
                     game.setCurrentTurn("player1");
                 }else{
                     game.setCurrentTurn("player2");
-                }
+                }*/
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }else{
+            game = new Model();
+            decideWhoGoesFirst();
+            //Main loop of the game
+            //If AI goes first, set it to be player1
+            if(turn.equals("AI")){
+                game.setCurrentTurn("player1");
+                AIcolor = color1;
+                AI_turn = "player1";
+                AITurn();
+            }
         }
+
 
 
         //------------------------------------------------------------------------------------------
@@ -255,15 +255,12 @@ public class GamePlayAI extends AppCompatActivity {
 
         //------------------------------------------------------------------------------------------
         //region **Bottom Buttons' OnClickListener**
-        instructions = (Button) findViewById(R.id.instructions);
         onRestart();
         instructions.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 openInstructions();
             }
         });
-
-        undo = (Button) findViewById(R.id.undo);
         undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,7 +277,6 @@ public class GamePlayAI extends AppCompatActivity {
         //or a previous game.
         undo.setEnabled(false);
 
-        restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,7 +284,6 @@ public class GamePlayAI extends AppCompatActivity {
             }
         });
 
-        save = (Button) findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -299,14 +294,6 @@ public class GamePlayAI extends AppCompatActivity {
         //endregion
         //------------------------------------------------------------------------------------------
 
-        //Main loop of the game
-        //If AI goes first, set it to be player1
-        if(turn.equals("AI")){
-            game.setCurrentTurn("player1");
-            AIcolor = color1;
-            AI_turn = "player1";
-            AITurn();
-        }
     }
 
     /*

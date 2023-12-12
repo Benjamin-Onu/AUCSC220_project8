@@ -97,8 +97,15 @@ public class GamePlayAI extends AppCompatActivity {
         boolean checker = stringBuilder.toString().equals("true\n");
         if(checker){
             readDataFromInternalStorage(getApplicationContext());
+
             if(game.determineNextTurnprevGAME() == 1){
                 game.setCurrentTurn("player1");
+            }else if (game.determineNextTurnprevGAME() == 1 && AIturn_PrevGame.equals("player1")){
+                game.setCurrentTurn("player1");
+                AITurn();
+            }else if (game.determineNextTurnprevGAME() == 2 && AIturn_PrevGame.equals("player2")){
+                game.setCurrentTurn("player1");
+                AITurn();
             }else{
                 game.setCurrentTurn("player2");
             }

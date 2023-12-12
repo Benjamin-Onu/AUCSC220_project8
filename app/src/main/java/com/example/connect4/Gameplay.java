@@ -388,52 +388,67 @@ public class Gameplay extends AppCompatActivity {
     //region **Columns' Actions**
     public void columnOne(){
         //If column one is clicked, what should happen
-        changeButtonColor(board[rowTrack[0]][0]);
-        game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[0], 0);
-        rowTrack[0]--;
+        if(!game.ifFullColumn(0)){
+            //disableColumnBTN(0);
+            changeButtonColor(board[rowTrack[0]][0]);
+            game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[0], 0);
+            rowTrack[0]--;
+        }
     }
 
     public void columnTwo(){
-        changeButtonColor(board[rowTrack[1]][1]);
-        game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[1], 1);
-        rowTrack[1]--;
+        if(!game.ifFullColumn(1)){
+            changeButtonColor(board[rowTrack[1]][1]);
+            game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[1], 1);
+            rowTrack[1]--;
+        }
     }
 
     public void columnThree(){
-        changeButtonColor(board[rowTrack[2]][2]);
-        game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[2], 2);
-        rowTrack[2]--;
+        if(!game.ifFullColumn(2)){
+            changeButtonColor(board[rowTrack[2]][2]);
+            game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[2], 2);
+            rowTrack[2]--;
+        }
     }
 
     public void columnFour(){
-        changeButtonColor(board[rowTrack[3]][3]);
-        game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[3], 3);
-        rowTrack[3]--;
+        if(!game.ifFullColumn(3)){
+            changeButtonColor(board[rowTrack[3]][3]);
+            game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[3], 3);
+            rowTrack[3]--;
+        }
     }
 
     public void columnFive(){
-        changeButtonColor(board[rowTrack[4]][4]);
-        game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[4], 4);
-        rowTrack[4]--;
+        if(!game.ifFullColumn(4)){
+            changeButtonColor(board[rowTrack[4]][4]);
+            game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[4], 4);
+            rowTrack[4]--;
+        }
     }
 
     public void columnSix(){
-        changeButtonColor(board[rowTrack[5]][5]);
-        game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[5], 5);
-        rowTrack[5]--;
+        if(!game.ifFullColumn(5)){
+            changeButtonColor(board[rowTrack[5]][5]);
+            game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[5], 5);
+            rowTrack[5]--;
+        }
     }
 
     public void columnSeven() {
-        changeButtonColor(board[rowTrack[6]][6]);
-        game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[6], 6);
-        rowTrack[6]--;
+        if(!game.ifFullColumn(6)){
+            changeButtonColor(board[rowTrack[6]][6]);
+            game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[6], 6);
+            rowTrack[6]--;
+        }
     }
     //endregion
     //----------------------------------------------------------------------------------------------

@@ -2,18 +2,26 @@ package com.example.connect4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class GamePlayAI extends AppCompatActivity {
@@ -37,6 +45,32 @@ public class GamePlayAI extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Context context = getApplicationContext();
+        StringBuilder stringBuilder = new StringBuilder();;
+        File file = new File(context.getFilesDir(), "loadGameCheck.txt");
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+
+            // Optionally, you can use the contents of the file (stringBuilder.toString())
+            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+            Toast.makeText(context, "Error reading from internal storage", Toast.LENGTH_SHORT).show();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
@@ -57,6 +91,28 @@ public class GamePlayAI extends AppCompatActivity {
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
                 board[row][col].setEnabled(false);
+            }
+        }
+
+        boolean checker = stringBuilder.toString().equals("true\n");
+        if(checker){
+            readDataFromInternalStorage(getApplicationContext());
+            if(game.determineNextTurnprevGAME() == 1){
+                game.setCurrentTurn("player1");
+            }else{
+                game.setCurrentTurn("player2");
+            }
+            Context newContext = getApplicationContext();
+            File file2 = new File(newContext.getFilesDir(), "loadGameCheck.txt");
+            try {
+                FileOutputStream fos = new FileOutputStream(file2);
+                String previousGame = "false";
+                // Convert the string to bytes and write to the file
+                fos.write(previousGame.getBytes());
+                // Close the FileOutputStream
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
@@ -380,11 +436,12 @@ public class GamePlayAI extends AppCompatActivity {
             Position randomSpot = availableSpots.get(randomSpotIndex);
             return randomSpot;
 
+        }else{
+            int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
+            Position randomSpot = optimizedSpots.get(randomSpotIndex);
+            return randomSpot;
         }
-        int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
-        Position randomSpot = optimizedSpots.get(randomSpotIndex);
 
-        return randomSpot;
     }
 
     public ArrayList<Position> generateAvailableSpots(){
@@ -418,25 +475,6 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if there is not a winner of the game
             Intent ResultMessage = new Intent(GamePlayAI.this, DefaultMessage.class);
             startActivity(ResultMessage);
-        }
-    }
-
-    public void saveWinner(){
-        File filename;
-        //BUG- Writing into winners winners.txt not working
-        try{
-            filename = new File("app/src/main/java/com/example/connect4/winners.txt");
-            FileWriter fw = new FileWriter(filename);
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            String winner = game.getWinner();
-            bw.write(winner);
-        }
-        catch (FileNotFoundException e){
-            System.out.println("ERROR - File not found");
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -571,10 +609,67 @@ public class GamePlayAI extends AppCompatActivity {
 
     protected void saveGame(){
         game.saveGameState();
-        /**
-         * Write a function that write this game state into a file
-         */
-        //movesStack.reverseStack();
+        writeLastGameIntoFile();
+    }
+    protected void writeLastGameIntoFile(){
+        Context context = getApplicationContext();
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            String previousGame = game.getLastGame();
+            // Convert the string to bytes and write to the file
+            fos.write(previousGame.getBytes());
+            // Close the FileOutputStream
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void readDataFromInternalStorage(Context context) {
+        // File object pointing to the "GameState.txt" file in internal storage
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+
+            String previousGame = stringBuilder.toString();
+            String[] rows = previousGame.split("\n");
+            //rows contains a list of rows in the previous game
+            for(int indx = 0; indx < rows.length; indx++){
+                String eachRow = rows[indx];
+                String[] eachSpot = eachRow.split(" ");
+                for (int col = 0; col < board[indx].length; col++) {
+                    if(eachSpot[col].equals("1")){
+                        game.updateBoard(indx, col, "player1");
+                        Button myButton = board[indx][col];
+                        myButton.setBackgroundColor(color1);
+                    }else if (eachSpot[col].equals("2")){
+                        game.updateBoard(indx, col, "player2");
+                        Button myButton = board[indx][col];
+                        myButton.setBackgroundColor(color2);
+                    }
+                }
+            }
+            //Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+            Toast.makeText(context, "Error reading from internal storage", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void openInstructions() {

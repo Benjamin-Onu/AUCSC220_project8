@@ -42,8 +42,6 @@ public class Gameplay extends AppCompatActivity {
     Button save; //save game button
 
     protected void onCreate(Bundle savedInstanceState) {
-
-
         //Call decide who goes first to initialize the current turn
         //decideWhoGoesFirst();
 
@@ -100,9 +98,27 @@ public class Gameplay extends AppCompatActivity {
         }
         boolean checker = stringBuilder.toString().equals("true\n");
         if(checker){
-            //loadGameState();
             readDataFromInternalStorage(getApplicationContext());
+            //continue the previous game by setting the next turn
+            Context newContext = getApplicationContext();
+            File file2 = new File(newContext.getFilesDir(), "loadGameCheck.txt");
+            try {
+                FileOutputStream fos = new FileOutputStream(file2);
+                String previousGame = "false";
+                // Convert the string to bytes and write to the file
+                fos.write(previousGame.getBytes());
+                // Close the FileOutputStream
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        if(game.determineNextTurnprevGAME() == 1){
+            game.setCurrentTurn("player1");
+        }else{
+            game.setCurrentTurn("player2");
+        }
+
         //------------------------------------------------------------------------------------------
         //region **Seven ColumnBTNs OnClickListener**
         column1BTN.setOnClickListener(new View.OnClickListener(){
@@ -373,25 +389,6 @@ public class Gameplay extends AppCompatActivity {
         }
     }
 
-    public void saveWinner(){
-        String winner = game.getWinner();
-        //BUG- Writing into winners winners.txt not working
-        try{
-            File filename = new File("winners.txt");
-            FileWriter fw = new FileWriter(filename);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(winner);
-            bw.close();
-
-        }
-        catch (FileNotFoundException e){
-            System.out.println("ERROR - File not found");
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /*
         These functions are for the buttons that are being used to select a position
      */
@@ -522,70 +519,23 @@ public class Gameplay extends AppCompatActivity {
     protected void saveGame(){
       game.saveGameState();
       writeLastGameIntoFile();
-        /**
-         * Write a function that write this game state into a file
-         */
-        //movesStack.reverseStack();
     }
     protected void writeLastGameIntoFile(){
-        //File myFile = new File(GAME_STATE);
         Context context = getApplicationContext();
         File file = new File(context.getFilesDir(), "GameState.txt");
 
         try {
-            //FileWriter myWriter = new FileWriter(GAME_STATE);
-            //myWriter.write(previousGame);
-            //myWriter.close();
-            // Open a FileOutputStream for the file
             FileOutputStream fos = new FileOutputStream(file);
-
-            // Your data to write (for example, a String)
-            //String dataToWrite = "Your data goes here";
             String previousGame = game.getLastGame();
             // Convert the string to bytes and write to the file
             fos.write(previousGame.getBytes());
             // Close the FileOutputStream
             fos.close();
-            // Optionally, you can notify the user that the operation was successful
-            Toast.makeText(context, "Data written to internal storage", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, "Error writing to internal storage", Toast.LENGTH_SHORT).show();
-        }
-
-        // Assuming 'context' is your application context
-        // File object pointing to the "GameState.txt" file in internal storage
-
-    }
-
-    private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
-            "\\app\\src\\main\\java\\com\\example\\connect4\\GameState.txt";
-    protected void loadGameState(){
-        String previousGame;
-        File myFile = new File("GameState.txt");
-        Scanner input;//This scanner object reads the number of lines in the file
-        try {
-            input = new Scanner(myFile);
-            int rowCount = 0;
-            while (input.hasNextLine()) {
-                String eachRow = input.nextLine();
-                String[] eachSpot = eachRow.split(" ");
-                for (int col = 0; col < board[rowCount].length; col++) {
-                    if(eachSpot[col].equals("1")){
-                        game.updateBoard(rowCount, col, "player1");
-                        Button myButton = board[rowCount][col];
-                        myButton.setBackgroundColor(color1);
-                    }else if (eachSpot[col].equals("2")){
-                        game.updateBoard(rowCount, col, "player2");
-                        Button myButton = board[rowCount][col];
-                        myButton.setBackgroundColor(color2);
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR - File not found");
         }
     }
+
     private void readDataFromInternalStorage(Context context) {
         // File object pointing to the "GameState.txt" file in internal storage
         File file = new File(context.getFilesDir(), "GameState.txt");
@@ -593,30 +543,40 @@ public class Gameplay extends AppCompatActivity {
         try {
             // Open a FileInputStream for the file
             FileInputStream fis = new FileInputStream(file);
-
             // Wrap the FileInputStream in an InputStreamReader
             InputStreamReader isr = new InputStreamReader(fis);
-
             // Wrap the InputStreamReader in a BufferedReader
             BufferedReader br = new BufferedReader(isr);
-
             // Read the contents of the file line by line
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 stringBuilder.append(line).append("\n");
             }
-
             // Close the BufferedReader
             br.close();
 
             String previousGame = stringBuilder.toString();
             String[] rows = previousGame.split("\n");
             //rows contains a list of rows in the previous game
-
-            // Optionally, you can use the contents of the file (stringBuilder.toString())
-            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
-
+            for(int indx = 0; indx < rows.length; indx++){
+                String eachRow = rows[indx];
+                String[] eachSpot = eachRow.split(" ");
+                for (int col = 0; col < board[indx].length; col++) {
+                    if(eachSpot[col].equals("1")){
+                        game.updateBoard(indx, col, "player1");
+                        movesStack.recordMove(indx, col);
+                        Button myButton = board[indx][col];
+                        myButton.setBackgroundColor(color1);
+                    }else if (eachSpot[col].equals("2")){
+                        game.updateBoard(indx, col, "player2");
+                        movesStack.recordMove(indx, col);
+                        Button myButton = board[indx][col];
+                        myButton.setBackgroundColor(color2);
+                    }
+                }
+            }
+            //Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             // Handle the exception appropriately
             e.printStackTrace();

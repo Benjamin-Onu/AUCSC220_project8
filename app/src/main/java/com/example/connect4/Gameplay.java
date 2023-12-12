@@ -495,6 +495,7 @@ public class Gameplay extends AppCompatActivity {
         }
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
+        rowTrack = new int[]{5, 5, 5, 5, 5, 5, 5};
     }
 
     protected void saveGame(){

@@ -381,7 +381,7 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
             startActivity(P1Win);
-        }else if(game.getWinner().equals("player2") && AIcolor != color1){
+        }else if(game.getWinner().equals("player2") && AIcolor == color2){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);

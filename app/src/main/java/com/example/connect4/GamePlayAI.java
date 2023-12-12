@@ -626,6 +626,7 @@ public class GamePlayAI extends AppCompatActivity {
 
     protected void saveGame(){
         game.saveGameState();
+        AIturn_PrevGame = AI_turn;
         writeLastGameIntoFile();
     }
     protected void writeLastGameIntoFile(){

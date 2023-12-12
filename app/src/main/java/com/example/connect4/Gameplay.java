@@ -74,6 +74,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(0)){
                     //disableColumnBTN(0);
+                    column1BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -89,6 +90,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(1)){
                     //disableColumnBTN(1);
+                    column2BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -104,6 +106,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(2)){
                     //disableColumnBTN(2);
+                    column3BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -119,6 +122,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(3)){
                     //disableColumnBTN(3);
+                    column4BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -134,6 +138,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(4)){
                     //disableColumnBTN(4);
+                    column5BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -149,6 +154,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(5)){
                     //disableColumnBTN(5);
+                    column6BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -164,6 +170,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(6)){
                     //disableColumnBTN(6);
+                    column7BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -224,7 +231,6 @@ public class Gameplay extends AppCompatActivity {
 
         //Main loop of the game
     }
-
     /*
       We have 42 buttons to implement and in order to keep this file readable without having
       to add 42 lines of initializing buttons, I created a buttons class to initialize all

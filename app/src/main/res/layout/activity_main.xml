@@ -40,13 +40,12 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="136dp"
+        android:layout_height="58dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="36dp"
-        android:background="@color/startButton"
-        android:text="START"
-        android:textSize="40sp" />
+        android:background="@color/buttonColor"
+        android:text="START" />
 
 
     <Button
@@ -55,8 +54,8 @@
         android:layout_height="66dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="138dp"
-        android:layout_marginBottom="264dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="235dp"
         android:background="@color/buttonColor"
         android:text="LOAD GAME"
         android:textStyle="bold" />

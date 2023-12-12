@@ -62,6 +62,8 @@ public class GamePlayAI extends AppCompatActivity {
             }
             // Close the BufferedReader
             br.close();
+            // Optionally, you can use the contents of the file (stringBuilder.toString())
+            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             // Handle the exception appropriately
             e.printStackTrace();
@@ -459,7 +461,7 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
-        if(game.getWinner().equals("player1") && AIcolor == color1){
+        if(AIcolor == color1 && game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
@@ -467,7 +469,7 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
             startActivity(P1Win);
-        }else if(game.getWinner().equals("player2") && AIcolor == color2){
+        }else if(AIcolor == color2 && game.getWinner().equals("player2")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);

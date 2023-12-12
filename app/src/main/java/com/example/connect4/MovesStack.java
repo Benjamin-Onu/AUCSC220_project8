@@ -4,7 +4,6 @@ import java.util.Stack;
 
 public class MovesStack {
     private static MovesStack instance;
-    MovesStack movesStack = new MovesStack();
     Stack<Integer> movesInRow = new Stack<>();
     Stack<Integer> movesInCol = new Stack<>();
     Stack<Integer> reverseRowStack = new Stack<>();
@@ -42,9 +41,6 @@ public class MovesStack {
         return movesInRow;
     }
 
-    public Stack<Integer> getMovesInCol() {
-        return movesInCol;
-    }
     protected void reverseStack(){
         /*
         This is done in order not to clear the board and the previous game model object.
@@ -59,12 +55,3 @@ public class MovesStack {
         movesInCol = reverseColStack;
     }
 }
-
-/*class ReverseStackGetter {
-    protected Stack<Integer> getReverseRowStack(){
-        return re;
-    }
-    protected Stack<Integer> getReverseColStack(){
-        return super.reverseColStack;
-    }
-}*/

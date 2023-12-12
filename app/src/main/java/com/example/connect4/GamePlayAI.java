@@ -374,6 +374,13 @@ public class GamePlayAI extends AppCompatActivity {
                 }
             }
         }
+        //If there are no optimized spots vertically then return a random spot.
+        if(optimizedSpots.size() == 0){
+            int randomSpotIndex = rand.nextInt(availableSpots.size()-1);
+            Position randomSpot = availableSpots.get(randomSpotIndex);
+            return randomSpot;
+
+        }
         int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
         Position randomSpot = optimizedSpots.get(randomSpotIndex);
 

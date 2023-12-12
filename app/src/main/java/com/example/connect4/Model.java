@@ -365,6 +365,7 @@ public class Model {
             //This moves to the next row since we want to simplify each row in the file as a single line
         }
         setLastGame(currentGame);
+        writeLastGameIntoFile();
     }
 
     protected void writeLastGameIntoFile(){

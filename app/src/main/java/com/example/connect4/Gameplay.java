@@ -504,12 +504,16 @@ public class Gameplay extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     //region **Bottom Buttons' Actions**
     protected void undoLastMove(){
-        int[] deletedPiecesPosition = movesStack.deleteMove();
-        int deletedRow = deletedPiecesPosition[0];
-        int deletedCol = deletedPiecesPosition[1];
-        game.updateBoard(deletedRow, deletedCol, " ");
-        changeButtonColorUNDO(board[deletedRow][deletedCol]);
-        rowTrack[deletedCol]++;
+        if(movesStack.movesInCol.isEmpty()){
+            undo.setEnabled(false);
+        }else{
+            int[] deletedPiecesPosition = movesStack.deleteMove();
+            int deletedRow = deletedPiecesPosition[0];
+            int deletedCol = deletedPiecesPosition[1];
+            game.updateBoard(deletedRow, deletedCol, " ");
+            changeButtonColorUNDO(board[deletedRow][deletedCol]);
+            rowTrack[deletedCol]++;
+        }
     }
 
     protected void restartGame(){

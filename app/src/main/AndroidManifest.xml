@@ -46,7 +46,7 @@
             android:name=".PopUpInstructions"
             android:exported="false"
             android:label="@string/title_activity_pop_up_instructions"
-            android:theme="@style/Theme.Connect4" />
+            android:theme="@style/Theme.Connect4.popMe" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

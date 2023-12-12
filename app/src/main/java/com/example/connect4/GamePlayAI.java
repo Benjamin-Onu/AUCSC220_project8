@@ -468,17 +468,6 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
-        /*if(AI_turn.equals("player1") && game.getWinner().equals("player1")){
-            //go to this page if player 1 has won the game
-            Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
-            startActivity(P1Win);
-        }else
-        else if(AI_turn.equals("player2") && game.getWinner().equals("player2")){
-            //go to this page if player 1 has won the game
-            Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
-            startActivity(P1Win);
-        }
-        */
         if(AI_turn.equals("player1") && game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
@@ -621,12 +610,16 @@ public class GamePlayAI extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     //region **Bottom Buttons' Actions**
     protected void undoLastMove(){
-        int[] deletedPiecesPosition = movesStack.deleteMove();
-        int deletedRow = deletedPiecesPosition[0];
-        int deletedCol = deletedPiecesPosition[1];
-        game.updateBoard(deletedRow, deletedCol, " ");
-        changeButtonColorUNDO(board[deletedRow][deletedCol]);
-        rowTrack[deletedCol]++;
+        if(movesStack.movesInCol.isEmpty()){
+            undo.setEnabled(false);
+        }else{
+            int[] deletedPiecesPosition = movesStack.deleteMove();
+            int deletedRow = deletedPiecesPosition[0];
+            int deletedCol = deletedPiecesPosition[1];
+            game.updateBoard(deletedRow, deletedCol, " ");
+            changeButtonColorUNDO(board[deletedRow][deletedCol]);
+            rowTrack[deletedCol]++;
+        }
     }
 
     protected void restartGame(){

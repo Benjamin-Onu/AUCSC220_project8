@@ -32,14 +32,14 @@ public class ExampleUnitTest {
     //region **TestcountVertically**
     @Test
     public void TestcountVertically1(){
-        game.updateBoard(5, 0, "AI");
-        game.updateBoard(4, 0, "Player");
-        game.updateBoard(3, 0, "AI");
-        game.updateBoard(2, 0, "AI");
-        game.updateBoard(1, 0, "AI");
-        game.updateBoard(0, 0, "AI");
+        game.updateBoard(5, 0, "player1");
+        game.updateBoard(4, 0, "player1");
+        game.updateBoard(3, 0, "player1");
+        game.updateBoard(2, 0, "player1");
+        game.updateBoard(1, 0, "player2");
+        game.updateBoard(0, 0, "player2");
 
-        String result = game.countConsecutivePlayerSpotsVertically("AI");
+        String result = game.countConsecutivePlayerSpotsVertically("player1");
         assertEquals(result, "winnerExist");
     }
 

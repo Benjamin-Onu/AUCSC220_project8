@@ -44,12 +44,6 @@ public class Gameplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //Call decide who goes first to initialize the current turn
         //decideWhoGoesFirst();
-
-        /**
-         * This button is technically for loading the game and it should be at the home
-         * page and should be loaded if the user wants to restore their last game.
-         */
-
         Context context = getApplicationContext();
         StringBuilder stringBuilder = new StringBuilder();;
         File file = new File(context.getFilesDir(), "loadGameCheck.txt");
@@ -67,13 +61,9 @@ public class Gameplay extends AppCompatActivity {
             }
             // Close the BufferedReader
             br.close();
-
-            // Optionally, you can use the contents of the file (stringBuilder.toString())
-            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             // Handle the exception appropriately
             e.printStackTrace();
-            Toast.makeText(context, "Error reading from internal storage", Toast.LENGTH_SHORT).show();
         }
 
         super.onCreate(savedInstanceState);
@@ -109,15 +99,19 @@ public class Gameplay extends AppCompatActivity {
                 fos.write(previousGame.getBytes());
                 // Close the FileOutputStream
                 fos.close();
+                //Determine the next turn from the previous game
+                if(game.determineNextTurnprevGAME() == 1){
+                    game.setCurrentTurn("player1");
+                }else{
+                    game.setCurrentTurn("player2");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
-        if(game.determineNextTurnprevGAME() == 1){
-            game.setCurrentTurn("player1");
-        }else{
-            game.setCurrentTurn("player2");
-        }
+
+
 
         //------------------------------------------------------------------------------------------
         //region **Seven ColumnBTNs OnClickListener**
@@ -259,6 +253,9 @@ public class Gameplay extends AppCompatActivity {
                 game.setCurrentTurn(deletedTurn);
             }
         });
+        //This will prevent the user from reversing a move when it's just the start of a new game
+        //or a previous game.
+        undo.setEnabled(false);
 
         backToHomepage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -427,6 +424,7 @@ public class Gameplay extends AppCompatActivity {
         //If column one is clicked, what should happen
         if(!game.ifFullColumn(0)){
             //disableColumnBTN(0);
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[0]][0]);
             game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[0], 0);
@@ -436,6 +434,7 @@ public class Gameplay extends AppCompatActivity {
 
     public void columnTwo(){
         if(!game.ifFullColumn(1)){
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[1]][1]);
             game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[1], 1);
@@ -445,6 +444,7 @@ public class Gameplay extends AppCompatActivity {
 
     public void columnThree(){
         if(!game.ifFullColumn(2)){
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[2]][2]);
             game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[2], 2);
@@ -454,6 +454,7 @@ public class Gameplay extends AppCompatActivity {
 
     public void columnFour(){
         if(!game.ifFullColumn(3)){
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[3]][3]);
             game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[3], 3);
@@ -463,6 +464,7 @@ public class Gameplay extends AppCompatActivity {
 
     public void columnFive(){
         if(!game.ifFullColumn(4)){
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[4]][4]);
             game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[4], 4);
@@ -472,6 +474,7 @@ public class Gameplay extends AppCompatActivity {
 
     public void columnSix(){
         if(!game.ifFullColumn(5)){
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[5]][5]);
             game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[5], 5);
@@ -481,6 +484,7 @@ public class Gameplay extends AppCompatActivity {
 
     public void columnSeven() {
         if(!game.ifFullColumn(6)){
+            undo.setEnabled(true);
             changeButtonColor(board[rowTrack[6]][6]);
             game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
             movesStack.recordMove(rowTrack[6], 6);
@@ -565,22 +569,25 @@ public class Gameplay extends AppCompatActivity {
                 for (int col = 0; col < board[indx].length; col++) {
                     if(eachSpot[col].equals("1")){
                         game.updateBoard(indx, col, "player1");
+                        rowTrack[col]--;
                         movesStack.recordMove(indx, col);
                         Button myButton = board[indx][col];
                         myButton.setBackgroundColor(color1);
                     }else if (eachSpot[col].equals("2")){
                         game.updateBoard(indx, col, "player2");
+                        rowTrack[col]--;
                         movesStack.recordMove(indx, col);
                         Button myButton = board[indx][col];
                         myButton.setBackgroundColor(color2);
                     }
                 }
             }
-            //Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+            movesStack.reverseStack();
+            //Since the file was read from top to bottom, the most recent moves are at the
+            //bottom of the stack, so to make it normal we reverse the stack
         } catch (IOException e) {
             // Handle the exception appropriately
             e.printStackTrace();
-            Toast.makeText(context, "Error reading from internal storage", Toast.LENGTH_SHORT).show();
         }
     }
 

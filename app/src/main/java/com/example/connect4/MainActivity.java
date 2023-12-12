@@ -85,31 +85,11 @@ public class MainActivity extends AppCompatActivity {
             fos.write(previousGame.getBytes());
             // Close the FileOutputStream
             fos.close();
-            // Optionally, you can notify the user that the operation was successful
-            Toast.makeText(context, "Data written to internal storage", Toast.LENGTH_SHORT).show();
             Intent startGame = new Intent(MainActivity.this, Gameplay.class);
             startActivity(startGame);
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, "Error writing to internal storage", Toast.LENGTH_SHORT).show();
         }
-
-
-
-        // Assuming 'context' is your application context
-        // File object pointing to the "GameState.txt" file in internal storage
-
-
-//        try {
-//            FileWriter myWriter = new FileWriter(" C:\\Users\\user\\Documents\\Android_Studio" +
-//                    "\\AUCSC220_project8\\app\\src\\main\\java\\com\\example\\connect4\\loadGame.txt");
-//            myWriter.write("true");
-//            myWriter.close();
-//            System.out.println("Successfully wrote to the file.");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
     }
 
 

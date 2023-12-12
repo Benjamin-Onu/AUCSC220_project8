@@ -50,10 +50,12 @@ public class MovesStack {
          */
         Stack<Integer> rowStackBridge = movesInRow;
         Stack<Integer> colStackBridge = movesInCol;
-        while(!reverseRowStack.isEmpty()){
+        while(!rowStackBridge.isEmpty()){
             reverseRowStack.push(rowStackBridge.pop());
             reverseColStack.push(colStackBridge.pop());
         }
+        movesInRow = reverseRowStack;
+        movesInCol = reverseColStack;
     }
 
 }

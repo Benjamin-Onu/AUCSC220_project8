@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button startBTN;
     private Model game = new Model();
     Button loadBTN;
+    Button loadAIBTN;
     MediaPlayer mediaPlayer;
     /*
     While the game is still running
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Create this button to fix load game for AI mode.
-        loadAIBTN = (Button) findViewById(R.id.load);
+        loadAIBTN = (Button) findViewById(R.id.load); //(R.id.load2)
         loadAIBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

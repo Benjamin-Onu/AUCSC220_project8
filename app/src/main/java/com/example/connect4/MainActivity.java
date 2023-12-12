@@ -66,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
                 loadGameState();
             }
         });
+
+        //Create this button to fix load game for AI mode.
+        loadAIBTN = (Button) findViewById(R.id.load);
+        loadAIBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadGameState2();
+            }
+        });
+
         // Initialize MediaPlayer with the audio file in the res/raw directory
         mediaPlayer = MediaPlayer.create(this, R.raw.music_file);
     }
@@ -86,6 +96,23 @@ public class MainActivity extends AppCompatActivity {
             // Close the FileOutputStream
             fos.close();
             Intent startGame = new Intent(MainActivity.this, Gameplay.class);
+            startActivity(startGame);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void loadGameState2(){
+        Context context = getApplicationContext();
+        File file = new File(context.getFilesDir(), "loadGameCheck.txt");
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            String previousGame = "true";
+            // Convert the string to bytes and write to the file
+            fos.write(previousGame.getBytes());
+            // Close the FileOutputStream
+            fos.close();
+            Intent startGame = new Intent(MainActivity.this, GamePlayAI.class);
             startActivity(startGame);
         } catch (IOException e) {
             e.printStackTrace();

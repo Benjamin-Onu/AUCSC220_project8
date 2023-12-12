@@ -2,6 +2,10 @@ package com.example.connect4;
 import java.io.File;
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
+import android.content.Context;
+import android.widget.Toast;
+import java.io.FileOutputStream;
+
 public class Model {
     protected Position[][] board;
     protected int ROWS = 6;
@@ -9,9 +13,9 @@ public class Model {
     protected String currentTurn;
     protected String winner;
     protected String lastGame;//This variable stores the last game state if the user chooses to save game
-    private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
-            "\\app\\src\\main\\java\\com\\example\\connect4\\GameState.txt";
-
+    private static final String GAME_STATE = "GameState.txt";
+            //"app\\src\\main\\java\\com\\example\\" +
+            //"connect4\\" +
     protected Model() {
         this.board = new Position[ROWS][COLUMNS];
         //Initialize all the spots in the board
@@ -367,19 +371,6 @@ public class Model {
         setLastGame(currentGame);
     }
 
-    protected void writeLastGameIntoFile(){
-        String previousGame = getLastGame();
-        File myFile = new File(GAME_STATE);
-        try {
-            FileWriter myWriter = new FileWriter(GAME_STATE);
-            myWriter.write(previousGame);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
 
     protected int determineNextTurnprevGAME(){
         int playerOneCount = 0;

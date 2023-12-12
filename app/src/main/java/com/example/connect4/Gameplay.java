@@ -1,5 +1,6 @@
 package com.example.connect4;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +8,14 @@ import android.widget.Button;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 import java.io.File;
 import java.io.FileWriter;
@@ -35,11 +42,32 @@ public class Gameplay extends AppCompatActivity {
     Button save; //save game button
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-
         //Call decide who goes first to initialize the current turn
         //decideWhoGoesFirst();
+        Context context = getApplicationContext();
+        StringBuilder stringBuilder = new StringBuilder();;
+        File file = new File(context.getFilesDir(), "loadGameCheck.txt");
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+        }
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
         game = new Model();
 
         Button backToHomepage = findViewById(R.id.home);
@@ -51,18 +79,39 @@ public class Gameplay extends AppCompatActivity {
         Button column6BTN = findViewById(R.id.column6);
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
-        //save = findViewById(R.id.save);
 
-        /**
-         * This button is technically for loading the game and it should be at the home
-         * page and should be loaded if the user wants to restore their last game.
-         */
         //Disable all the buttons from the second bottom row to the very top row
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
                 board[row][col].setEnabled(false);
             }
         }
+        boolean checker = stringBuilder.toString().equals("true\n");
+        if(checker){
+            readDataFromInternalStorage(getApplicationContext());
+            //continue the previous game by setting the next turn
+            Context newContext = getApplicationContext();
+            File file2 = new File(newContext.getFilesDir(), "loadGameCheck.txt");
+            try {
+                FileOutputStream fos = new FileOutputStream(file2);
+                String previousGame = "false";
+                // Convert the string to bytes and write to the file
+                fos.write(previousGame.getBytes());
+                // Close the FileOutputStream
+                fos.close();
+                //Determine the next turn from the previous game
+                if(game.determineNextTurnprevGAME() == 1){
+                    game.setCurrentTurn("player1");
+                }else{
+                    game.setCurrentTurn("player2");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
 
         //------------------------------------------------------------------------------------------
         //region **Seven ColumnBTNs OnClickListener**
@@ -75,6 +124,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(0)){
                     //disableColumnBTN(0);
+                    column1BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -90,6 +140,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(1)){
                     //disableColumnBTN(1);
+                    column2BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -105,6 +156,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(2)){
                     //disableColumnBTN(2);
+                    column3BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -120,6 +172,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(3)){
                     //disableColumnBTN(3);
+                    column4BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -135,6 +188,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(4)){
                     //disableColumnBTN(4);
+                    column5BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -150,6 +204,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(5)){
                     //disableColumnBTN(5);
+                    column6BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -165,6 +220,7 @@ public class Gameplay extends AppCompatActivity {
                 }
                 if(game.ifFullColumn(6)){
                     //disableColumnBTN(6);
+                    column7BTN.setEnabled(false);
                 };
                 changeTurns();
             }
@@ -197,6 +253,9 @@ public class Gameplay extends AppCompatActivity {
                 game.setCurrentTurn(deletedTurn);
             }
         });
+        //This will prevent the user from reversing a move when it's just the start of a new game
+        //or a previous game.
+        undo.setEnabled(false);
 
         backToHomepage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +264,14 @@ public class Gameplay extends AppCompatActivity {
             }
         });
 
+        save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveGame();
+                backToHomePage();
+            }
+        });
         restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,7 +284,6 @@ public class Gameplay extends AppCompatActivity {
 
         //Main loop of the game
     }
-
     /*
       We have 42 buttons to implement and in order to keep this file readable without having
       to add 42 lines of initializing buttons, I created a buttons class to initialize all
@@ -319,72 +385,6 @@ public class Gameplay extends AppCompatActivity {
             startActivity(ResultMessage);
         }
     }
-    public void displayWinner2(String winner){
-         /*
-            Select the winner textview
-             */
-        if(game.getWinner().equals("player1")){
-
-            //go to this page if player 1 has won the game
-            /**
-             * Set the text to
-             * "    PLAYER ONE WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-
-            //WE ARE NO LONGER DISPLAYING WINNER ON A NEW PAGE
-            //Intent P1Win = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(P1Win);
-        }else if(game.getWinner().equals("player2")) {
-            //go to this page if player 2 has won the game
-
-            /**
-             * Set the text to
-             * "    PLAYER TWO WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-            //Intent P2Win = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(P2Win);
-        }//If the board is full there is no winner
-        else if(game.getCurrentTurn().equals("noWinner")){
-            //go to this page if there is not a winner of the game
-            /**
-             * Set the text to
-             * "    NO ONE WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-            //Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(ResultMessage);
-        }
-    }
-
-    public void saveWinner(){
-        String winner = game.getWinner();
-        //BUG- Writing into winners winners.txt not working
-        try{
-            File filename = new File("winners.txt");
-            FileWriter fw = new FileWriter(filename);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(winner);
-            bw.close();
-
-        }
-        catch (FileNotFoundException e){
-            System.out.println("ERROR - File not found");
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /*
         These functions are for the buttons that are being used to select a position
@@ -422,52 +422,74 @@ public class Gameplay extends AppCompatActivity {
     //region **Columns' Actions**
     public void columnOne(){
         //If column one is clicked, what should happen
-        changeButtonColor(board[rowTrack[0]][0]);
-        game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[0], 0);
-        rowTrack[0]--;
+        if(!game.ifFullColumn(0)){
+            //disableColumnBTN(0);
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[0]][0]);
+            game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[0], 0);
+            rowTrack[0]--;
+        }
     }
 
     public void columnTwo(){
-        changeButtonColor(board[rowTrack[1]][1]);
-        game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[1], 1);
-        rowTrack[1]--;
+        if(!game.ifFullColumn(1)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[1]][1]);
+            game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[1], 1);
+            rowTrack[1]--;
+        }
     }
 
     public void columnThree(){
-        changeButtonColor(board[rowTrack[2]][2]);
-        game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[2], 2);
-        rowTrack[2]--;
+        if(!game.ifFullColumn(2)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[2]][2]);
+            game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[2], 2);
+            rowTrack[2]--;
+        }
     }
 
     public void columnFour(){
-        changeButtonColor(board[rowTrack[3]][3]);
-        game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[3], 3);
-        rowTrack[3]--;
+        if(!game.ifFullColumn(3)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[3]][3]);
+            game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[3], 3);
+            rowTrack[3]--;
+        }
     }
 
     public void columnFive(){
-        changeButtonColor(board[rowTrack[4]][4]);
-        game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[4], 4);
-        rowTrack[4]--;
+        if(!game.ifFullColumn(4)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[4]][4]);
+            game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[4], 4);
+            rowTrack[4]--;
+        }
     }
 
     public void columnSix(){
-        changeButtonColor(board[rowTrack[5]][5]);
-        game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[5], 5);
-        rowTrack[5]--;
+        if(!game.ifFullColumn(5)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[5]][5]);
+            game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[5], 5);
+            rowTrack[5]--;
+        }
     }
 
     public void columnSeven() {
-        changeButtonColor(board[rowTrack[6]][6]);
-        game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[6], 6);
-        rowTrack[6]--;
+        if(!game.ifFullColumn(6)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[6]][6]);
+            game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[6], 6);
+            rowTrack[6]--;
+        }
     }
     //endregion
     //----------------------------------------------------------------------------------------------
@@ -495,43 +517,77 @@ public class Gameplay extends AppCompatActivity {
         }
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
+        rowTrack = new int[]{5, 5, 5, 5, 5, 5, 5};
     }
 
     protected void saveGame(){
       game.saveGameState();
-        /**
-         * Write a function that write this game state into a file
-         */
-        //movesStack.reverseStack();
+      writeLastGameIntoFile();
+    }
+    protected void writeLastGameIntoFile(){
+        Context context = getApplicationContext();
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            String previousGame = game.getLastGame();
+            // Convert the string to bytes and write to the file
+            fos.write(previousGame.getBytes());
+            // Close the FileOutputStream
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
-            "\\app\\src\\main\\java\\com\\example\\connect4\\GameState.txt";
-    protected void loadGameState(){
-        String previousGame;
-        File myFile = new File(GAME_STATE);
+    private void readDataFromInternalStorage(Context context) {
+        // File object pointing to the "GameState.txt" file in internal storage
+        File file = new File(context.getFilesDir(), "GameState.txt");
 
-        Scanner input;//This scanner object reads the number of lines in the file
         try {
-            input = new Scanner(myFile);
-            int rowCount = 0;
-            while (input.hasNextLine()) {
-                String eachRow = input.nextLine();
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+
+            String previousGame = stringBuilder.toString();
+            String[] rows = previousGame.split("\n");
+            //rows contains a list of rows in the previous game
+            for(int indx = 0; indx < rows.length; indx++){
+                String eachRow = rows[indx];
                 String[] eachSpot = eachRow.split(" ");
-                for (int col = 0; col < board[rowCount].length; col++) {
+                for (int col = 0; col < board[indx].length; col++) {
                     if(eachSpot[col].equals("1")){
-                        game.updateBoard(rowCount, col, "player1");
-                        Button myButton = board[rowCount][col];
+                        game.updateBoard(indx, col, "player1");
+                        rowTrack[col]--;
+                        movesStack.recordMove(indx, col);
+                        Button myButton = board[indx][col];
                         myButton.setBackgroundColor(color1);
                     }else if (eachSpot[col].equals("2")){
-                        game.updateBoard(rowCount, col, "player2");
-                        Button myButton = board[rowCount][col];
+                        game.updateBoard(indx, col, "player2");
+                        rowTrack[col]--;
+                        movesStack.recordMove(indx, col);
+                        Button myButton = board[indx][col];
                         myButton.setBackgroundColor(color2);
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR - File not found");
+            movesStack.reverseStack();
+            //Since the file was read from top to bottom, the most recent moves are at the
+            //bottom of the stack, so to make it normal we reverse the stack
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
         }
     }
 

@@ -2,18 +2,26 @@ package com.example.connect4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class GamePlayAI extends AppCompatActivity {
@@ -33,9 +41,32 @@ public class GamePlayAI extends AppCompatActivity {
     Model game;
     String turn;
     int AIcolor;
+    Button save; //save game button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Context context = getApplicationContext();
+        StringBuilder stringBuilder = new StringBuilder();;
+        File file = new File(context.getFilesDir(), "loadGameCheck.txt");
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
@@ -59,6 +90,34 @@ public class GamePlayAI extends AppCompatActivity {
             }
         }
 
+        boolean checker = stringBuilder.toString().equals("true\n");
+        if(checker){
+            readDataFromInternalStorage(getApplicationContext());
+            if(game.determineNextTurnprevGAME() == 1){
+                game.setCurrentTurn("player1");
+            }else{
+                game.setCurrentTurn("player2");
+            }
+            Context newContext = getApplicationContext();
+            File file2 = new File(newContext.getFilesDir(), "loadGameCheck.txt");
+            try {
+                FileOutputStream fos = new FileOutputStream(file2);
+                String previousGame = "false";
+                // Convert the string to bytes and write to the file
+                fos.write(previousGame.getBytes());
+                // Close the FileOutputStream
+                fos.close();
+                //Determine the next turn from the previous game
+                if(game.determineNextTurnprevGAME() == 1){
+                    game.setCurrentTurn("player1");
+                }else{
+                    game.setCurrentTurn("player2");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         //If AI goes first, set it to be player1
         if(turn.equals("AI")){
             game.setCurrentTurn("player1");
@@ -76,7 +135,8 @@ public class GamePlayAI extends AppCompatActivity {
                       displayWinner(game.getWinner());
                   }
                   if(game.ifFullColumn(0)){
-                      //disableColumnBTN(column1BTN);
+                      //disableColumnBTN(0);
+                      column1BTN.setEnabled(false);
                   };
                   changeTurns();
                   AITurn();
@@ -92,7 +152,8 @@ public class GamePlayAI extends AppCompatActivity {
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(1)){
-                        //disableColumnBTN(1);
+                        //disableColumnBTN(0);
+                        column2BTN.setEnabled(false);
                     };
                     changeTurns();
                     AITurn();
@@ -108,7 +169,8 @@ public class GamePlayAI extends AppCompatActivity {
                         displayWinner(game.getWinner());
                     }
                     if(game.ifFullColumn(2)){
-                        //disableColumnBTN(2);
+                        //disableColumnBTN(0);
+                        column3BTN.setEnabled(false);
                     };
                     changeTurns();
                     AITurn();
@@ -125,6 +187,7 @@ public class GamePlayAI extends AppCompatActivity {
                     }
                     if(game.ifFullColumn(3)){
                         //disableColumnBTN(3);
+                        column4BTN.setEnabled(false);
                     };
                     changeTurns();
                     AITurn();
@@ -141,6 +204,7 @@ public class GamePlayAI extends AppCompatActivity {
                     }
                     if(game.ifFullColumn(4)){
                         //disableColumnBTN(4);
+                        column5BTN.setEnabled(false);
                     };
                     changeTurns();
                     AITurn();
@@ -157,6 +221,7 @@ public class GamePlayAI extends AppCompatActivity {
                     }
                     if(game.ifFullColumn(5)){
                         //disableColumnBTN(5);
+                        column6BTN.setEnabled(false);
                     };
                     changeTurns();
                     AITurn();
@@ -173,6 +238,7 @@ public class GamePlayAI extends AppCompatActivity {
                     }
                     if(game.ifFullColumn(6)){
                         //disableColumnBTN(6);
+                        column7BTN.setEnabled(false);
                     };
                     changeTurns();
                     AITurn();
@@ -205,12 +271,24 @@ public class GamePlayAI extends AppCompatActivity {
                 backToHomePage();
             }
         });
+        //This will prevent the user from reversing a move when it's just the start of a new game
+        //or a previous game.
+        undo.setEnabled(false);
 
         restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 restartGame();
+            }
+        });
+
+        save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveGame();
+                backToHomePage();
             }
         });
         //endregion
@@ -357,10 +435,18 @@ public class GamePlayAI extends AppCompatActivity {
                 }
             }
         }
-        int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
-        Position randomSpot = optimizedSpots.get(randomSpotIndex);
+        //If there are no optimized spots vertically then return a random spot.
+        if(optimizedSpots.size() == 0){
+            int randomSpotIndex = rand.nextInt(availableSpots.size()-1);
+            Position randomSpot = availableSpots.get(randomSpotIndex);
+            return randomSpot;
 
-        return randomSpot;
+        }else{
+            int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
+            Position randomSpot = optimizedSpots.get(randomSpotIndex);
+            return randomSpot;
+        }
+
     }
 
     public ArrayList<Position> generateAvailableSpots(){
@@ -373,9 +459,17 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
-        if(game.getWinner().equals("player1")){
+        if(game.getWinner().equals("player1") && AIcolor == color1){
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
+            startActivity(P1Win);
+        }else if(game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
+            startActivity(P1Win);
+        }else if(game.getWinner().equals("player2") && AIcolor == color2){
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
         }else if(game.getWinner().equals("player2")) {
             //go to this page if player 2 has won the game
@@ -386,72 +480,6 @@ public class GamePlayAI extends AppCompatActivity {
             //go to this page if there is not a winner of the game
             Intent ResultMessage = new Intent(GamePlayAI.this, DefaultMessage.class);
             startActivity(ResultMessage);
-        }
-    }
-    public void displayWinner2(String winner){
-         /*
-            Select the winner textview
-             */
-        if(game.getWinner().equals("player1")){
-
-            //go to this page if player 1 has won the game
-            /**
-             * Set the text to
-             * "    PLAYER ONE WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-
-            //WE ARE NO LONGER DISPLAYING WINNER ON A NEW PAGE
-            //Intent P1Win = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(P1Win);
-        }else if(game.getWinner().equals("player2")) {
-            //go to this page if player 2 has won the game
-
-            /**
-             * Set the text to
-             * "    PLAYER TWO WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-            //Intent P2Win = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(P2Win);
-        }//If the board is full there is no winner
-        else if(game.getCurrentTurn().equals("noWinner")){
-            //go to this page if there is not a winner of the game
-            /**
-             * Set the text to
-             * "    NO ONE WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-            //Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(ResultMessage);
-        }
-    }
-
-    public void saveWinner(){
-        File filename;
-        //BUG- Writing into winners winners.txt not working
-        try{
-            filename = new File("app/src/main/java/com/example/connect4/winners.txt");
-            FileWriter fw = new FileWriter(filename);
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            String winner = game.getWinner();
-            bw.write(winner);
-        }
-        catch (FileNotFoundException e){
-            System.out.println("ERROR - File not found");
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -493,53 +521,73 @@ public class GamePlayAI extends AppCompatActivity {
     //region **Columns' Actions**
     public void columnOne(){
         //If column one is clicked, what should happen
-        changeButtonColor(board[rowTrack[0]][0]);
-        game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[0], 0);
-        rowTrack[0]--;
+        if(!game.ifFullColumn(0)){
+            //disableColumnBTN(0);
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[0]][0]);
+            game.updateBoard(rowTrack[0], 0, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[0], 0);
+            rowTrack[0]--;
+        }
     }
 
     public void columnTwo(){
-        changeButtonColor(board[rowTrack[1]][1]);
-        game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[1], 1);
-        rowTrack[1]--;
+        if(!game.ifFullColumn(1)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[1]][1]);
+            game.updateBoard(rowTrack[1], 1, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[1], 1);
+            rowTrack[1]--;
+        }
     }
 
     public void columnThree(){
-        changeButtonColor(board[rowTrack[2]][2]);
-        game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[2], 2);
-        rowTrack[2]--;
+        if(!game.ifFullColumn(2)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[2]][2]);
+            game.updateBoard(rowTrack[2], 2, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[2], 2);
+            rowTrack[2]--;
+        }
     }
 
     public void columnFour(){
-        changeButtonColor(board[rowTrack[3]][3]);
-        game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[3], 3);
-        rowTrack[3]--;
+        if(!game.ifFullColumn(3)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[3]][3]);
+            game.updateBoard(rowTrack[3], 3, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[3], 3);
+            rowTrack[3]--;
+        }
     }
 
     public void columnFive(){
-        changeButtonColor(board[rowTrack[4]][4]);
-        game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[4], 4);
-        rowTrack[4]--;
+        if(!game.ifFullColumn(4)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[4]][4]);
+            game.updateBoard(rowTrack[4], 4, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[4], 4);
+            rowTrack[4]--;
+        }
     }
 
     public void columnSix(){
-        changeButtonColor(board[rowTrack[5]][5]);
-        game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[5], 5);
-        rowTrack[5]--;
-
+        if(!game.ifFullColumn(5)){
+            undo.setEnabled(true);
+            changeButtonColor(board[rowTrack[5]][5]);
+            game.updateBoard(rowTrack[5], 5, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[5], 5);
+            rowTrack[5]--;
+        }
     }
 
     public void columnSeven() {
-        changeButtonColor(board[rowTrack[6]][6]);
-        game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
-        movesStack.recordMove(rowTrack[6], 6);
-        rowTrack[6]--;
+        if(!game.ifFullColumn(6)){
+            changeButtonColor(board[rowTrack[6]][6]);
+            game.updateBoard(rowTrack[6], 6, game.getCurrentTurn());
+            movesStack.recordMove(rowTrack[6], 6);
+            rowTrack[6]--;
+        }
     }
     //endregion
     //----------------------------------------------------------------------------------------------
@@ -567,6 +615,79 @@ public class GamePlayAI extends AppCompatActivity {
         }
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
+        rowTrack = new int[]{5, 5, 5, 5, 5, 5, 5};
+    }
+
+    protected void saveGame(){
+        game.saveGameState();
+        writeLastGameIntoFile();
+    }
+    protected void writeLastGameIntoFile(){
+        Context context = getApplicationContext();
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            String previousGame = game.getLastGame();
+            // Convert the string to bytes and write to the file
+            fos.write(previousGame.getBytes());
+            // Close the FileOutputStream
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void readDataFromInternalStorage(Context context) {
+        // File object pointing to the "GameState.txt" file in internal storage
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+
+            String previousGame = stringBuilder.toString();
+            String[] rows = previousGame.split("\n");
+            //rows contains a list of rows in the previous game
+            for(int indx = 0; indx < rows.length; indx++){
+                String eachRow = rows[indx];
+                String[] eachSpot = eachRow.split(" ");
+                for (int col = 0; col < board[indx].length; col++) {
+                    if(eachSpot[col].equals("1")){
+                        game.updateBoard(indx, col, "player1");
+                        //Update row track for each column
+                        rowTrack[col]--;
+                        movesStack.recordMove(indx, col);
+                        Button myButton = board[indx][col];
+                        myButton.setBackgroundColor(color1);
+                    }else if (eachSpot[col].equals("2")){
+                        game.updateBoard(indx, col, "player2");
+                        //Update row track for each column
+                        rowTrack[col]--;
+                        movesStack.recordMove(indx, col);
+                        Button myButton = board[indx][col];
+                        myButton.setBackgroundColor(color2);
+                    }
+                }
+            }
+            movesStack.reverseStack();
+            //Since the file was read from top to bottom, the most recent moves are at the
+            //bottom of the stack, so to make it normal we reverse the stack
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+        }
     }
 
     private void openInstructions() {

@@ -70,7 +70,7 @@ public class GamePlayAI extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game_play_ai);
 
         game = new Model();
         decideWhoGoesFirst();

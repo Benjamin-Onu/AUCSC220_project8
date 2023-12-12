@@ -122,13 +122,6 @@ public class GamePlayAI extends AppCompatActivity {
             }
         }
 
-        //If AI goes first, set it to be player1
-        if(turn.equals("AI")){
-            game.setCurrentTurn("player1");
-            AIcolor = color1;
-            AI_turn = "player1";
-            AITurn();
-        }
 
         //------------------------------------------------------------------------------------------
         //region **Seven ColumnBTNs OnClickListener**
@@ -300,6 +293,13 @@ public class GamePlayAI extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         //Main loop of the game
+        //If AI goes first, set it to be player1
+        if(turn.equals("AI")){
+            game.setCurrentTurn("player1");
+            AIcolor = color1;
+            AI_turn = "player1";
+            AITurn();
+        }
     }
 
     /*
@@ -418,6 +418,9 @@ public class GamePlayAI extends AppCompatActivity {
                 columnSeven();
                 break;
         }
+        if(game.ifWinnerExist()){
+            displayWinner(game.getWinner());
+        }
         changeTurns();
     }
 
@@ -465,19 +468,30 @@ public class GamePlayAI extends AppCompatActivity {
     }
 
     public void displayWinner(String winner){
+        /*if(AI_turn.equals("player1") && game.getWinner().equals("player1")){
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
+            startActivity(P1Win);
+        }else
+        else if(AI_turn.equals("player2") && game.getWinner().equals("player2")){
+            //go to this page if player 1 has won the game
+            Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
+            startActivity(P1Win);
+        }
+        */
         if(AI_turn.equals("player1") && game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
-        }else if(AIcolor == color2 && game.getWinner().equals("player1")){
+        }else if(game.getWinner().equals("player1")){
             //go to this page if player 1 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, P1Win.class);
             startActivity(P1Win);
         }else if(AI_turn.equals("player2") && game.getWinner().equals("player2")){
-            //go to this page if player 1 has won the game
+            //go to this page if player 2 has won the game
             Intent P1Win = new Intent(GamePlayAI.this, AIWinMessage.class);
             startActivity(P1Win);
-        }else if(AIcolor == color1 && game.getWinner().equals("player2")) {
+        }else if(game.getWinner().equals("player2")) {
             //go to this page if player 2 has won the game
             Intent P2Win = new Intent(GamePlayAI.this, P2Win.class);
             startActivity(P2Win);

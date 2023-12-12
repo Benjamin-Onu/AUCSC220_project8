@@ -1,5 +1,6 @@
 package com.example.connect4;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +8,14 @@ import android.widget.Button;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 import java.io.File;
 import java.io.FileWriter;
@@ -35,11 +42,44 @@ public class Gameplay extends AppCompatActivity {
     Button save; //save game button
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+
 
         //Call decide who goes first to initialize the current turn
         //decideWhoGoesFirst();
+
+        /**
+         * This button is technically for loading the game and it should be at the home
+         * page and should be loaded if the user wants to restore their last game.
+         */
+
+        Context context = getApplicationContext();
+        StringBuilder stringBuilder = new StringBuilder();;
+        File file = new File(context.getFilesDir(), "loadGameCheck.txt");
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+            // Read the contents of the file line by line
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            // Close the BufferedReader
+            br.close();
+
+            // Optionally, you can use the contents of the file (stringBuilder.toString())
+            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+            Toast.makeText(context, "Error reading from internal storage", Toast.LENGTH_SHORT).show();
+        }
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
         game = new Model();
 
         Button backToHomepage = findViewById(R.id.home);
@@ -52,17 +92,17 @@ public class Gameplay extends AppCompatActivity {
         Button column7BTN = findViewById(R.id.column7);
         createButtons();
 
-        /**
-         * This button is technically for loading the game and it should be at the home
-         * page and should be loaded if the user wants to restore their last game.
-         */
         //Disable all the buttons from the second bottom row to the very top row
         for(int row = 5;row >= 0;row--){
             for(int col = 0; col < 6; col++){
                 board[row][col].setEnabled(false);
             }
         }
-
+        boolean checker = stringBuilder.toString().equals("true\n");
+        if(checker){
+            //loadGameState();
+            readDataFromInternalStorage(getApplicationContext());
+        }
         //------------------------------------------------------------------------------------------
         //region **Seven ColumnBTNs OnClickListener**
         column1BTN.setOnClickListener(new View.OnClickListener(){
@@ -481,18 +521,48 @@ public class Gameplay extends AppCompatActivity {
 
     protected void saveGame(){
       game.saveGameState();
+      writeLastGameIntoFile();
         /**
          * Write a function that write this game state into a file
          */
         //movesStack.reverseStack();
+    }
+    protected void writeLastGameIntoFile(){
+        //File myFile = new File(GAME_STATE);
+        Context context = getApplicationContext();
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            //FileWriter myWriter = new FileWriter(GAME_STATE);
+            //myWriter.write(previousGame);
+            //myWriter.close();
+            // Open a FileOutputStream for the file
+            FileOutputStream fos = new FileOutputStream(file);
+
+            // Your data to write (for example, a String)
+            //String dataToWrite = "Your data goes here";
+            String previousGame = game.getLastGame();
+            // Convert the string to bytes and write to the file
+            fos.write(previousGame.getBytes());
+            // Close the FileOutputStream
+            fos.close();
+            // Optionally, you can notify the user that the operation was successful
+            Toast.makeText(context, "Data written to internal storage", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error writing to internal storage", Toast.LENGTH_SHORT).show();
+        }
+
+        // Assuming 'context' is your application context
+        // File object pointing to the "GameState.txt" file in internal storage
+
     }
 
     private static final String GAME_STATE = "C:\\Users\\user\\Documents\\Android_Studio\\AUCSC220_project8" +
             "\\app\\src\\main\\java\\com\\example\\connect4\\GameState.txt";
     protected void loadGameState(){
         String previousGame;
-        File myFile = new File(GAME_STATE);
-
+        File myFile = new File("GameState.txt");
         Scanner input;//This scanner object reads the number of lines in the file
         try {
             input = new Scanner(myFile);
@@ -514,6 +584,43 @@ public class Gameplay extends AppCompatActivity {
             }
         } catch (FileNotFoundException e) {
             System.out.println("ERROR - File not found");
+        }
+    }
+    private void readDataFromInternalStorage(Context context) {
+        // File object pointing to the "GameState.txt" file in internal storage
+        File file = new File(context.getFilesDir(), "GameState.txt");
+
+        try {
+            // Open a FileInputStream for the file
+            FileInputStream fis = new FileInputStream(file);
+
+            // Wrap the FileInputStream in an InputStreamReader
+            InputStreamReader isr = new InputStreamReader(fis);
+
+            // Wrap the InputStreamReader in a BufferedReader
+            BufferedReader br = new BufferedReader(isr);
+
+            // Read the contents of the file line by line
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+
+            // Close the BufferedReader
+            br.close();
+
+            String previousGame = stringBuilder.toString();
+            String[] rows = previousGame.split("\n");
+            //rows contains a list of rows in the previous game
+
+            // Optionally, you can use the contents of the file (stringBuilder.toString())
+            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+            Toast.makeText(context, "Error reading from internal storage", Toast.LENGTH_SHORT).show();
         }
     }
 

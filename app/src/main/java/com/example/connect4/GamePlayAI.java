@@ -33,6 +33,7 @@ public class GamePlayAI extends AppCompatActivity {
     Model game;
     String turn;
     int AIcolor;
+    Button save; //save game button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,6 +212,15 @@ public class GamePlayAI extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 restartGame();
+            }
+        });
+
+        save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveGame();
+                backToHomePage();
             }
         });
         //endregion
@@ -396,53 +406,6 @@ public class GamePlayAI extends AppCompatActivity {
             startActivity(ResultMessage);
         }
     }
-    public void displayWinner2(String winner){
-         /*
-            Select the winner textview
-             */
-        if(game.getWinner().equals("player1")){
-
-            //go to this page if player 1 has won the game
-            /**
-             * Set the text to
-             * "    PLAYER ONE WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-
-            //WE ARE NO LONGER DISPLAYING WINNER ON A NEW PAGE
-            //Intent P1Win = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(P1Win);
-        }else if(game.getWinner().equals("player2")) {
-            //go to this page if player 2 has won the game
-
-            /**
-             * Set the text to
-             * "    PLAYER TWO WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-            //Intent P2Win = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(P2Win);
-        }//If the board is full there is no winner
-        else if(game.getCurrentTurn().equals("noWinner")){
-            //go to this page if there is not a winner of the game
-            /**
-             * Set the text to
-             * "    NO ONE WIN
-             * CLICK RESTART or HOME to Start a New Game
-             * "
-             * disable undo, column buttons , leave only restart and home buttons
-             *
-             */
-            //Intent ResultMessage = new Intent(Gameplay.this, P2Win.class);
-            //startActivity(ResultMessage);
-        }
-    }
 
     public void saveWinner(){
         File filename;
@@ -575,6 +538,15 @@ public class GamePlayAI extends AppCompatActivity {
         }
         game.setCurrentTurn("player1");
         decideWhoGoesFirst();
+        rowTrack = new int[]{5, 5, 5, 5, 5, 5, 5};
+    }
+
+    protected void saveGame(){
+        game.saveGameState();
+        /**
+         * Write a function that write this game state into a file
+         */
+        //movesStack.reverseStack();
     }
 
     private void openInstructions() {

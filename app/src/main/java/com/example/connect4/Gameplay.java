@@ -34,12 +34,13 @@ public class Gameplay extends AppCompatActivity {
     protected Button[][] board;
     protected Random rand = new Random();
     protected MovesStack movesStack = MovesStack.getInstance();
-    Model game;
-    Button instructions;
-    String turn;
-    Button undo;
-    Button restart;
-    Button save; //save game button
+    private Model game;
+    private Button instructions;
+    private String turn;
+    private Button undo;
+    private Button restart;
+    private Button save; //save game button
+    private Button[] columnButtons = new Button[7];
 
     protected void onCreate(Bundle savedInstanceState) {
         //Call decide who goes first to initialize the current turn
@@ -72,12 +73,20 @@ public class Gameplay extends AppCompatActivity {
 
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
+        columnButtons[0] = column1BTN;
         Button column2BTN = findViewById(R.id.column2);
+        columnButtons[1] = column2BTN;
         Button column3BTN = findViewById(R.id.column3);
+        columnButtons[2] = column3BTN;
         Button column4BTN = findViewById(R.id.column4);
+        columnButtons[3] = column4BTN;
         Button column5BTN = findViewById(R.id.column5);
+        columnButtons[4] = column5BTN;
         Button column6BTN = findViewById(R.id.column6);
+        columnButtons[5] = column6BTN;
         Button column7BTN = findViewById(R.id.column7);
+        columnButtons[6] = column7BTN;
+
         createButtons();
 
         //Disable all the buttons from the second bottom row to the very top row
@@ -511,6 +520,9 @@ public class Gameplay extends AppCompatActivity {
             int deletedRow = deletedPiecesPosition[0];
             int deletedCol = deletedPiecesPosition[1];
             game.updateBoard(deletedRow, deletedCol, " ");
+            //This is to ensure that the buttons that were disabled as a result of a full column will
+            //be enabled after the undo button is clicked
+            columnButtons[deletedCol].setEnabled(true);
             changeButtonColorUNDO(board[deletedRow][deletedCol]);
             rowTrack[deletedCol]++;
         }

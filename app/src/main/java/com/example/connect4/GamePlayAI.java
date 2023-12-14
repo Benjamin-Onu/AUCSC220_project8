@@ -42,8 +42,9 @@ public class GamePlayAI extends AppCompatActivity {
     String turn;
     int AIcolor;
     String AI_turn;
-    String AIturn_PrevGame;
+    private static String AIturn_PrevGame;
     Button save; //save game button
+    private Button[] columnButtons = new Button[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +80,19 @@ public class GamePlayAI extends AppCompatActivity {
         undo = (Button) findViewById(R.id.undo);
         Button backToHomepage = findViewById(R.id.home);
         Button column1BTN = findViewById(R.id.column1);
+        columnButtons[0] = column1BTN;
         Button column2BTN = findViewById(R.id.column2);
+        columnButtons[1] = column2BTN;
         Button column3BTN = findViewById(R.id.column3);
+        columnButtons[2] = column3BTN;
         Button column4BTN = findViewById(R.id.column4);
+        columnButtons[3] = column4BTN;
         Button column5BTN = findViewById(R.id.column5);
+        columnButtons[4] = column5BTN;
         Button column6BTN = findViewById(R.id.column6);
+        columnButtons[5] = column6BTN;
         Button column7BTN = findViewById(R.id.column7);
+        columnButtons[6] = column7BTN;
         createButtons();
 
         //Disable all the buttons from the second bottom row to the very top row
@@ -107,11 +115,10 @@ public class GamePlayAI extends AppCompatActivity {
                 // Close the FileOutputStream
                 fos.close();
                 //Determine the next turn from the previous game
-                /*if(game.determineNextTurnprevGAME() == 1){
+                if(AIturn_PrevGame.equals("player1")){
                     game.setCurrentTurn("player1");
-                }else{
-                    game.setCurrentTurn("player2");
-                }*/
+                    AITurn();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -123,7 +130,7 @@ public class GamePlayAI extends AppCompatActivity {
             if(turn.equals("AI")){
                 game.setCurrentTurn("player1");
                 AIcolor = color1;
-                AI_turn = "player1";
+                AIturn_PrevGame = "player1";
                 AITurn();
             }
         }
@@ -611,6 +618,9 @@ public class GamePlayAI extends AppCompatActivity {
             int deletedRow = deletedPiecesPosition[0];
             int deletedCol = deletedPiecesPosition[1];
             game.updateBoard(deletedRow, deletedCol, " ");
+            //This is to ensure that the buttons that were disabled as a result of a full column will
+            //be enabled after the undo button is clicked
+            columnButtons[deletedCol].setEnabled(true);
             changeButtonColorUNDO(board[deletedRow][deletedCol]);
             rowTrack[deletedCol]++;
         }

@@ -13,9 +13,9 @@ public class GameMode extends AppCompatActivity {
     Button pVai;
     Button instructions;
     Button mute;
-
     private MediaPlayer mediaPlayer;
     private boolean isMuted = false;
+    private static String gameMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class GameMode extends AppCompatActivity {
             @Override
             public void onClick(View x){
                 //function for going to pVai page is inserted here
+                gameMode = "HvH";
                 Intent startGame = new Intent(GameMode.this, Gameplay.class);
                 startActivity(startGame);
             }
@@ -47,6 +48,7 @@ public class GameMode extends AppCompatActivity {
             @Override
             public void onClick(View x){
                 //function for going to pVai page is inserted here
+                gameMode = "HvA";
                 Intent startGame = new Intent(GameMode.this, GamePlayAI.class);
                 startActivity(startGame);
             }
@@ -60,6 +62,9 @@ public class GameMode extends AppCompatActivity {
         });
     }
 
+    public String getGameMode(){
+        return gameMode;
+    }
     private void openInstructions() {
         Intent popupInstructions = new Intent(GameMode.this, PopUpInstructions.class);
         startActivity(popupInstructions);

@@ -41,8 +41,8 @@ public class GamePlayAI extends AppCompatActivity {
     Model game;
     String turn;
     int AIcolor;
-    String AI_turn;
-    private static String AIturn_PrevGame;
+    //String AI_turn;
+    private static String AI_turn;
     Button save; //save game button
     private Button[] columnButtons = new Button[7];
 
@@ -65,15 +65,14 @@ public class GamePlayAI extends AppCompatActivity {
             }
             // Close the BufferedReader
             br.close();
-            // Optionally, you can use the contents of the file (stringBuilder.toString())
-            Toast.makeText(context, "Read data from internal storage:\n" + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             // Handle the exception appropriately
             e.printStackTrace();
         }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_play_ai);
+
+        game = new Model();
         instructions = (Button) findViewById(R.id.instructions);
         save = (Button) findViewById(R.id.save);
         restart = (Button) findViewById(R.id.restart);
@@ -109,13 +108,14 @@ public class GamePlayAI extends AppCompatActivity {
             File file2 = new File(newContext.getFilesDir(), "loadGameCheck.txt");
             try {
                 FileOutputStream fos = new FileOutputStream(file2);
+                //This is sending a message to loadGameCheck.txt that the last game is already loaded
                 String previousGame = "false";
                 // Convert the string to bytes and write to the file
                 fos.write(previousGame.getBytes());
                 // Close the FileOutputStream
                 fos.close();
                 //Determine the next turn from the previous game
-                if(AIturn_PrevGame.equals("player1")){
+                if(AI_turn.equals("player1")){
                     game.setCurrentTurn("player1");
                     AITurn();
                 }
@@ -123,14 +123,14 @@ public class GamePlayAI extends AppCompatActivity {
                 e.printStackTrace();
             }
         }else{
-            game = new Model();
+
             decideWhoGoesFirst();
             //Main loop of the game
             //If AI goes first, set it to be player1
             if(turn.equals("AI")){
                 game.setCurrentTurn("player1");
                 AIcolor = color1;
-                AIturn_PrevGame = "player1";
+                AI_turn = "player1";
                 AITurn();
             }
         }
@@ -446,13 +446,14 @@ public class GamePlayAI extends AppCompatActivity {
             }
         }
         //If there are no optimized spots vertically then return a random spot.
+
         if(optimizedSpots.size() == 0){
-            int randomSpotIndex = rand.nextInt(availableSpots.size()-1);
+            int randomSpotIndex = rand.nextInt(availableSpots.size());//the upper bound is exclusive
             Position randomSpot = availableSpots.get(randomSpotIndex);
             return randomSpot;
 
         }else{
-            int randomSpotIndex = rand.nextInt(optimizedSpots.size()-1);
+            int randomSpotIndex = rand.nextInt(optimizedSpots.size());
             Position randomSpot = optimizedSpots.get(randomSpotIndex);
             return randomSpot;
         }
@@ -637,7 +638,7 @@ public class GamePlayAI extends AppCompatActivity {
 
     protected void saveGame(){
         game.saveGameState();
-        AIturn_PrevGame = AI_turn;
+        //AIturn_PrevGame = AI_turn;
         writeLastGameIntoFile();
     }
     protected void writeLastGameIntoFile(){

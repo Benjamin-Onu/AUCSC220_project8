@@ -96,8 +96,16 @@ public class MainActivity extends AppCompatActivity {
             fos.write(previousGame.getBytes());
             // Close the FileOutputStream
             fos.close();
-            Intent startGame = new Intent(MainActivity.this, Gameplay.class);
-            startActivity(startGame);
+            GameMode gMode = new GameMode();
+            String lastGMode = gMode.getGameMode();
+            if(lastGMode.equals("HvH")){
+                Intent startGame = new Intent(MainActivity.this, Gameplay.class);
+                startActivity(startGame);
+            }else{
+                Intent startGame = new Intent(MainActivity.this, GamePlayAI.class);
+                startActivity(startGame);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
